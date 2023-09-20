@@ -1,5 +1,6 @@
 import React from "react";
 import { TitleCultivation } from "./TitleApp";
+import { SearchPlants } from "./SearchPlants";
 import { ContainerImagesPlants}  from "./ImagePlants";
 import { ImageCultivation } from "./ImagePlants";
 
@@ -11,14 +12,34 @@ const imagesPlants = [
 ]
 
 function App() {
+
+  // ESTADOS
+  const [inputSearchPlant, setInputSearchPlant] = React.useState('')
+  const [plants, setPlants] = React.useState(imagesPlants)
+
+  // ESTADOS DERIVADOS
+
+  const searchPlants = plants.filter(item =>{
+    return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
+  })
+
   return (
     <React.Fragment>
 
       <TitleCultivation />
+      <SearchPlants 
+      inputSearchPlant={inputSearchPlant} 
+      setInputSearchPlant={setInputSearchPlant}
+      />
 
       <ContainerImagesPlants>
-        {imagesPlants.map(item =>{
-          return <ImageCultivation key={item.name} name={item.name} src={item.src} genetic={item.genetic} />
+        {searchPlants.map(item =>{
+          return <ImageCultivation 
+          key={item.name} 
+          name={item.name}
+          genetic={item.genetic} 
+          src={item.src} 
+          />
         })}
       </ContainerImagesPlants>
 

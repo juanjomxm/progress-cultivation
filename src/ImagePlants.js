@@ -1,3 +1,10 @@
+const styleImagesPlants = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+}
+
 function ContainerImagesPlants({children}){
     return(
         children
@@ -6,14 +13,17 @@ function ContainerImagesPlants({children}){
 
 function ImageCultivation({name, src, genetic}){
     return(
-        <div>
+        <div style={styleImagesPlants}>
             <h2>{name}</h2>
+            <p>{genetic}</p>
             <img
-            src={src} 
+            src={src}
+            onClick={()=>{
+                console.log('click')
+            }} 
             width={300}
             height={300}
             ></img>
-            <p>{genetic}</p>
         </div>
     )
 }
