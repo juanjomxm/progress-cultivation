@@ -5,22 +5,25 @@ import { ContainerImagesPlants}  from "./ImagePlants";
 import { ImageCultivation } from "./ImagePlants";
 
 const imagesPlants = [
-  {name: 'Black Kush98', genetic: 'Mostly Indica', src: 'https://th.bing.com/th/id/R.bff9e0e41b2e2a1b66a8f4507b8010e2?rik=SbPG4gDvv44MYQ&pid=ImgRaw&r=0' },
-  {name: 'Somango', genetic: 'Mostly Indica', src: 'https://www.semillaslowcost.com/1091-large_default/somango-47.jpg'},
-  {name: 'Red Critical Auto', genetic: 'Mostly Indica', src: 'https://th.bing.com/th/id/R.3866ef5d9dc6381f11afdf792b493dbb?rik=ReZvmNvN%2bbHNUw&pid=ImgRaw&r=0'},
-  {name: 'Purple Punch', genetic: 'Mostly Indica', src: 'https://www.beaverseed.com/wp-content/uploads/2020/02/Purple-Punch-Feminized.jpg'}
+  {name: 'Black Kush98', genetic: 'Mostly Indica', src: ['https://th.bing.com/th/id/R.bff9e0e41b2e2a1b66a8f4507b8010e2?rik=SbPG4gDvv44MYQ&pid=ImgRaw&r=0', 'https://th.bing.com/th/id/OIP.HFbzEl8pygaHMu9Q6lT9UwHaJ4?pid=ImgDet&rs=1'], },
+
+  {name: 'Somango', genetic: 'Mostly Indica', src: ['https://th.bing.com/th/id/OIP.eiy_imzG0fFgbIcH59aRWgHaHa?pid=ImgDet&rs=1', 'https://th.bing.com/th/id/R.0a2e4ac4ab93fc1e9ce6b479142cd9a4?rik=nh1wgGPuHAD%2faw&pid=ImgRaw&r=0']},
+
+  {name: 'Red Critical Auto', genetic: 'Mostly Indica', src: ['https://th.bing.com/th/id/R.3866ef5d9dc6381f11afdf792b493dbb?rik=ReZvmNvN%2bbHNUw&pid=ImgRaw&r=0','https://th.bing.com/th/id/OIP.aE_SyuzuXMx2CPS5Ac545wAAAA?pid=ImgDet&rs=1']},
+
+  {name: 'Purple Punch', genetic: 'Mostly Indica', src: ['https://th.bing.com/th/id/OIP.6-yb6QKQLS1PZ_clwop-jgHaHa?pid=ImgDet&rs=1', 'https://th.bing.com/th/id/R.52dfae74554eccdb48f03eca632887e7?rik=XY2S%2b00qvUUQag&pid=ImgRaw&r=0']}
 ]
 
 function App() {
 
   // ESTADOS
-  const [inputSearchPlant, setInputSearchPlant] = React.useState('')
-  const [plants, setPlants] = React.useState(imagesPlants)
+  const [stateInputSearchPlant, setStateInputSearchPlant] = React.useState('')
+  const [statePlants, setPlants] = React.useState(imagesPlants)
 
   // ESTADOS DERIVADOS
 
-  const searchPlants = plants.filter(item =>{
-    return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
+  const searchPlants = statePlants.filter(item =>{
+    return item.name.toLocaleLowerCase().includes(stateInputSearchPlant.toLocaleLowerCase())
   })
 
   return (
@@ -28,8 +31,8 @@ function App() {
 
       <TitleCultivation />
       <SearchPlants 
-      inputSearchPlant={inputSearchPlant} 
-      setInputSearchPlant={setInputSearchPlant}
+      inputSearchPlant={stateInputSearchPlant} 
+      setInputSearchPlant={setStateInputSearchPlant}
       />
 
       <ContainerImagesPlants>
@@ -38,7 +41,7 @@ function App() {
           key={item.name} 
           name={item.name}
           genetic={item.genetic} 
-          src={item.src} 
+          src={item.src}
           />
         })}
       </ContainerImagesPlants>
