@@ -13,13 +13,22 @@ function ContainerImagesPlants({children}){
     )
 }
 
-function ImageCultivation({name, genetic, src}){
+function ImageCultivation({name, genetic, src, progress}){
+    // Encontre esta solucion paara darle click a la imagen y se vayan cambiando las imagenes creando el estado en la misma funcion del componente y despues crear un estado derivado
     const [image, setImage] = React.useState(src)
+    const [text, setText] = React.useState('')
+
+    // Estado derivado
     const randomImage = ()=>{
         if(image == src){
             setImage(src[1])
+            setText(progress[1])
+        }else if(image == src[1]){
+            setImage(src[2])
+            setText(progress[2])
         }else{
             setImage(src)
+            setText(progress[0])
         }
     }
 
@@ -33,6 +42,8 @@ function ImageCultivation({name, genetic, src}){
             width={300}
             height={300}
             ></img>
+            <p>{text}</p>
+            <button>PROGRESO</button>
         </div>
     )
 }
