@@ -47,5 +47,12 @@ function ImageCultivation({name, genetic, src, progress}){
         </div>
     )
 }
+
+function InitCultivation(){
+    return(
+        <button style={styleImagesPlants}>Agregar planta</button>
+    )
+}
 export { ContainerImagesPlants }
 export { ImageCultivation}
+export { InitCultivation }
