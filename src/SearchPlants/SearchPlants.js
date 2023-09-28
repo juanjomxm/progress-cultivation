@@ -1,15 +1,8 @@
 import React from "react"
 
-const styleSearch = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
-}
-
 function SearchPlants({inputSearchPlant, setInputSearchPlant}){
     return(
-        <div style={styleSearch}>
+        <div className="search-plants">
             <input
             placeholder="Buscar planta" 
             value={inputSearchPlant}
@@ -17,6 +10,7 @@ function SearchPlants({inputSearchPlant, setInputSearchPlant}){
                 setInputSearchPlant(event.target.value)
             }}
             />
+            <p></p>
         </div>
     )
 }

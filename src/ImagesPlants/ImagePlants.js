@@ -1,12 +1,5 @@
 import React from "react"
 
-const styleImagesPlants = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
-}
-
 function ContainerImagesPlants({children}){
     return(
         children
@@ -33,7 +26,7 @@ function ImageCultivation({name, genetic, src, progress}){
     }
 
     return(
-        <div style={styleImagesPlants}>
+        <div className="images">
             <h2>{name}</h2>
             <p>{genetic}</p>
             <img
@@ -50,7 +43,13 @@ function ImageCultivation({name, genetic, src, progress}){
 
 function InitCultivation(){
     return(
-        <button style={styleImagesPlants}>Agregar planta</button>
+        <div className="button-add-plant">
+           <button
+           onClick={()=>{
+            console.log('click agregar planta')
+           }}
+           >Agregar planta</button>
+        </div>
     )
 }
 export { ContainerImagesPlants }
