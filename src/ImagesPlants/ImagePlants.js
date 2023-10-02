@@ -1,4 +1,5 @@
 import React from "react"
+import { ProgressContext } from "../ContextGlobal/ContextGlobal"
 
 function ContainerImagesPlants({children}){
     return(
@@ -7,6 +8,10 @@ function ContainerImagesPlants({children}){
 }
 
 function ImageCultivation({name, genetic, src, progress}){
+    const{
+        openModal,
+        setOpenmodal
+    } = React.useContext(ProgressContext)
     // Encontre esta solucion paara darle click a la imagen y se vayan cambiando las imagenes creando el estado en la misma funcion del componente y despues crear un estado derivado
     const [image, setImage] = React.useState(src)
     const [text, setText] = React.useState('')
@@ -36,22 +41,13 @@ function ImageCultivation({name, genetic, src, progress}){
             height={300}
             ></img>
             <p>{text}</p>
-            <button>PROGRESO</button>
-        </div>
-    )
-}
-
-function InitCultivation(){
-    return(
-        <div className="button-add-plant">
-           <button
-           onClick={()=>{
-            console.log('click agregar planta')
-           }}
-           >Agregar planta</button>
+            <button
+            onClick={()=>{
+                setOpenmodal(state => !state)
+            }}
+            >PROGRESO</button>
         </div>
     )
 }
 export { ContainerImagesPlants }
 export { ImageCultivation}
-export { InitCultivation }

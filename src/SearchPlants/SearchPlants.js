@@ -1,6 +1,11 @@
 import React from "react"
+import { ProgressContext } from "../ContextGlobal/ContextGlobal"
 
-function SearchPlants({inputSearchPlant, setInputSearchPlant}){
+function SearchPlants(){
+    const{
+        inputSearchPlant, 
+        setInputSearchPlant
+    }= React.useContext(ProgressContext)
     return(
         <div className="search-plants">
             <input
