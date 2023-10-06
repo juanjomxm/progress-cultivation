@@ -8,6 +8,8 @@ body {
 
 img{
   border-radius: 10px;
+  cursor: pointer;
+  border: transparent;
   
 }
 .images{
@@ -19,6 +21,10 @@ img{
   align-items: center;
   flex-direction: column;
   margin-top: 20px;
+}
+.image-form{
+  width: 200px;
+  height: 200px;
 }
 
 h1, h2{
@@ -35,6 +41,7 @@ button{
   background-color: darkgreen;
   border-color: aquamarine;
   border-radius: 5px;
+  cursor: pointer
 }
 
 .button-add-plant{
@@ -42,6 +49,7 @@ button{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 
 .search-plants{
@@ -71,4 +79,28 @@ button{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.modal-background{
+  background-color: rgba(32, 35, 41, .8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.new-plant{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 350px;
+  align-items: center;
+  background-color: green;
+  height: 350px;
+  justify-content: center;
 }

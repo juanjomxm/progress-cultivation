@@ -7,45 +7,30 @@ function ContainerImagesPlants({children}){
     )
 }
 
-function ImageCultivation({name, genetic, src, progress}){
+function ImageCultivation({name}){
     const{
-        openModal,
-        setOpenmodal
+        deletedPlant,
+        statePlants,  
     } = React.useContext(ProgressContext)
-    // Encontre esta solucion paara darle click a la imagen y se vayan cambiando las imagenes creando el estado en la misma funcion del componente y despues crear un estado derivado
-    const [image, setImage] = React.useState(src)
-    const [text, setText] = React.useState('')
 
-    // Estado derivado
-    const randomImage = ()=>{
-        if(image == src){
-            setImage(src[1])
-            setText(progress[1])
-        }else if(image == src[1]){
-            setImage(src[2])
-            setText(progress[2])
-        }else{
-            setImage(src)
-            setText(progress[0])
-        }
-    }
+    const viewImages = statePlants.map(item => item.src)
 
     return(
         <div className="images">
             <h2>{name}</h2>
-            <p>{genetic}</p>
             <img
-            src={image}
-            onClick={randomImage} 
+            src={viewImages[0]} // Por fin encontrando el camino, al cargar el formulario muestra la imagen y al recargar tiene persistencia, pero debo encontrar la solucion para que me muestre cada imagen que suba en su respectiva tarjeta de presentacion
             width={300}
             height={300}
             ></img>
-            <p>{text}</p>
             <button
-            onClick={()=>{
-                setOpenmodal(state => !state)
-            }}
+            // onClick={()=>{
+            //     setOpenmodal(state => !state)
+            // }} Con este boton debo crear otro modal para crear una ventana donde se muestre el progreso del cultivo, diferente al modal para agregar una nueva planta
             >PROGRESO</button>
+            <button
+            onClick={deletedPlant}
+            >ELIMINAR</button>
         </div>
     )
 }

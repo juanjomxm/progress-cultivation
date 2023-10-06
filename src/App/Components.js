@@ -5,6 +5,7 @@ import { ContainerImagesPlants}  from "../ImagesPlants/ImagePlants";
 import { ImageCultivation } from "../ImagesPlants/ImagePlants";
 import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { Modal } from "../Modal/Modal";
+import { PlantNew } from "../PlantForm/PlantNew";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
 function Components(){
@@ -28,16 +29,14 @@ function Components(){
             return <ImageCultivation
             key={item.name} 
             name={item.name}
-            genetic={item.genetic} 
             src={item.src}
-            progress={item.progress}
             />
             })}
         </ContainerImagesPlants>
 
         {openModal && (
             <Modal>
-            <p>funcion de portales</p>
+                <PlantNew/>
             </Modal> 
         )}
     </React.Fragment>
