@@ -30,10 +30,10 @@ function useLocalStorage(itemName, initialValue){
       }, 2000)
     }, [])
 
-    const saveItem = (newItem)=>{
-      localStorage.setItem(itemName, JSON.stringify(newItem))
+    const saveItem = (newItem, newImage)=>{
+      localStorage.setItem(itemName, JSON.stringify(newItem, newImage))
       setItem(newItem)
-      setNewImage(newImage)
+      setNewImage(newItem,newImage)
     } //Esta funcion la debo utilizar en un componente que se deba actualizar el estado y tambien el local storage(informacion, configuraciones, preferencias, etc). Esta funcion me servira cuando escriba el codigo para guardar o actualizar el progreso del cultivo
 
     return {

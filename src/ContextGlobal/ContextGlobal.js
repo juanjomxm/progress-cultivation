@@ -23,13 +23,15 @@ function ProgressProvider({children}){
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
+
   const addPlant = (name) =>{
     const newPlants = [...statePlants]
     newPlants.unshift({
       name,
-      src: setNewImage
+      src: newImage.src
     })
     savePlants(newPlants)
+    setNewImage(newPlants)
   }
 
   const deletedPlant = (name) =>{

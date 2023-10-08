@@ -7,19 +7,17 @@ function ContainerImagesPlants({children}){
     )
 }
 
-function ImageCultivation({name}){
+function ImageCultivation({name,src}){
     const{
         deletedPlant,
-        statePlants,  
+        statePlants,
     } = React.useContext(ProgressContext)
-
-    const viewImages = statePlants.map(item => item.src)
 
     return(
         <div className="images">
             <h2>{name}</h2>
             <img
-            src={viewImages[0]} // Por fin encontrando el camino, al cargar el formulario muestra la imagen y al recargar tiene persistencia, pero debo encontrar la solucion para que me muestre cada imagen que suba en su respectiva tarjeta de presentacion
+            src={src} // Esta es la solucion, ojala no se dañe mañana
             width={300}
             height={300}
             ></img>
