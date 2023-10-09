@@ -9,7 +9,7 @@ function ProgressProvider({children}){
   const [inputSearchPlant, setInputSearchPlant] = React.useState('')
   const {
     item: statePlants, 
-    saveItem: savePlants,
+    saveItem: savedPlants,
     loading,
     error,
     newImage,
@@ -24,27 +24,27 @@ function ProgressProvider({children}){
   })
 
 
-  const addPlant = (name) =>{
+  const addPlant = (name, src) =>{
     const newPlants = [...statePlants]
-    newPlants.unshift({
+    newPlants.push({
       name,
+      src,
       src: newImage.src
     })
-    savePlants(newPlants)
-    setNewImage(newPlants)
+    savedPlants(newPlants)
   }
 
   const deletedPlant = (name) =>{
     const newPlants = [...statePlants]
     const plantIndex = newPlants.findIndex((plant) => plant.name === name)
     newPlants.splice(plantIndex, 1)
-    savePlants(newPlants)
+    savedPlants(newPlants)
   }
 
     return(
         <ProgressContext.Provider value={{
             statePlants,
-            savePlants,
+            savedPlants,
             addPlant,
             deletedPlant,
             loading,

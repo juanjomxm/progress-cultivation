@@ -3,7 +3,6 @@ import { ProgressContext } from "../ContextGlobal/ContextGlobal"
 
 function InitCultivation(){
     const{
-        openModal,
         setOpenmodal
     } = React.useContext(ProgressContext)
     return(

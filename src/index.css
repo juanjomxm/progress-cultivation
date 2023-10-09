@@ -21,9 +21,10 @@ img{
   align-items: center;
   flex-direction: column;
   margin-top: 20px;
+  border-radius: 10px;
 }
 .image-form{
-  width: 200px;
+  max-width: 200px;
   height: 200px;
 }
 
@@ -38,7 +39,7 @@ p{
 
 button{
   color: white;
-  background-color: darkgreen;
+  background-color: rgba(19, 71, 11, 0.8);
   border-color: aquamarine;
   border-radius: 5px;
   cursor: pointer
@@ -50,6 +51,14 @@ button{
   align-items: center;
   flex-direction: column;
   position: relative;
+}
+
+.section-buttons{
+  margin-top: 10px;
+}
+
+.button-cancel{
+  background-color: black;
 }
 
 .search-plants{
@@ -100,7 +109,29 @@ button{
   width: 90%;
   max-width: 350px;
   align-items: center;
-  background-color: green;
+  background-image: url('https://mcdn.wallpapersafari.com/medium/7/47/nPeCSy.jpg');
   height: 350px;
   justify-content: center;
 }
+
+.title-modal{
+  margin: 20px;
+}
+
+.text-new-plant{
+  background-color: black;
+  color: white;
+  border-color: green;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.input-search{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  border-color: green;
+}
+
+

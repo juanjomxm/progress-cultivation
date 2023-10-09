@@ -5,8 +5,8 @@ function PlantNew(){
     const {
         newImage,
         setNewImage,
-        addPlant,
-        setOpenmodal
+        setOpenmodal,
+        addPlant
     } = React.useContext(ProgressContext)
 
     const [newPlant, setNewPlant] = React.useState('')
@@ -32,14 +32,13 @@ function PlantNew(){
         })
       }
 
-
     return(
         <form 
         className="new-plant"
         onSubmit={onSubmit}
         >
             <label className="title-modal">Nueva planta</label>
-
+            
             <textarea
             className="text-new-plant"
             placeholder="Nombre de la planta"
@@ -55,10 +54,6 @@ function PlantNew(){
             accept="image/*"
             onChange={onSubmitImage}
             ></input>
-            <img
-            className="image-form"
-            src={newImage.src}
-            ></img>
             <div className="section-buttons">
                 <button 
                 className="button-cancel"
@@ -66,11 +61,15 @@ function PlantNew(){
                 onClick={onCancel}
                 >Cancelar</button>
                 <button 
-                className="button-add"
+                className="button-add-submit"
                 type="submit"
-                onClick={addPlant}
+                onClick={onSubmit}
                 >Añadir</button>
             </div>
+            <img
+            className="image-form"
+            src={newImage.src}
+            ></img>
         </form>
     )
 }

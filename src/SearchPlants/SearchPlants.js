@@ -9,6 +9,7 @@ function SearchPlants(){
     return(
         <div className="search-plants">
             <input
+            className="input-search"
             placeholder="Buscar planta" 
             value={inputSearchPlant}
             onChange={(event)=>{

@@ -1,25 +1,26 @@
 import React from "react"
+//import { jsonc } from "jsonc"
 
 // CUSTOM HOOK de useLocalStorage
-function useLocalStorage(itemName, initialValue){
+function useLocalStorage(itemName, initialValue, src){
 
     const [item, setItem] = React.useState(initialValue)
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
-    const [newImage, setNewImage] = React.useState(initialValue)
+    const [newImage, setNewImage] = React.useState(src)
 
     React.useEffect(()=>{
       setTimeout(()=>{
         try{
           // LOCAL STORAGE
-          const localStorageItem = localStorage.getItem(itemName)
+          let localStorageItem = localStorage.getItem(itemName)
           let parsedItem
           if(localStorageItem){
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)
             setNewImage(parsedItem)
           }else{
-            localStorage.setItem(itemName, JSON.stringify(initialValue))
+            localStorage.setItem(localStorageItem, JSON.stringify(initialValue))
             parsedItem = initialValue
           }
           setLoading(false)
@@ -30,10 +31,10 @@ function useLocalStorage(itemName, initialValue){
       }, 2000)
     }, [])
 
-    const saveItem = (newItem, newImage)=>{
-      localStorage.setItem(itemName, JSON.stringify(newItem, newImage))
+    let saveItem = (newItem)=>{
+      localStorage.setItem(itemName, JSON.stringify(newItem))
       setItem(newItem)
-      setNewImage(newItem,newImage)
+      setNewImage(newItem)
     } //Esta funcion la debo utilizar en un componente que se deba actualizar el estado y tambien el local storage(informacion, configuraciones, preferencias, etc). Esta funcion me servira cuando escriba el codigo para guardar o actualizar el progreso del cultivo
 
     return {
