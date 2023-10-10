@@ -16,6 +16,8 @@ function ProgressProvider({children}){
     setNewImage
   } = useLocalStorage('cultivation', [])
   const [openModal, setOpenmodal] = React.useState(false)
+  const [openModalProgress, setOpenmodalProgress] = React.useState(false)
+  const [openModalProgressImages, setOpenmodalProgressImages] = React.useState(false)
  
   // ESTADOS DERIVADOS
  
@@ -55,7 +57,9 @@ function ProgressProvider({children}){
             openModal,
             setOpenmodal,
             newImage,
-            setNewImage
+            setNewImage,
+            openModalProgress, 
+            setOpenmodalProgress
         }}>
             {children}
         </ProgressContext.Provider>

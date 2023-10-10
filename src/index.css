@@ -134,4 +134,18 @@ button{
   border-color: green;
 }
 
+.modal-progress-background{
+  background-image: url('https://wallpapercave.com/wp/wp4786260.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 

@@ -2,12 +2,12 @@ import React from "react"
 //import { jsonc } from "jsonc"
 
 // CUSTOM HOOK de useLocalStorage
-function useLocalStorage(itemName, initialValue, src){
+function useLocalStorage(itemName, initialValue){
 
     const [item, setItem] = React.useState(initialValue)
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
-    const [newImage, setNewImage] = React.useState(src)
+    const [newImage, setNewImage] = React.useState(initialValue)
 
     React.useEffect(()=>{
       setTimeout(()=>{
