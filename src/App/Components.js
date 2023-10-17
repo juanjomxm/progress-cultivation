@@ -4,13 +4,16 @@ import { SearchPlants } from "../SearchPlants/SearchPlants";
 import { ContainerImagesPlants}  from "../ImagesPlants/ImagePlants";
 import { ImageCultivation } from "../ImagesPlants/ImagePlants";
 import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
-import { Modal, ModalProgressImages } from "../Modal/Modal";
+import { Modal} from "../Modal/Modal";
 import { PlantNew } from "../PlantForm/PlantNew";
 import { ModalProgress } from "../Modal/Modal";
 import { ProgressNew } from "../ProgressForm/ProgressNew";
-import { ButtonAddProgress } from "../ProgressForm/ProgressNew";
 import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
+import { ButtonProgress } from "../ProgressForm/ProgressNew";
+import { ButtonBack } from "../ProgressForm/ProgressNew";
+import { ModalProgressImages } from "../Modal/Modal";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+//import { ProgressContextWeeks } from "../ContextProgress/ContextProgres";
 
 function Components(){
     const {
@@ -19,8 +22,12 @@ function Components(){
         searchPlants,
         openModal,
         openModalProgress,
-        openModalProgressImages,
+        openModalProgressImages
     } = React.useContext(ProgressContext)
+    // const{
+    //     openModalProgress,
+    //     openModalProgressImages
+    // } = React.useContext(ProgressContextWeeks)
     return (
     <React.Fragment>
         <TitleCultivation />
@@ -48,10 +55,16 @@ function Components(){
 
         {openModalProgress && (
             <ModalProgress>
-                <ButtonAddProgress/>
+                <ButtonProgress/>
                 <ProgressNew/>
-                {/* <ProgressNewModal/> */}
+                <ButtonBack/>
             </ModalProgress> 
+        )}
+
+        {openModalProgressImages && (
+            <ModalProgressImages>
+                <ProgressNewModal/>
+            </ModalProgressImages>
         )}
     </React.Fragment>
     )

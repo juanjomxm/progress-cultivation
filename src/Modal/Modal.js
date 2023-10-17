@@ -19,6 +19,15 @@ function ModalProgress({children}){
     )
 }
 
+function ModalProgressImages({children}){
+    return ReactDOM.createPortal(
+        <div className="div-modal-progress-images">
+            {children}
+        </div>,
+        document.getElementById('modal-progress-images')
+    )
+}
+
 // function ModalProgressImages({children}){
 //     return ReactDOM.createPortal(
 //         <div className="modal-background">
@@ -30,4 +39,4 @@ function ModalProgress({children}){
 
 export { Modal }
 export { ModalProgress }
-//export { ModalProgressImages }
+export { ModalProgressImages }

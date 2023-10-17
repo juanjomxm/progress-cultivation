@@ -30,7 +30,7 @@ function PlantNew(){
         setNewImage({
           src: URL.createObjectURL(event.target.files[0])
         })
-      }
+    }
 
     return(
         <form 
@@ -46,14 +46,13 @@ function PlantNew(){
             onChange={onChange}
             >   
             </textarea>
-            <input 
-            className="load-image" 
-            id="file" 
-            type="file" 
-            name="file"
-            accept="image/*"
-            onChange={onSubmitImage}
-            ></input>
+            <label>
+                <input 
+                className="load-image"
+                type="file"
+                onChange={onSubmitImage}
+                ></input>
+            </label>
             <div className="section-buttons">
                 <button 
                 className="button-cancel"

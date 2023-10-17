@@ -7,25 +7,25 @@ function ContainerImagesPlants({children}){
     )
 }
 
-function ImageCultivation({name,src}){
+function ImageCultivation({name, src}){
     const{
         deletedPlant,
-        //setOpenmodal,
+        newImage,
         setOpenmodalProgress
     } = React.useContext(ProgressContext)
-    
+
     return(
         <div className="images">
             <h2>{name}</h2>
-            <img
-            src={src} // Esta es la solucion. Toodo esta muy bien, lo unico que sucede es que cuando cargo la imagen desde mi pc en el formulario, al momento de cerrar y volver a abrir la app no se renferiza la imagen en el navegador, pero si queda guardada en el localstorage
+            {newImage && <img
+            src={src} // Para poder tener persistencia con las imagenes que se suban desde el pc debo tener un servidor en el cual pueda almacenar la url de la imagen y asi poderla volver a renderizar en la app
             width={300}
             height={300}
-            ></img>
+            ></img>}         
             <button
             onClick={()=>{
                 setOpenmodalProgress(state => !state)
-            }}// Con este boton debo crear otro modal para crear una ventana donde se muestre el progreso del cultivo, diferente al modal para agregar una nueva planta
+            }}
             >PROGRESO</button>
             <button
             onClick={deletedPlant}

@@ -13,7 +13,9 @@ function ProgressProvider({children}){
     loading,
     error,
     newImage,
-    setNewImage
+    setNewImage,
+    newImageProgress, 
+    setNewImageProgress
   } = useLocalStorage('cultivation', [])
   const [openModal, setOpenmodal] = React.useState(false)
   const [openModalProgress, setOpenmodalProgress] = React.useState(false)
@@ -25,20 +27,27 @@ function ProgressProvider({children}){
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
-
-  const addPlant = (name, src) =>{
+  const addPlant = (name) =>{
     const newPlants = [...statePlants]
     newPlants.push({
       name,
-      src,
       src: newImage.src
     })
     savedPlants(newPlants)
   }
 
+  // const addPlantProgress = (week, textWeek)=>{
+  //   const newPlants = [...statePlants]
+  //   newPlants.push({
+  //     week,
+  //     textWeek
+  //   })
+  //   savedPlants(newPlants)
+  // } Esta funcion debe ser la que me sriva para agregar el progreso de las plantas individualmente
+
   const deletedPlant = (name) =>{
     const newPlants = [...statePlants]
-    const plantIndex = newPlants.findIndex((plant) => plant.name === name)
+    const plantIndex = newPlants.findIndex(item => item.name == name)
     newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
   }
@@ -59,7 +68,12 @@ function ProgressProvider({children}){
             newImage,
             setNewImage,
             openModalProgress, 
-            setOpenmodalProgress
+            setOpenmodalProgress,
+            openModalProgressImages, 
+            setOpenmodalProgressImages,
+            // newImageProgress, 
+            // setNewImageProgress,
+            // addPlantProgress
         }}>
             {children}
         </ProgressContext.Provider>

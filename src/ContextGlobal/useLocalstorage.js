@@ -1,5 +1,4 @@
 import React from "react"
-//import { jsonc } from "jsonc"
 
 // CUSTOM HOOK de useLocalStorage
 function useLocalStorage(itemName, initialValue){
@@ -8,6 +7,7 @@ function useLocalStorage(itemName, initialValue){
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
     const [newImage, setNewImage] = React.useState(initialValue)
+    const [newImageProgress, setNewImageProgress] = React.useState(initialValue)
 
     React.useEffect(()=>{
       setTimeout(()=>{
@@ -19,6 +19,7 @@ function useLocalStorage(itemName, initialValue){
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)
             setNewImage(parsedItem)
+            setNewImageProgress(parsedItem)
           }else{
             localStorage.setItem(localStorageItem, JSON.stringify(initialValue))
             parsedItem = initialValue
@@ -31,7 +32,7 @@ function useLocalStorage(itemName, initialValue){
       }, 2000)
     }, [])
 
-    let saveItem = (newItem)=>{
+    const saveItem = (newItem)=>{
       localStorage.setItem(itemName, JSON.stringify(newItem))
       setItem(newItem)
       setNewImage(newItem)
@@ -43,7 +44,9 @@ function useLocalStorage(itemName, initialValue){
       loading,
       error,
       newImage,
-      setNewImage
+      setNewImage,
+      newImageProgress, 
+      setNewImageProgress
     }
 }
 export { useLocalStorage }
