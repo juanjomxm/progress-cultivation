@@ -1,5 +1,6 @@
 import React from "react"
 import { ProgressContext } from "../ContextGlobal/ContextGlobal"
+import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
 function ContainerImagesPlants({children}){
     return(

@@ -90,6 +90,7 @@ button{
   100% { transform: rotate(360deg); }
 }
 
+/* Este es el modal del inicio para agregar la imagen y el titulo de la planta nueva */
 .modal-background{
   background-color: rgba(32, 35, 41, .8);
   display: flex;
@@ -112,6 +113,7 @@ button{
   background-image: url('https://mcdn.wallpapersafari.com/medium/7/47/nPeCSy.jpg');
   height: 350px;
   justify-content: center;
+  border-radius: 10px;
 }
 
 .title-modal{
@@ -134,64 +136,83 @@ button{
   border-color: green;
 }
 
-/* Modal planta por planta */
+/* Modal o pagina donde se muestra planta por planta */
 
 .modal-progress-background{
   background-image: url('https://wallpapercave.com/wp/wp4786260.jpg');
   background-size: cover;
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   color: white;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  max-height: calc(100vh);
+  overflow-y: auto;
 }
-
-.div-modal-progress-images{
-  background-image: url('https://wallpapercave.com/wp/wp4786260.jpg');
-  background-size: cover;
-  display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .modal-progress-images{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 10px;
 }
-
 .div-content-progress{
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+}
+.button-progress-week{
+  display: flex;
+  justify-content: center;
+}
+.button-back{
+  display: flex;
+  justify-content: center;
+  margin-top: -80px;
+}
+
+/* Este es el modal para agregar el progreso por semana */
+
+.div-modal-progress-images{
+  background-color: rgba(32, 35, 41, .8);
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .new-progress{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   width: 90%;
   max-width: 350px;
   align-items: center;
   background-image: url('https://th.bing.com/th/id/R.0398d446fbc187a9c54f3f548a5a6848?rik=7L%2bZWYRqC21hdQ&pid=ImgRaw&r=0');
   background-size: cover;
   height: 350px;
+  border-radius: 10px;
 }
 
-.button-progress-week, .button-back{
+.text-new-progress{
+  background-color: black;
+  color: white;
+  border-color: green;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 

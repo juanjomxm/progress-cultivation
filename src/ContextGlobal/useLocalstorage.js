@@ -7,7 +7,6 @@ function useLocalStorage(itemName, initialValue){
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
     const [newImage, setNewImage] = React.useState(initialValue)
-    const [newImageProgress, setNewImageProgress] = React.useState(initialValue)
 
     React.useEffect(()=>{
       setTimeout(()=>{
@@ -19,7 +18,6 @@ function useLocalStorage(itemName, initialValue){
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)
             setNewImage(parsedItem)
-            setNewImageProgress(parsedItem)
           }else{
             localStorage.setItem(localStorageItem, JSON.stringify(initialValue))
             parsedItem = initialValue
@@ -45,8 +43,6 @@ function useLocalStorage(itemName, initialValue){
       error,
       newImage,
       setNewImage,
-      newImageProgress, 
-      setNewImageProgress
     }
 }
 export { useLocalStorage }

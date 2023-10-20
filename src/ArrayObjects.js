@@ -13,3 +13,16 @@
 
 //const stringifiedCultivation = JSON.stringify(imagesPlants) // Se debe pasar el array de aobjetos a string y despues parsearlo para volverlo a convertir en un objeto que pueda ver el usuario
 // JSON.parse(stringifiedCultivation)
+
+// Objeto para progreso
+
+// const progressCultivation = [
+//     {name: 'Semana #1', textWeek: 'Progreso', src: 'https://th.bing.com/th/id/R.bff9e0e41b2e2a1b66a8f4507b8010e2?rik=SbPG4gDvv44MYQ&pid=ImgRaw&r=0', },
+  
+//     {name: 'Semana #2', textWeek: 'Progreso', src: 'https://th.bing.com/th/id/OIP.eiy_imzG0fFgbIcH59aRWgHaHa?pid=ImgDet&rs=1'},
+  
+//     {name: 'Semana #3', textWeek: 'Progreso', src: 'https://th.bing.com/th/id/R.3866ef5d9dc6381f11afdf792b493dbb?rik=ReZvmNvN%2bbHNUw&pid=ImgRaw&r=0'},
+  
+//     {name: 'Semana #4', textWeek: 'Progreso', src: 'https://th.bing.com/th/id/OIP.6-yb6QKQLS1PZ_clwop-jgHaHa?pid=ImgDet&rs=1'},
+//   ]
+//   localStorage.setItem('cultivation-progress', JSON.stringify(progressCultivation))

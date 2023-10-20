@@ -1,32 +1,34 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+//import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
 function ProgressNewModal(){
     const {
         setOpenmodalProgress,
         setOpenmodalProgressImages,
-        // newImageProgress, 
-        // setNewImageProgress,
-        // addPlantProgress
+        //addPlantProgress,
+        // newImageProgress,
+        // setNewImageProgress
     } = React.useContext(ProgressContext)
     const [newProgress, setNewProgress] = React.useState('')
-    const [newProgressText, setNewProgressText] = React.useState('')
+    // const [newProgressText, setNewProgressText] = React.useState('')
     
 
     const onSubmit = (event)=>{
         event.preventDefault()
         //addPlantProgress(newProgress)
-        setOpenmodalProgress(false)
+        setOpenmodalProgress(true)
+        setOpenmodalProgressImages(false)
     }
 
     const onChange = (event)=>{
         setNewProgress(event.target.value)
     }
 
-    const onChangeText= (event)=>{
-        setNewProgressText(event.target.value)
-    }
+    // const onChangeText= (event)=>{
+    //     setNewProgressText(event.target.value)
+    // }
 
     const onCancel = (event)=>{
         event.preventDefault()
@@ -44,11 +46,11 @@ function ProgressNewModal(){
         className="new-progress"
         onSubmit={onSubmit}
         >
-            <label className="title-modal">Nueva planta</label>
+            <label className="title-modal">Semana</label>
             
             <textarea
             className="text-new-plant"
-            placeholder="Nombre de la planta"
+            placeholder="Semana#"
             value={newProgress}
             onChange={onChange}
             >   
@@ -59,8 +61,21 @@ function ProgressNewModal(){
             type="file" 
             name="file"
             accept="image/*"
-            //onChange={onSubmitImage}
+            placeholder="subir imagen"
+            //onChange={onSubmitImageProgress}
             ></input>
+            {/* <img
+            className="image-form"
+            src={newImageProgress}
+            ></img> */}
+            <label className="title-modal">Progreso</label>
+            <textarea
+            className="text-new-progress"
+            placeholder="Progreso"
+            // value={newProgressText}
+            // onChange={onChangeText}
+            >   
+            </textarea>
             <div className="section-buttons">
                 <button 
                 className="button-cancel"
@@ -70,21 +85,9 @@ function ProgressNewModal(){
                 <button 
                 className="button-add-submit"
                 type="submit"
-                //onClick={onSubmit}
+                onClick={onSubmit}
                 >Añadir</button>
             </div>
-            {/* <img
-            className="image-form"
-            src={newImageProgress}
-            ></img> */}
-            <label className="title-modal">Progreso</label>
-            <textarea
-            className="text-new-plant"
-            placeholder="Progreso"
-            value={newProgressText}
-            onChange={onChangeText}
-            >   
-            </textarea>
         </form>
     )
 }

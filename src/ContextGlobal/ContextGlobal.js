@@ -14,8 +14,6 @@ function ProgressProvider({children}){
     error,
     newImage,
     setNewImage,
-    newImageProgress, 
-    setNewImageProgress
   } = useLocalStorage('cultivation', [])
   const [openModal, setOpenmodal] = React.useState(false)
   const [openModalProgress, setOpenmodalProgress] = React.useState(false)
@@ -35,15 +33,6 @@ function ProgressProvider({children}){
     })
     savedPlants(newPlants)
   }
-
-  // const addPlantProgress = (week, textWeek)=>{
-  //   const newPlants = [...statePlants]
-  //   newPlants.push({
-  //     week,
-  //     textWeek
-  //   })
-  //   savedPlants(newPlants)
-  // } Esta funcion debe ser la que me sriva para agregar el progreso de las plantas individualmente
 
   const deletedPlant = (name) =>{
     const newPlants = [...statePlants]
@@ -70,10 +59,7 @@ function ProgressProvider({children}){
             openModalProgress, 
             setOpenmodalProgress,
             openModalProgressImages, 
-            setOpenmodalProgressImages,
-            // newImageProgress, 
-            // setNewImageProgress,
-            // addPlantProgress
+            setOpenmodalProgressImages
         }}>
             {children}
         </ProgressContext.Provider>
