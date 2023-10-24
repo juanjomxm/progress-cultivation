@@ -125,8 +125,7 @@ button{
   color: white;
   border-color: green;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .input-search{
@@ -164,15 +163,31 @@ button{
   align-items: center;
   flex-direction: column;
 }
-.button-progress-week{
+
+.text-progress-plant{
+  height: 100px;  
+  width: 200px;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 10px;
+  max-width: 200px;
+  max-height: 100px;
+  background-color: rgba(32, 35, 41, .8);;
+  color: white;
+  border-color: transparent;
+}
+
+/* Contenedor de estilos para botones */
+
+.container-buttons-progress{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .button-back{
-  display: flex;
-  justify-content: center;
-  margin-top: -80px;
+  margin-top: 20px;
 }
+
 
 /* Este es el modal para agregar el progreso por semana */
 
@@ -195,13 +210,28 @@ button{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 90%;
-  max-width: 350px;
+  width: 500px;
   align-items: center;
   background-image: url('https://th.bing.com/th/id/R.0398d446fbc187a9c54f3f548a5a6848?rik=7L%2bZWYRqC21hdQ&pid=ImgRaw&r=0');
   background-size: cover;
-  height: 350px;
+  height: 500px;
   border-radius: 10px;
+}
+
+.text-new-plant-progress{
+  background-color: black;
+  color: white;
+  border-color: green;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.image-form-progress{
+  max-width: 200px;
+  max-height: 200px;
+  height: 200px;
+  margin-top: 10px;
 }
 
 .text-new-progress{
@@ -209,10 +239,10 @@ button{
   color: white;
   border-color: green;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  width: 200px;
+  height: 200px;
   max-width: 300px;
-  max-height: 300px;
 }
 
 

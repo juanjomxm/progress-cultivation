@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalstorage";
-
 const ProgressContext = React.createContext()
 
 function ProgressProvider({children}){
@@ -16,15 +15,15 @@ function ProgressProvider({children}){
     setNewImage,
   } = useLocalStorage('cultivation', [])
   const [openModal, setOpenmodal] = React.useState(false)
-  const [openModalProgress, setOpenmodalProgress] = React.useState(false)
-  const [openModalProgressImages, setOpenmodalProgressImages] = React.useState(false)
+  // const [openModalProgress, setOpenmodalProgress] = React.useState([]) // Estado para progreso de planta semana por semana
+  const [openModalProgressImages, setOpenmodalProgressImages] = React.useState(false) // Estado para modal de agregar progreso de la pnata semana por semana
  
-  // ESTADOS DERIVADOS
- 
+  // ESTADO DERIVADOS
   const searchPlants = statePlants.filter(item =>{
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
+  // Funciones para los botones de agregar o elimnar
   const addPlant = (name) =>{
     const newPlants = [...statePlants]
     newPlants.push({
@@ -41,6 +40,17 @@ function ProgressProvider({children}){
     savedPlants(newPlants)
   }
 
+  // FUncion para crear portal vacio
+
+  // const createPortal = ()=>{
+  //   const emptyPortal = document.createElement('div')
+  //   document.body.appendChild(emptyPortal)
+  //   setOpenmodalProgress((itemProgress)=>[
+  //     ...itemProgress,
+  //     ReactDOM.createPortal(<h2>Portal Nuevo</h2>, emptyPortal)
+  //   ]) // Creo que esto debe ir en el contexto del progreso
+  // }
+
     return(
         <ProgressContext.Provider value={{
             statePlants,
@@ -56,10 +66,11 @@ function ProgressProvider({children}){
             setOpenmodal,
             newImage,
             setNewImage,
-            openModalProgress, 
-            setOpenmodalProgress,
+            // openModalProgress, 
+            // setOpenmodalProgress,
             openModalProgressImages, 
-            setOpenmodalProgressImages
+            setOpenmodalProgressImages,
+            // createPortal
         }}>
             {children}
         </ProgressContext.Provider>

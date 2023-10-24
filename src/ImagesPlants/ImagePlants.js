@@ -12,8 +12,11 @@ function ImageCultivation({name, src}){
     const{
         deletedPlant,
         newImage,
-        setOpenmodalProgress
     } = React.useContext(ProgressContext)
+
+    const{
+        createPortal
+    } = React.useContext(CultivationProgress)
 
     return(
         <div className="images">
@@ -24,9 +27,7 @@ function ImageCultivation({name, src}){
             height={300}
             ></img>}         
             <button
-            onClick={()=>{
-                setOpenmodalProgress(state => !state)
-            }}
+            onClick={createPortal}
             >PROGRESO</button>
             <button
             onClick={deletedPlant}

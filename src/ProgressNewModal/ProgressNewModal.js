@@ -1,23 +1,28 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-//import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
+import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
 function ProgressNewModal(){
     const {
-        setOpenmodalProgress,
+        // setOpenmodalProgress,
         setOpenmodalProgressImages,
-        //addPlantProgress,
-        // newImageProgress,
-        // setNewImageProgress
     } = React.useContext(ProgressContext)
-    const [newProgress, setNewProgress] = React.useState('')
-    // const [newProgressText, setNewProgressText] = React.useState('')
+
+    const{
+        addPlantProgress,
+        newImageProgress,
+        setNewImageProgress,
+        setOpenmodalProgress,
+    } = React.useContext(CultivationProgress)
+
+    const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
+    const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
     
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        //addPlantProgress(newProgress)
+        addPlantProgress(newProgress, newProgressText)
         setOpenmodalProgress(true)
         setOpenmodalProgressImages(false)
     }
@@ -26,31 +31,29 @@ function ProgressNewModal(){
         setNewProgress(event.target.value)
     }
 
-    // const onChangeText= (event)=>{
-    //     setNewProgressText(event.target.value)
-    // }
+    const onChangeText= (event)=>{
+        setNewProgressText(event.target.value)
+    }
 
     const onCancel = (event)=>{
         event.preventDefault()
         setOpenmodalProgressImages(false)
     }
 
-    // const onSubmitImageProgress = (event)=>{
-    //     setNewImageProgress({
-    //       src: URL.createObjectURL(event.target.files[0])
-    //     })
-    // }
+    const onSubmitImageProgress = (event)=>{
+        setNewImageProgress({
+          src: URL.createObjectURL(event.target.files[0])
+        })
+    }
 
     return(
         <form 
         className="new-progress"
         onSubmit={onSubmit}
-        >
-            <label className="title-modal">Semana</label>
-            
+        > 
             <textarea
-            className="text-new-plant"
-            placeholder="Semana#"
+            className="text-new-plant-progress"
+            placeholder="#Semana"
             value={newProgress}
             onChange={onChange}
             >   
@@ -62,18 +65,17 @@ function ProgressNewModal(){
             name="file"
             accept="image/*"
             placeholder="subir imagen"
-            //onChange={onSubmitImageProgress}
+            onChange={onSubmitImageProgress}
             ></input>
-            {/* <img
-            className="image-form"
-            src={newImageProgress}
-            ></img> */}
-            <label className="title-modal">Progreso</label>
+            <img
+            className="image-form-progress"
+            src={newImageProgress.src}
+            ></img>
             <textarea
             className="text-new-progress"
             placeholder="Progreso"
-            // value={newProgressText}
-            // onChange={onChangeText}
+            value={newProgressText}
+            onChange={onChangeText}
             >   
             </textarea>
             <div className="section-buttons">

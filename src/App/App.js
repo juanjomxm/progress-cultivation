@@ -7,9 +7,9 @@ function App() {
   return (
     <React.Fragment>
       <ProgressProvider>
-      <CultivationProgressProvider>
-        <Components/>
-      </CultivationProgressProvider>
+        <CultivationProgressProvider>
+          <Components/>
+        </CultivationProgressProvider>
       </ProgressProvider>
    </React.Fragment>
   );

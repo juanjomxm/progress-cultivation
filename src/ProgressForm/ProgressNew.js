@@ -2,34 +2,35 @@ import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
-function ButtonProgress(){
+function ButtonModalProgress(){
     const{
-        setOpenmodalProgressImages
+        setOpenmodalProgressImages,
+        // setOpenmodalProgress
     }= React.useContext(ProgressContext)
-    return(
-        <div className="container-button-progress">
-            <button className="button-progress-week"
-                onClick={()=>{
-                    setOpenmodalProgressImages(state => !state)
-                }}
-            >Progreso</button>
-        </div>
-    )
-}
-
-function ButtonBack(){
     const{
         setOpenmodalProgress
-    } = React.useContext(ProgressContext)
+    } = React.useContext(CultivationProgress)
+
     const onCancel = (event)=>{
         event.preventDefault()
         setOpenmodalProgress(false)
     }
+
     return(
-        <div className="container-button-back">
-            <button className="button-back"
-                onClick={onCancel}
-            >Atras</button>
+        <div className="container-buttons-progress">
+            <div className="container-button-progress">
+                <button className="button-progress-week"
+                    onClick={()=>{
+                        setOpenmodalProgressImages(state => !state)
+                    }}
+                >+</button>
+            </div>
+
+            <div className="container-button-back">
+                <button className="button-back"
+                    onClick={onCancel}
+                >Atras</button>
+            </div>
         </div>
     )
 }
@@ -40,26 +41,40 @@ function ContainerProgressPlants({children}){
     )
 }
 
-function ProgressNew({name, src, textWeek}){
+function ProgressNew({week, src, textWeek}){
     const {
-        itemProgress,
+        deletedPlantProgress,
+        setNewProgress
     } = React.useContext(CultivationProgress)
+
+    const onchangeTextProgress = (event)=>{
+        setNewProgress(event.target.value)
+    }
 
     return(
         <div className="modal-progress-images">
             <div className="div-content-progress">
-                <h2>{name}</h2>
+                <h2>{week}</h2>
                 <img
-                src={src}  //"https://th.bing.com/th/id/OIP.m8_MyAUS-Oh09BcOgZwB9gHaJ4?pid=ImgDet&rs=1"// Todavia no logro que se renderize lo que deseo, solo muestra los dos botones
+                src={src}
                 width={200}
                 height={200}
                 ></img>
-                <p>{textWeek}</p>
+                <textarea
+                className="text-progress-plant"
+                value={textWeek}
+                onChange={onchangeTextProgress}
+                >   
+                </textarea>
+                <button
+                onClick={deletedPlantProgress}
+                >
+                Eliminar
+                </button>
             </div>
         </div>
     )
 }
 export { ContainerProgressPlants }
 export { ProgressNew }
-export { ButtonProgress }
-export { ButtonBack }
+export { ButtonModalProgress }

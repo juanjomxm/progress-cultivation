@@ -10,8 +10,7 @@ import { ModalProgress } from "../Modal/Modal";
 import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
 import { ProgressNew } from "../ProgressForm/ProgressNew";
 import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
-import { ButtonProgress } from "../ProgressForm/ProgressNew";
-import { ButtonBack } from "../ProgressForm/ProgressNew";
+import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
 import { ModalProgressImages } from "../Modal/Modal";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
@@ -22,20 +21,14 @@ function Components(){
         error,
         searchPlants,
         openModal,
-        openModalProgress,
+        // openModalProgress,
         openModalProgressImages,
-        
     } = React.useContext(ProgressContext)
 
     const{
-        itemProgress
+        viewWeek,
+        openModalProgress
     } = React.useContext(CultivationProgress)
-
-    const viewWeek = itemProgress.filter(item => {
-        return item.name + item.src + item.textWeek
-    })
-    // const viewWeekImage = itemProgress.map(item => item.src)
-    // const viewText = itemProgress.map(item => item.textWeek)
 
     return (
     <React.Fragment>
@@ -67,17 +60,15 @@ function Components(){
         {openModalProgress && 
             <ContainerProgressPlants>
                 <ModalProgress scrollable={true}>
-                
+                <ButtonModalProgress/>
                     {viewWeek.map(item =>{
                         return <ProgressNew
-                        key={item.name}
-                        name={item.name}
+                        key={item.week}
+                        week={item.week}
                         src={item.src}
                         textWeek={item.textWeek}
                         />
                     })}
-                    <ButtonBack/> 
-                    <ButtonProgress/>
                 </ModalProgress>
             </ContainerProgressPlants>
         }
