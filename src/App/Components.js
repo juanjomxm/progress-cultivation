@@ -13,22 +13,17 @@ import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
 import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
 import { ModalProgressImages } from "../Modal/Modal";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
 function Components(){
     const {
         loading,
         error,
         searchPlants,
+        viewProgressPlant,
         openModal,
-        // openModalProgress,
+        openModalProgress,
         openModalProgressImages,
     } = React.useContext(ProgressContext)
-
-    const{
-        viewWeek,
-        openModalProgress
-    } = React.useContext(CultivationProgress)
 
     return (
     <React.Fragment>
@@ -61,12 +56,12 @@ function Components(){
             <ContainerProgressPlants>
                 <ModalProgress scrollable={true}>
                 <ButtonModalProgress/>
-                    {viewWeek.map(item =>{
+                    {viewProgressPlant.map(item =>{
                         return <ProgressNew
                         key={item.week}
-                        week={item.week}
-                        src={item.src}
-                        textWeek={item.textWeek}
+                        week={item.week[1]}
+                        srcWeek={item.srcWeek[1]}
+                        textWeek={item.textWeek[0]}
                         />
                     })}
                 </ModalProgress>

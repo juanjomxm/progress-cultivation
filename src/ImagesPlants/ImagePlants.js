@@ -1,6 +1,5 @@
 import React from "react"
 import { ProgressContext } from "../ContextGlobal/ContextGlobal"
-import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
 function ContainerImagesPlants({children}){
     return(
@@ -12,11 +11,8 @@ function ImageCultivation({name, src}){
     const{
         deletedPlant,
         newImage,
+        setOpenmodalProgress,
     } = React.useContext(ProgressContext)
-
-    const{
-        createPortal
-    } = React.useContext(CultivationProgress)
 
     return(
         <div className="images">
@@ -27,7 +23,9 @@ function ImageCultivation({name, src}){
             height={300}
             ></img>}         
             <button
-            onClick={createPortal}
+            onClick={()=>{
+                setOpenmodalProgress(state => !state)
+            }}
             >PROGRESO</button>
             <button
             onClick={deletedPlant}

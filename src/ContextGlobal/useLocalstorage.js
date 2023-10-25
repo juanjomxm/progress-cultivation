@@ -7,6 +7,7 @@ function useLocalStorage(itemName, initialValue){
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
     const [newImage, setNewImage] = React.useState(initialValue)
+    const [newImageProgress, setNewImageProgress] = React.useState(initialValue)
 
     React.useEffect(()=>{
       setTimeout(()=>{
@@ -18,6 +19,7 @@ function useLocalStorage(itemName, initialValue){
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)
             setNewImage(parsedItem)
+            setNewImageProgress(parsedItem)
           }else{
             localStorage.setItem(localStorageItem, JSON.stringify(initialValue))
             parsedItem = initialValue
@@ -34,6 +36,7 @@ function useLocalStorage(itemName, initialValue){
       localStorage.setItem(itemName, JSON.stringify(newItem))
       setItem(newItem)
       setNewImage(newItem)
+      setNewImageProgress(newItem)
     } //Esta funcion la debo utilizar en un componente que se deba actualizar el estado y tambien el local storage(informacion, configuraciones, preferencias, etc). Esta funcion me servira cuando escriba el codigo para guardar o actualizar el progreso del cultivo
 
     return {
@@ -43,6 +46,8 @@ function useLocalStorage(itemName, initialValue){
       error,
       newImage,
       setNewImage,
+      newImageProgress, 
+      setNewImageProgress
     }
 }
 export { useLocalStorage }

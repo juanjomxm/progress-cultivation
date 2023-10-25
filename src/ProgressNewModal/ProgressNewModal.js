@@ -1,23 +1,22 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { CultivationProgress } from "../ContextProgressPlant/ContextProgress";
 
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
 function ProgressNewModal(){
     const {
-        // setOpenmodalProgress,
+        setOpenmodalProgress,
+        addPlantProgress,
+        setNewImageProgress,
         setOpenmodalProgressImages,
+        newImageProgress,
+        newProgress, 
+        setNewProgress,
+        newProgressText, 
+        setNewProgressText
     } = React.useContext(ProgressContext)
 
-    const{
-        addPlantProgress,
-        newImageProgress,
-        setNewImageProgress,
-        setOpenmodalProgress,
-    } = React.useContext(CultivationProgress)
-
-    const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
-    const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
+    // const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
+    // const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
     
 
     const onSubmit = (event)=>{
