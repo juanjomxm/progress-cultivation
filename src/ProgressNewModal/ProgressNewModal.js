@@ -15,13 +15,9 @@ function ProgressNewModal(){
         setNewProgressText
     } = React.useContext(ProgressContext)
 
-    // const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
-    // const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
-    
-
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlantProgress(newProgress, newProgressText)
+        addPlantProgress(newProgress, newProgressText) // Tengo que encontrar la manera de guarar todo en la misma funcion y que se renderice por seprado
         setOpenmodalProgress(true)
         setOpenmodalProgressImages(false)
     }

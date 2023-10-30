@@ -1,25 +1,24 @@
 import React from "react"
 
 // CUSTOM HOOK de useLocalStorage
-function useLocalStorage(itemName, initialValue){
+function useLocalStorage(itemName, initialValue){ // Este primer argumento de la funcion, se traduce en el contexto global como en nombre de la app y el segundo argumento son los parentesis en el contexto global
 
     const [item, setItem] = React.useState(initialValue)
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
     const [newImage, setNewImage] = React.useState(initialValue)
-    const [newImageProgress, setNewImageProgress] = React.useState(initialValue)
 
     React.useEffect(()=>{
       setTimeout(()=>{
         try{
           // LOCAL STORAGE
-          let localStorageItem = localStorage.getItem(itemName)
+          const localStorageItem = localStorage.getItem(itemName)
           let parsedItem
+
           if(localStorageItem){
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)
             setNewImage(parsedItem)
-            setNewImageProgress(parsedItem)
           }else{
             localStorage.setItem(localStorageItem, JSON.stringify(initialValue))
             parsedItem = initialValue
@@ -36,7 +35,6 @@ function useLocalStorage(itemName, initialValue){
       localStorage.setItem(itemName, JSON.stringify(newItem))
       setItem(newItem)
       setNewImage(newItem)
-      setNewImageProgress(newItem)
     } //Esta funcion la debo utilizar en un componente que se deba actualizar el estado y tambien el local storage(informacion, configuraciones, preferencias, etc). Esta funcion me servira cuando escriba el codigo para guardar o actualizar el progreso del cultivo
 
     return {
@@ -46,8 +44,47 @@ function useLocalStorage(itemName, initialValue){
       error,
       newImage,
       setNewImage,
-      newImageProgress, 
-      setNewImageProgress
     }
 }
+
+function useLocalStorageWeek(itemNameWeek, initialValueWeek){
+  // Estados del modal de progreso semana por semana
+  const [itemWeek, setItemWeek] = React.useState(initialValueWeek)
+  const [newImageProgress, setNewImageProgress] = React.useState(initialValueWeek)
+  const [openModalProgress, setOpenmodalProgress] = React.useState(false)
+
+  React.useEffect(()=>{
+    setTimeout(()=>{
+      const localStorageItemWeek = localStorage.getItem(itemNameWeek)
+      let parsedItemWeek
+
+      if(localStorageItemWeek){
+        parsedItemWeek = JSON.parse(localStorageItemWeek)
+        setItemWeek(parsedItemWeek) // Como este actualizador del estado esta por fuera del localStorage, no hay persistencia de datos, al momento de recargar la pagina se pierde la informacion, pero no me arroja error
+        setNewImageProgress(parsedItemWeek)
+      } else{
+        localStorage.setItem(localStorageItemWeek, JSON.stringify(initialValueWeek))
+        parsedItemWeek = initialValueWeek
+      }
+    }, 1000)
+
+  }, [])
+
+  const saveItemWeek = (newItemWeek)=>{
+    localStorage.setItem(itemNameWeek, JSON.stringify(newItemWeek))
+    setNewImageProgress(newItemWeek)
+    setItemWeek(newItemWeek)
+  }
+
+  return{
+    newImageProgress, 
+    setNewImageProgress,
+    itemWeek,
+    saveItemWeek,
+    openModalProgress, 
+    setOpenmodalProgress
+  }
+}
+
 export { useLocalStorage }
+export { useLocalStorageWeek }

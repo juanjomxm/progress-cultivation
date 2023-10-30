@@ -11,7 +11,7 @@ function ImageCultivation({name, src}){
     const{
         deletedPlant,
         newImage,
-        setOpenmodalProgress,
+        setOpenmodalProgress
     } = React.useContext(ProgressContext)
 
     return(

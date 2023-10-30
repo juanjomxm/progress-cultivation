@@ -19,10 +19,10 @@ function Components(){
         loading,
         error,
         searchPlants,
-        viewProgressPlant,
         openModal,
-        openModalProgress,
-        openModalProgressImages,
+        // openModalProgress,
+        // openModalProgressImages,
+        // viewAllWeek
     } = React.useContext(ProgressContext)
 
     return (
@@ -50,32 +50,45 @@ function Components(){
                 <PlantNew/>
             </Modal> 
         )}
-
-        {/* Este es el modal para agregar el progreso de la planta por semanas */}
-        {openModalProgress && 
-            <ContainerProgressPlants>
-                <ModalProgress scrollable={true}>
-                <ButtonModalProgress/>
-                    {viewProgressPlant.map(item =>{
-                        return <ProgressNew
-                        key={item.week}
-                        week={item.week[1]}
-                        srcWeek={item.srcWeek[1]}
-                        textWeek={item.textWeek[0]}
-                        />
-                    })}
-                </ModalProgress>
-            </ContainerProgressPlants>
-        }
-        
-
-        {/* Este es el modal para agregar el numero de la semana y la imagen de el progreso */}
-        {openModalProgressImages && (
-            <ModalProgressImages>
-                <ProgressNewModal/>
-            </ModalProgressImages>
-        )}
     </React.Fragment>
     )
 }
+
+function ComponentsWeek(){
+    const {
+        openModalProgress,
+        openModalProgressImages,
+        viewAllWeek
+    } = React.useContext(ProgressContext)
+
+    return(
+        <React.Fragment>
+            {viewAllWeek.length === 0 && <p>Empezar progresode cultivo</p>}
+            {/* Este es el modal para agregar el progreso de la planta por semanas */}
+            {openModalProgress && 
+                <ModalProgress scrollable={true}>
+                    <ContainerProgressPlants>
+                    <ButtonModalProgress/>
+                        {viewAllWeek.map(item =>{
+                            return <ProgressNew
+                            key={item.week}
+                            week={item.week}
+                            srcWeek={item.srcWeek}
+                            textWeek={item.textWeek}
+                            />
+                        })}
+                    </ContainerProgressPlants>
+                </ModalProgress>
+            }
+
+            {/* Este es el modal para agregar el numero de la semana y la imagen de el progreso */}
+            {openModalProgressImages && (
+                <ModalProgressImages>
+                    <ProgressNewModal/>
+                </ModalProgressImages>
+            )}
+        </React.Fragment>
+    )
+}
 export { Components }
+export{ ComponentsWeek }
