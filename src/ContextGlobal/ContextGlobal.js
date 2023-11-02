@@ -21,18 +21,15 @@ function ProgressProvider({children}){
     setNewImageProgress,
     itemWeek,
     saveItemWeek,
-    openModalProgress, 
-    setOpenmodalProgress
   } = useLocalStorageWeek('cultivationWeek', [])
 
   const [openModal, setOpenmodal] = React.useState(false)
-  // const [openModalProgress, setOpenmodalProgress] = React.useState(false) // Estado para progreso de planta semana por semana
   const [openModalProgressImages, setOpenmodalProgressImages] = React.useState(false) // Estado para modal de agregar progreso de la pnata semana por semana
   const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
 
   // ESTADOS DERIVADOS
-  let searchPlants = statePlants.filter(item =>{
+  const searchPlants = statePlants.filter(item =>{
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
@@ -41,7 +38,7 @@ function ProgressProvider({children}){
   })
 
   // Funciones para los botones de agregar o elimnar
-  const addPlant = (name) =>{
+  const addPlant = (name) =>{ // Tengo que encontrar la manera que al agregar los datos de la planta se agregue son en la pagina que desee y no en las dos
     const newPlants = [...statePlants]
     newPlants.push({
       name,
@@ -50,9 +47,9 @@ function ProgressProvider({children}){
     savedPlants(newPlants)
   }
 
-  const deletedPlant = (name) =>{
+  const deletedPlant = (src) =>{
     const newPlants = [...statePlants]
-    const plantIndex = newPlants.findIndex(item => item.name === name)
+    const plantIndex = newPlants.findIndex(item => item.name === src)
     newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
   }
@@ -67,9 +64,9 @@ function ProgressProvider({children}){
     saveItemWeek(newPlants)
   }
 
-  const deletedPlantProgress = (week) =>{
+  const deletedPlantProgress = (srcWeek) =>{
     const newPlantsProgress = [...itemWeek]
-    const plantIndexProgress = newPlantsProgress.findIndex(item => item.week === week)
+    const plantIndexProgress = newPlantsProgress.findIndex(item => item.week === srcWeek)
     newPlantsProgress.splice(plantIndexProgress, 1)
     saveItemWeek(newPlantsProgress)
 }
@@ -92,8 +89,6 @@ function ProgressProvider({children}){
             setNewImage,
             newImageProgress, 
             setNewImageProgress,
-            openModalProgress, 
-            setOpenmodalProgress,
             openModalProgressImages, 
             setOpenmodalProgressImages,
             addPlantProgress,
@@ -103,8 +98,10 @@ function ProgressProvider({children}){
             newProgressText, 
             setNewProgressText,
             viewAllWeek,
+            newImageProgress, 
+            setNewImageProgress,
             itemWeek,
-            saveItemWeek
+            saveItemWeek,
         }}>
             {children}
         </ProgressContext.Provider>

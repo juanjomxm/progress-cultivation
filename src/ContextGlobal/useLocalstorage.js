@@ -51,7 +51,6 @@ function useLocalStorageWeek(itemNameWeek, initialValueWeek){
   // Estados del modal de progreso semana por semana
   const [itemWeek, setItemWeek] = React.useState(initialValueWeek)
   const [newImageProgress, setNewImageProgress] = React.useState(initialValueWeek)
-  const [openModalProgress, setOpenmodalProgress] = React.useState(false)
 
   React.useEffect(()=>{
     setTimeout(()=>{
@@ -67,13 +66,12 @@ function useLocalStorageWeek(itemNameWeek, initialValueWeek){
         parsedItemWeek = initialValueWeek
       }
     }, 1000)
-
   }, [])
 
   const saveItemWeek = (newItemWeek)=>{
     localStorage.setItem(itemNameWeek, JSON.stringify(newItemWeek))
-    setNewImageProgress(newItemWeek)
     setItemWeek(newItemWeek)
+    setNewImageProgress(newItemWeek)
   }
 
   return{
@@ -81,8 +79,6 @@ function useLocalStorageWeek(itemNameWeek, initialValueWeek){
     setNewImageProgress,
     itemWeek,
     saveItemWeek,
-    openModalProgress, 
-    setOpenmodalProgress
   }
 }
 

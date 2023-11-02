@@ -12,4 +12,13 @@ function TitleCultivation(){
         </div>
     )
 }
+
+function TitleWeek(){
+    return(
+        <div style={styleTitle}>
+            <h1>PROGRESO</h1>
+        </div>
+    )
+}
 export { TitleCultivation }
+export { TitleWeek }

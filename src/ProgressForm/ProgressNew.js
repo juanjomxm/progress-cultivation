@@ -1,16 +1,11 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+import { Link, useParams } from "react-router-dom";
 
 function ButtonModalProgress(){
     const{
-        setOpenmodalProgress,
         setOpenmodalProgressImages
     }= React.useContext(ProgressContext)
-
-    const onCancel = (event)=>{
-        event.preventDefault()
-        setOpenmodalProgress(false)
-    }
 
     return(
         <div className="container-buttons-progress">
@@ -20,12 +15,10 @@ function ButtonModalProgress(){
                         setOpenmodalProgressImages(state => !state)
                     }} // Boton para abrir el modal donde se introduce la informacion del pogreso de la semana
                 >+</button>
-            </div>
 
-            <div className="container-button-back">
-                <button className="button-back"
-                    onClick={onCancel}
-                >Atras</button>
+                <button>
+                    <Link to={'/home'}>Home</Link>
+                </button>
             </div>
         </div>
     )
@@ -38,10 +31,11 @@ function ContainerProgressPlants({children}){
 }
 
 // Esta es la funcion que renderiza el progreso del cultivo semana por semana
-function ProgressNew({week, srcWeek, textWeek}){
+function ProgressNew({week, srcWeek, textWeek}){ 
     const {
         deletedPlantProgress,
-        setNewProgressText
+        setNewProgressText,
+        itemWeek,
     } = React.useContext(ProgressContext)
 
     const onchangeTextProgress = (event)=>{

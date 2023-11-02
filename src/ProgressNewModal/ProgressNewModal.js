@@ -4,7 +4,6 @@ import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
 function ProgressNewModal(){
     const {
-        setOpenmodalProgress,
         addPlantProgress,
         setNewImageProgress,
         setOpenmodalProgressImages,
@@ -18,7 +17,6 @@ function ProgressNewModal(){
     const onSubmit = (event)=>{
         event.preventDefault()
         addPlantProgress(newProgress, newProgressText) // Tengo que encontrar la manera de guarar todo en la misma funcion y que se renderice por seprado
-        setOpenmodalProgress(true)
         setOpenmodalProgressImages(false)
     }
 
