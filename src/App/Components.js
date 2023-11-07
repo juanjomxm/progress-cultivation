@@ -46,36 +46,41 @@ function Components(){
             {/* Utilizando react-router aprendi que se crea una navegacion y poder mostrar los componentes que deseo  */}
             <HashRouter>
                 <Routes>
-                    <Route path="/home" element={<ContainerImagesPlants>
-                    <TitleCultivation />
-                    <InitCultivation />
-                    <SearchPlants/>
-                    {loading && <div className="loader-container"><div className="spinner"></div></div>}
-                    {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>}
-                    {error && <p>Hubo un error</p>}
-                    {searchPlants.map(item =>{
-                        return <ImageCultivation
-                        key={item.name} 
-                        name={item.name}
-                        src={item.src}
-                        />
-                    })}
-                    </ContainerImagesPlants>}/>
+                    <Route path="/home" element={
+                        <React.Fragment>
+                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
+                            {error && <p>Hubo un error</p>}
+                            <TitleCultivation />
+                            <InitCultivation />
+                            <SearchPlants/>
+                            <ContainerImagesPlants/>
+                            {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>}
+                        </React.Fragment>
+                        }
+                    />
 
-                    <Route path="/week" element={<ContainerProgressPlants>
+                    <Route path="/home/:name" element={
+                        <React.Fragment>
+                            <TitleWeek/>
+                            <ButtonModalProgress/>
+                            <ImageCultivation/>
+                        </React.Fragment>
+                    }
+                    />
+
+                    {/* <Route path="/week" element={<ContainerProgressPlants>
                         <TitleWeek/>
                         <ButtonModalProgress/>
-                        {viewAllWeek.map(item =>{ // Guardar en el mismo localStorgae y volver a ahacer el intento si se renderiza lo deseado ahora utilizando react-router
-                            return <ProgressNew
-                            key={item.week}
-                            week={item.week}
-                            srcWeek={item.srcWeek}
-                            textWeek={item.textWeek}
-                            />
-                        })}
-                    </ContainerProgressPlants>}/>
+                        <ProgressNew/>
+                    </ContainerProgressPlants>}
+                    /> */}
                     {/* Para hacer este cambio debo escribir el hsh primero = /#/ */}
-                    {/* <Route path="/week/:srcWeek" element={<ProgressNew/>}></Route> Todavia no me queda claro como hacer funcionar el useParams o la navegacion dinamica */}
+
+                    {/* <Route path="/week/:name" element={<ContainerProgressPlants>
+                        <TitleWeek/>
+                        <ButtonModalProgress/>
+                        <ProgressNew/>
+                    </ContainerProgressPlants>}/> */}
                 </Routes>
             </HashRouter>
     </React.Fragment>

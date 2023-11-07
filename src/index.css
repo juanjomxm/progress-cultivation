@@ -37,6 +37,10 @@ p{
   margin-top: 5px;
 }
 
+a{
+  color: white;
+}
+
 button{
   color: white;
   background-color: rgba(19, 71, 11, 0.8);

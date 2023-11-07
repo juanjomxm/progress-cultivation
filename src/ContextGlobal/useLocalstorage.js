@@ -8,6 +8,8 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
     const [error, setError] = React.useState(false)
     const [newImage, setNewImage] = React.useState(initialValue)
 
+    const [newImageProgress, setNewImageProgress] = React.useState(initialValue)
+
     React.useEffect(()=>{
       setTimeout(()=>{
         try{
@@ -19,6 +21,8 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)
             setNewImage(parsedItem)
+
+            setNewImageProgress(parsedItem)
           }else{
             localStorage.setItem(localStorageItem, JSON.stringify(initialValue))
             parsedItem = initialValue
@@ -35,6 +39,8 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
       localStorage.setItem(itemName, JSON.stringify(newItem))
       setItem(newItem)
       setNewImage(newItem)
+      setNewImageProgress(newItem)
+      // setNewImageProgress(newItem)
     } //Esta funcion la debo utilizar en un componente que se deba actualizar el estado y tambien el local storage(informacion, configuraciones, preferencias, etc). Esta funcion me servira cuando escriba el codigo para guardar o actualizar el progreso del cultivo
 
     return {
@@ -44,43 +50,45 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
       error,
       newImage,
       setNewImage,
+      newImageProgress, 
+      setNewImageProgress,
     }
 }
 
-function useLocalStorageWeek(itemNameWeek, initialValueWeek){
-  // Estados del modal de progreso semana por semana
-  const [itemWeek, setItemWeek] = React.useState(initialValueWeek)
-  const [newImageProgress, setNewImageProgress] = React.useState(initialValueWeek)
+// function useLocalStorageWeek(itemNameWeek, initialValueWeek){
+//   // Estados del modal de progreso semana por semana
+//   const [itemWeek, setItemWeek] = React.useState(initialValueWeek)
+//   const [newImageProgress, setNewImageProgress] = React.useState(initialValueWeek)
 
-  React.useEffect(()=>{
-    setTimeout(()=>{
-      const localStorageItemWeek = localStorage.getItem(itemNameWeek)
-      let parsedItemWeek
+//   React.useEffect(()=>{
+//     setTimeout(()=>{
+//       const localStorageItemWeek = localStorage.getItem(itemNameWeek)
+//       let parsedItemWeek
 
-      if(localStorageItemWeek){
-        parsedItemWeek = JSON.parse(localStorageItemWeek)
-        setItemWeek(parsedItemWeek) // Como este actualizador del estado esta por fuera del localStorage, no hay persistencia de datos, al momento de recargar la pagina se pierde la informacion, pero no me arroja error
-        setNewImageProgress(parsedItemWeek)
-      } else{
-        localStorage.setItem(localStorageItemWeek, JSON.stringify(initialValueWeek))
-        parsedItemWeek = initialValueWeek
-      }
-    }, 1000)
-  }, [])
+//       if(localStorageItemWeek){
+//         parsedItemWeek = JSON.parse(localStorageItemWeek)
+//         setItemWeek(parsedItemWeek) // Como este actualizador del estado esta por fuera del localStorage, no hay persistencia de datos, al momento de recargar la pagina se pierde la informacion, pero no me arroja error
+//         setNewImageProgress(parsedItemWeek)
+//       } else{
+//         localStorage.setItem(localStorageItemWeek, JSON.stringify(initialValueWeek))
+//         parsedItemWeek = initialValueWeek
+//       }
+//     }, 1000)
+//   }, [])
 
-  const saveItemWeek = (newItemWeek)=>{
-    localStorage.setItem(itemNameWeek, JSON.stringify(newItemWeek))
-    setItemWeek(newItemWeek)
-    setNewImageProgress(newItemWeek)
-  }
+//   const saveItemWeek = (newItemWeek)=>{
+//     localStorage.setItem(itemNameWeek, JSON.stringify(newItemWeek))
+//     setItemWeek(newItemWeek)
+//     setNewImageProgress(newItemWeek)
+//   }
 
-  return{
-    newImageProgress, 
-    setNewImageProgress,
-    itemWeek,
-    saveItemWeek,
-  }
-}
+//   return{
+//     newImageProgress, 
+//     setNewImageProgress,
+//     itemWeek,
+//     saveItemWeek,
+//   }
+// }
 
 export { useLocalStorage }
-export { useLocalStorageWeek }
+// export { useLocalStorageWeek }

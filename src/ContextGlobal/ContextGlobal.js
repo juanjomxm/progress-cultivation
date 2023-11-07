@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalstorage";
-import { useLocalStorageWeek } from "./useLocalstorage";
 const ProgressContext = React.createContext()
 
 function ProgressProvider({children}){
@@ -14,14 +13,9 @@ function ProgressProvider({children}){
     error,
     newImage,
     setNewImage,
-  } = useLocalStorage('cultivation', [])
-
-  const {
     newImageProgress, 
     setNewImageProgress,
-    itemWeek,
-    saveItemWeek,
-  } = useLocalStorageWeek('cultivationWeek', [])
+  } = useLocalStorage('cultivation', [])
 
   const [openModal, setOpenmodal] = React.useState(false)
   const [openModalProgressImages, setOpenmodalProgressImages] = React.useState(false) // Estado para modal de agregar progreso de la pnata semana por semana
@@ -33,44 +27,29 @@ function ProgressProvider({children}){
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
-  let viewAllWeek = itemWeek.filter(item =>{
-    return `${item.week}${item.srcWeek}${item.textWeek}`
-  })
+  // const viewAllWeek = statePlants.filter(item =>{
+  //   return `${item.week}${item.srcWeek}${item.textWeek}`
+  // })
 
   // Funciones para los botones de agregar o elimnar
-  const addPlant = (name) =>{ // Tengo que encontrar la manera que al agregar los datos de la planta se agregue son en la pagina que desee y no en las dos
+  const addPlant = (name, week, textWeek) =>{
     const newPlants = [...statePlants]
     newPlants.push({
       name,
       src: newImage.src,
+      week,
+      srcWeek: newImageProgress.src,
+      textWeek,
     })
     savedPlants(newPlants)
   }
 
-  const deletedPlant = (src) =>{
+  const deletedPlant = (name) =>{
     const newPlants = [...statePlants]
-    const plantIndex = newPlants.findIndex(item => item.name === src)
+    const plantIndex = newPlants.findIndex(item => item.name === name)
     newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
   }
-
-  const addPlantProgress = (week, textWeek) =>{
-    const newPlants = [...itemWeek]
-    newPlants.push({
-      week,
-      srcWeek: newImageProgress.src,
-      textWeek 
-    })
-    saveItemWeek(newPlants)
-  }
-
-  const deletedPlantProgress = (srcWeek) =>{
-    const newPlantsProgress = [...itemWeek]
-    const plantIndexProgress = newPlantsProgress.findIndex(item => item.week === srcWeek)
-    newPlantsProgress.splice(plantIndexProgress, 1)
-    saveItemWeek(newPlantsProgress)
-}
-
 
     return(
         <ProgressContext.Provider value={{
@@ -91,17 +70,13 @@ function ProgressProvider({children}){
             setNewImageProgress,
             openModalProgressImages, 
             setOpenmodalProgressImages,
-            addPlantProgress,
-            deletedPlantProgress,
+            //viewAllWeek,
             newProgress, 
             setNewProgress,
             newProgressText, 
             setNewProgressText,
-            viewAllWeek,
             newImageProgress, 
             setNewImageProgress,
-            itemWeek,
-            saveItemWeek,
         }}>
             {children}
         </ProgressContext.Provider>
