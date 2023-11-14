@@ -9,11 +9,15 @@ function ContainerImagesPlants(){
     } = React.useContext(ProgressContext)
 
     return(
-        <ul>
-            {statePlants.map(post => {
-                return <WeekPost post={post}/>
-            })}
-        </ul>
+        <div>
+            <ul>
+                {statePlants.map(post => {
+                    return <WeekPost
+                    key={post.name}
+                    post={post}/>
+                })}
+            </ul>
+        </div>  
     )
 }
 
@@ -23,8 +27,8 @@ function WeekPost({post}){
         deletedPlant
     } = React.useContext(ProgressContext)
     return(
-        <li className="images"> 
-            <Link to={`/home/${post.name}`}>{post.name}</Link>
+        <li className="images">
+            <Link to={`/${post.name}`}>{post.name}</Link>
             <img
             src={post.src}
             width={300}
@@ -32,7 +36,12 @@ function WeekPost({post}){
             />
             <button
                 onClick={deletedPlant}
-                >ELIMINAR</button>
+            >ELIMINAR</button>
+            <button
+                onClick={()=>{
+                    console.log('Editar')
+                }}
+            >EDITAR</button>
         </li>
     )
 }
@@ -40,10 +49,9 @@ function WeekPost({post}){
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica
 function ImageCultivation(){ 
     const{
-        newImage,
         statePlants,
-        setNewProgressText,
         deletedPlantProgress,
+        setNewProgressText
     } = React.useContext(ProgressContext)
 
     const onchangeTextProgress = (event)=>{
@@ -55,17 +63,7 @@ function ImageCultivation(){
 
     return(
         <div className="modal-progress-images">
-
             <div className="images">
-                <h2>{post.name}</h2>
-                {newImage && <img
-                src={post.src} // Para poder tener persistencia con las imagenes que se suban desde el pc debo tener un servidor en el cual pueda almacenar la url de la imagen y asi poderla volver a renderizar en la app
-                width={300}
-                height={300}
-                ></img>}
-            </div>
-
-            <div className="div-content-progress">
                 <h2>{post.week}</h2>
                 <img
                 src={post.srcWeek}
@@ -84,7 +82,6 @@ function ImageCultivation(){
                 Eliminar
                 </button>
             </div>
-
         </div>
     )
 }

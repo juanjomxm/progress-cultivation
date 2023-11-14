@@ -17,7 +17,7 @@ function ProgressProvider({children}){
     setNewImageProgress,
   } = useLocalStorage('cultivation', [])
 
-  const [openModal, setOpenmodal] = React.useState(false)
+  // const [openModal, setOpenmodal] = React.useState(false)
   const [openModalProgressImages, setOpenmodalProgressImages] = React.useState(false) // Estado para modal de agregar progreso de la pnata semana por semana
   const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
@@ -27,28 +27,38 @@ function ProgressProvider({children}){
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
-  // const viewAllWeek = statePlants.filter(item =>{
-  //   return `${item.week}${item.srcWeek}${item.textWeek}`
-  // })
-
   // Funciones para los botones de agregar o elimnar
-  const addPlant = (name, week, textWeek) =>{
+  
+  
+  const addPlant = (name) =>{
+    const plantId = newPlantId()
     const newPlants = [...statePlants]
     newPlants.push({
       name,
       src: newImage.src,
-      week,
-      srcWeek: newImageProgress.src,
-      textWeek,
+      id: plantId,
     })
+    savedPlants(newPlants) // Tengo que cambiar el metodo push y hacerlo como encontre la respuestro con copilot que recomienda utilizar el hook de useState para guardar la informacion del mismo objeto con dos formularios diferentes
+  }
+
+  // const addPlantProgress = (week, textWeek)=>{
+  //   const newPlantsWeek = [...statePlants]
+  //   newPlantsWeek.push({
+  //     week,
+  //     srcWeek: newImageProgress.src,
+  //     textWeek
+  //   })
+  // }
+
+  const deletedPlant = (id) =>{
+    const plantIndex = statePlants.findIndex(item => item.id === id)
+    const newPlants = [...statePlants]
+    newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
   }
 
-  const deletedPlant = (name) =>{
-    const newPlants = [...statePlants]
-    const plantIndex = newPlants.findIndex(item => item.name === name)
-    newPlants.splice(plantIndex, 1)
-    savedPlants(newPlants)
+  const newPlantId = ()=>{
+    return Date.now() // Esto es un metodo estatico que me retorna un numero de milisegundos transcurridos desde el primero de enero de 1970.  Y asi poder generar un id diferente para cada planta
   }
 
     return(
@@ -62,21 +72,21 @@ function ProgressProvider({children}){
             searchPlants,
             inputSearchPlant, 
             setInputSearchPlant,
-            openModal,
-            setOpenmodal,
+            // openModal,
+            // setOpenmodal,
             newImage,
             setNewImage,
             newImageProgress, 
             setNewImageProgress,
             openModalProgressImages, 
             setOpenmodalProgressImages,
-            //viewAllWeek,
             newProgress, 
             setNewProgress,
             newProgressText, 
             setNewProgressText,
             newImageProgress, 
             setNewImageProgress,
+            //addPlantProgress
         }}>
             {children}
         </ProgressContext.Provider>

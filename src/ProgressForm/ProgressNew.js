@@ -1,10 +1,10 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ButtonModalProgress(){
+    const navigateProgress = useNavigate()
     const{
-        setOpenmodalProgressImages
     }= React.useContext(ProgressContext)
 
     return(
@@ -12,31 +12,65 @@ function ButtonModalProgress(){
             <div className="container-button-progress">
                 <button className="button-progress-week"
                     onClick={()=>{
-                        setOpenmodalProgressImages(state => !state)
-                    }} // Boton para abrir el modal donde se introduce la informacion del pogreso de la semana
+                        navigateProgress('/form2')
+                        // setOpenmodalProgressImages(state => !state)
+                    }} // Boton para abrir el formulario donde se introduce la informacion del pogreso de la semana
                 >+</button>
 
-                <button>
-                    <Link to={'/home'}>Home</Link>
-                </button>
+                <button
+                onClick={()=>{
+                    navigateProgress('/')
+                }}
+                >Home</button>
             </div>
         </div>
     )
 }
 
-// function ContainerProgressPlants({children}){
+// function ContainerProgressPlants(){
+//     const {
+//         statePlants,
+//     } = React.useContext(ProgressContext)
+
 //     return(
-//         children
+//         <div>
+//             <ul>
+//                 {statePlants.map(post => {
+//                     return <WeekPostWeek
+//                     key={post.week}
+//                     postWeek={post}/>
+//                 })}
+//             </ul>
+//         </div> 
 //     )
 // }
 
-// // Esta es la funcion que renderiza el progreso del cultivo semana por semana
-// function ProgressNew({week, srcWeek, textWeek}){ 
+// function WeekPostWeek({postWeek}){
+//     const {
+//     } = React.useContext(ProgressContext)
+//     return(
+//         <li className="div-content-progress"> 
+//             <Link to={`/${postWeek.week}`}>{postWeek.week}</Link>
+//             <img
+//             src={postWeek.srcWeek}
+//             width={300}
+//             height={300}
+//             />
+//             <p>{postWeek.textWeek}</p>
+//         </li>
+//     )
+// }
+
+// // // Esta es la funcion que renderiza el progreso del cultivo semana por semana
+// function ProgressNew(){ 
 //     const {
 //         deletedPlantProgress,
 //         setNewProgressText,
 //         statePlants
 //     } = React.useContext(ProgressContext)
+
+//     const { week } = useParams()
+//     const postWeek = statePlants.find(item => item.week === week)
 
 //     const onchangeTextProgress = (event)=>{
 //         setNewProgressText(event.target.value)
@@ -45,15 +79,15 @@ function ButtonModalProgress(){
 //     return(
 //         <div className="modal-progress-images">
 //             <div className="div-content-progress">
-//                 <h2>{week}</h2>
+//                 <h2>{postWeek.week}</h2>
 //                 <img
-//                 src={srcWeek}
+//                 src={postWeek.srcWeek}
 //                 width={200}
 //                 height={200}
 //                 ></img>
 //                 <textarea
 //                 className="text-progress-plant"
-//                 value={textWeek}
+//                 value={postWeek.textWeek}
 //                 onChange={onchangeTextProgress}
 //                 >   
 //                 </textarea>
@@ -69,3 +103,4 @@ function ButtonModalProgress(){
 // export { ContainerProgressPlants }
 // export { ProgressNew }
 export { ButtonModalProgress }
+// export { WeekPostWeek }

@@ -1,23 +1,24 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+import { useNavigate } from "react-router-dom";
 
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
 function ProgressNewModal(){
+    const navigateProgress = useNavigate()
     const {
         addPlant,
         setNewImageProgress,
-        setOpenmodalProgressImages,
         newImageProgress,
         newProgress, 
         setNewProgress,
         newProgressText, 
-        setNewProgressText
+        setNewProgressText,
     } = React.useContext(ProgressContext)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlant('', newProgress, newProgressText)
-        setOpenmodalProgressImages(false)
+        navigateProgress('/')
+        // addPlant('')
     }
 
     const onChange = (event)=>{
@@ -30,7 +31,7 @@ function ProgressNewModal(){
 
     const onCancel = (event)=>{
         event.preventDefault()
-        setOpenmodalProgressImages(false)
+        navigateProgress('/') // Debo encontrar la manera para cuando le de añadir o cancelar se renderice la pagina del progreso por semana y no el home
     }
 
     const onSubmitImageProgress = (event)=>{

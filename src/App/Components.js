@@ -6,12 +6,11 @@ import { SearchPlants } from "../SearchPlants/SearchPlants";
 import { ContainerImagesPlants}  from "../ImagesPlants/ImagePlants";
 import { ImageCultivation } from "../ImagesPlants/ImagePlants";
 import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
-import { Modal} from "../Modal/Modal";
 import { PlantNew } from "../PlantForm/PlantNew";
 
 import { TitleWeek } from "../TitleApp/TitleApp";
-import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
-import { ProgressNew } from "../ProgressForm/ProgressNew";
+// import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
+// import { ProgressNew } from "../ProgressForm/ProgressNew";
 import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
 import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
 import { ModalProgressImages } from "../Modal/Modal";
@@ -22,65 +21,61 @@ function Components(){
         loading,
         error,
         searchPlants,
-        openModal,
-        openModalProgressImages,
-        viewAllWeek
+        // openModalProgressImages,
     } = React.useContext(ProgressContext)
 
     return (
     <React.Fragment>
-        {/* Este es el modal para agregar el nombre e imagen de la cada planta del cultivo */}
-        {openModal && (
-            <Modal>
-                <PlantNew/>
-            </Modal> 
-        )}
-
         {/* Este es el modal para agregar el numero de la semana y la imagen de el progreso */}
-        {openModalProgressImages && (
+        {/* {openModalProgressImages && (
                 <ModalProgressImages>
                     <ProgressNewModal/>
                 </ModalProgressImages>
-            )}
+            )} */}
 
             {/* Utilizando react-router aprendi que se crea una navegacion y poder mostrar los componentes que deseo  */}
             <HashRouter>
                 <Routes>
-                    <Route path="/home" element={
+                    <Route path="/" element={
                         <React.Fragment>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                             {error && <p>Hubo un error</p>}
                             <TitleCultivation />
                             <InitCultivation />
                             <SearchPlants/>
-                            <ContainerImagesPlants/>
                             {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>}
+                            <ContainerImagesPlants/>
                         </React.Fragment>
                         }
                     />
 
-                    <Route path="/home/:name" element={
+                    <Route path="/:name" element={
                         <React.Fragment>
                             <TitleWeek/>
                             <ButtonModalProgress/>
                             <ImageCultivation/>
+                            {/* <ContainerProgressPlants/> */}
+                            {/* <ProgressNew/> */}
                         </React.Fragment>
                     }
+                    // Para hacer este cambio debo escribir el hsh primero = /#/
                     />
 
-                    {/* <Route path="/week" element={<ContainerProgressPlants>
-                        <TitleWeek/>
-                        <ButtonModalProgress/>
-                        <ProgressNew/>
-                    </ContainerProgressPlants>}
-                    /> */}
-                    {/* Para hacer este cambio debo escribir el hsh primero = /#/ */}
+                    <Route path="/form1" element={ 
+                        <React.Fragment>
+                            <PlantNew/>
+                        </React.Fragment>
+                    }
+                    // Cuando Utilizo el useNavigate no necesito agregar los dos puntos como cuando se hace con la etiqueta Link
+                    />
 
-                    {/* <Route path="/week/:name" element={<ContainerProgressPlants>
-                        <TitleWeek/>
-                        <ButtonModalProgress/>
-                        <ProgressNew/>
-                    </ContainerProgressPlants>}/> */}
+                    <Route path="/form2" element={ 
+                        <React.Fragment>
+                            <ProgressNewModal/>
+                        </React.Fragment>
+                    }
+                    // Cuando Utilizo el useNavigate no necesito agregar los dos puntos como cuando se hace con la etiqueta Link
+                    />
                 </Routes>
             </HashRouter>
     </React.Fragment>
