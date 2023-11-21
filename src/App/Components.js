@@ -9,11 +9,10 @@ import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { PlantNew } from "../PlantForm/PlantNew";
 
 import { TitleWeek } from "../TitleApp/TitleApp";
-// import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
-// import { ProgressNew } from "../ProgressForm/ProgressNew";
+import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
+import { ProgressNew } from "../ProgressForm/ProgressNew";
 import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
 import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
-import { ModalProgressImages } from "../Modal/Modal";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
 function Components(){
@@ -21,18 +20,11 @@ function Components(){
         loading,
         error,
         searchPlants,
-        // openModalProgressImages,
+        plantToPlant
     } = React.useContext(ProgressContext)
 
     return (
     <React.Fragment>
-        {/* Este es el modal para agregar el numero de la semana y la imagen de el progreso */}
-        {/* {openModalProgressImages && (
-                <ModalProgressImages>
-                    <ProgressNewModal/>
-                </ModalProgressImages>
-            )} */}
-
             {/* Utilizando react-router aprendi que se crea una navegacion y poder mostrar los componentes que deseo  */}
             <HashRouter>
                 <Routes>
@@ -49,8 +41,10 @@ function Components(){
                         }
                     />
 
-                    <Route path="/:name" element={
+                    <Route path="/:name/:id" element={
                         <React.Fragment>
+                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
+                            {error && <p>Hubo un error</p>}
                             <TitleWeek/>
                             <ButtonModalProgress/>
                             <ImageCultivation/>
@@ -68,6 +62,13 @@ function Components(){
                     }
                     // Cuando Utilizo el useNavigate no necesito agregar los dos puntos como cuando se hace con la etiqueta Link
                     />
+
+                    {/* <Route path={"/edit/" + searchPlants.id} element={ 
+                        <React.Fragment>
+                            <PlantNew/>
+                        </React.Fragment>
+                    }  Dejare esta seccion de editar en standby
+                    /> */}
 
                     <Route path="/form2" element={ 
                         <React.Fragment>

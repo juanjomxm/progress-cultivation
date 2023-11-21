@@ -6,19 +6,20 @@ import { useNavigate } from "react-router-dom";
 function ProgressNewModal(){
     const navigateProgress = useNavigate()
     const {
-        addPlant,
+        newPlant,
         setNewImageProgress,
         newImageProgress,
         newProgress, 
         setNewProgress,
         newProgressText, 
         setNewProgressText,
+        addPlantWeek 
     } = React.useContext(ProgressContext)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        navigateProgress('/')
-        // addPlant('')
+        addPlantWeek(newProgress, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
+        navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
     const onChange = (event)=>{
@@ -31,7 +32,7 @@ function ProgressNewModal(){
 
     const onCancel = (event)=>{
         event.preventDefault()
-        navigateProgress('/') // Debo encontrar la manera para cuando le de añadir o cancelar se renderice la pagina del progreso por semana y no el home
+        navigateProgress(-1)
     }
 
     const onSubmitImageProgress = (event)=>{

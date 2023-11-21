@@ -6,9 +6,9 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
     const [item, setItem] = React.useState(initialValue)
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
-    const [newImage, setNewImage] = React.useState(initialValue)
+    const [newImage, setNewImage] = React.useState(initialValue) // Estado que controla subir la imagen de la planta de inincio
 
-    const [newImageProgress, setNewImageProgress] = React.useState(initialValue)
+    const [newImageProgress, setNewImageProgress] = React.useState(initialValue) // Estado que controla subir la imagen del progreso semana por semana
 
     React.useEffect(()=>{
       setTimeout(()=>{
@@ -49,8 +49,55 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
       newImage,
       setNewImage,
       newImageProgress, 
-      setNewImageProgress,
+      setNewImageProgress
     }
 }
-
 export { useLocalStorage }
+
+// Funcion de localStorage del progreso por semanas
+// function useLocalStorageWeek(itemnameWeek, initialValueWeek){
+
+//   const [ itemWeek, setItemWeek] = React.useState(initialValueWeek)
+//   const [newImageProgress, setNewImageProgress] = React.useState(initialValueWeek) // Estado que controla subir la imagen del progreso semana por semana
+//   const [loading, setLoading] = React.useState(true)
+//   const [error, setError] = React.useState(false)
+
+//   React.useEffect(()=>{
+//     setTimeout(()=>{
+//       try{
+//         // LOCAL STORAGEWEEK
+//         const localStorageItemWeek = localStorage.getItem(itemnameWeek)
+//         let parsedItemWeek
+
+//         if(localStorageItemWeek){
+//           parsedItemWeek = JSON.parse(localStorageItemWeek)
+//           setItemWeek(parsedItemWeek)
+//           setNewImageProgress(parsedItemWeek)
+//         }else{
+//           localStorage.setItem(localStorageItemWeek, JSON.stringify(initialValueWeek))
+//           parsedItemWeek = initialValueWeek
+//         }
+//         setLoading(false)
+//       }catch(error){
+//         setLoading(false)
+//         setError(error)
+//       }
+//     }, 2000)
+//   }, [])
+
+//   const saveItemWeek = (newItemWeek)=>{
+//     localStorage.setItem(itemnameWeek, JSON.stringify(newItemWeek))
+//     setItemWeek(newItemWeek)
+//     setNewImageProgress(newItemWeek)
+//   }
+
+//   return{
+//     itemWeek, 
+//     saveItemWeek,
+//     newImageProgress, 
+//     setNewImageProgress,
+//     loading,
+//     error
+//   }
+// }
+// export { useLocalStorageWeek }

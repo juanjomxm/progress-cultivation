@@ -7,10 +7,10 @@ function PlantNew(){
     const {
         newImage,
         setNewImage,
-        addPlant,
+        newPlant, 
+        setNewPlant,
+        addPlant
     } = React.useContext(ProgressContext)
-
-    const [newPlant, setNewPlant] = React.useState('')
 
     const onSubmit = (event)=>{
         event.preventDefault()
@@ -32,6 +32,7 @@ function PlantNew(){
           src: URL.createObjectURL(event.target.files[0])
         })
     }
+
 
     return(
             <form 
@@ -64,7 +65,6 @@ function PlantNew(){
                     className="button-add-submit"
                     type="submit"
                     onClick={onSubmit}
-                    // De esta manera con el otro formulario para agregar el progreso por semana le puedo indicar hacia donde se debe redireccionar cuando le de añadir
                     >Añadir</button>
                 </div>
                 <img
