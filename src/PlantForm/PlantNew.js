@@ -14,7 +14,7 @@ function PlantNew(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlant(newPlant)
+        addPlant('', '')
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 

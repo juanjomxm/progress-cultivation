@@ -1,10 +1,11 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()
     const{
+        objectPrincipal
     }= React.useContext(ProgressContext)
 
     return(
@@ -12,7 +13,7 @@ function ButtonModalProgress(){
             <div className="container-button-progress">
                 <button className="button-progress-week"
                     onClick={()=>{
-                        navigateProgress('/form2')
+                        navigateProgress('/form2/' + objectPrincipal.statePlants.id)
                         // setOpenmodalProgressImages(state => !state)
                     }} // Boton para abrir el formulario donde se introduce la informacion del pogreso de la semana
                 >+</button>

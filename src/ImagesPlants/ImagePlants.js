@@ -6,14 +6,13 @@ import { Link, useParams, useNavigate} from "react-router-dom"
 // En esta funcion es donde se renderiza laas nuevas plantas que agrego en el home
 function ContainerImagesPlants(){
     const {
-        statePlants,
-        objectPrincipal
+        searchPlants,
     } = React.useContext(ProgressContext)
 
     return(
         <div>
             <ul>
-                {objectPrincipal.statePlants.map(post => { // De esta manera funciona el input para buscar la planta
+                {searchPlants.map(post => { // De esta manera funciona el input para buscar la planta
                     return <WeekPost
                     key={post.name}
                     post={post}/>
@@ -59,7 +58,6 @@ function ImageCultivation(){  // Estoy identificando que haciendolo de esta  man
     const{
         deletedPlantProgress,
         setNewProgressText,
-        statePlants,
         objectPrincipal
     } = React.useContext(ProgressContext)
 
@@ -67,13 +65,14 @@ function ImageCultivation(){  // Estoy identificando que haciendolo de esta  man
         setNewProgressText(event.target.value)
     }
 
-    const {name} = useParams()
+    const { name } = useParams()
     const post = objectPrincipal.statePlants.find(item => item.name === name)
 
     return(
         <div className="modal-progress-images">
             <div className="images">
                 <h2>{post.week}</h2>
+
                 <img
                 src={post.srcWeek}
                 width={200}

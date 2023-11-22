@@ -22,7 +22,7 @@ function ProgressProvider({children}){
   const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
 
-  const objectPrincipal = {
+  let objectPrincipal = {
     statePlants: [...statePlants]
   }
 
@@ -31,35 +31,39 @@ function ProgressProvider({children}){
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
-  // const plantToPlant = statePlants.filter(item =>{
-  //   return `${item.week}${item.srcWeek}${item.textWeek}`
-  // })
+  const plantToPlant = objectPrincipal.statePlants.filter(item =>{
+    return `${item.week}${item.srcWeek}${item.textWeek}`
+  })
 
   // Funcion para agregar planta
   
-  const addPlant = () =>{
+  const addPlant = (week, textWeek) =>{
     let plantId = newPlantId()
-    objectPrincipal.statePlants.push({
+    const plantWeek = [...objectPrincipal.statePlants]
+    plantWeek.push({
         name: newPlant,
         src: newImage.src,
         id: plantId,
+        week,
+        srcWeek: newImageProgress.src,
+        textWeek
     })
-    savedPlants(objectPrincipal.statePlants)
-  } // Haciendolo de esta manera estoy logrando que el array lleve un nombre para lograr identificarlo, pero no logro renderizarlo en la pagina principal
+    savedPlants(plantWeek)
+  } // La funcion se ejecuta bien y agrega el objeto
 
-  const addPlantWeek = (week, textWeek)=>{
-    const newPlants = {
-    ...objectPrincipal.statePlants,
-      week,
-      srcWeek: newImageProgress.src,
-      textWeek}
-    savedPlants(newPlants)
-  }
+  const addPlantWeek = (id, newWeek, newSrcWeek, newTextWeek)=>{
+    const plantIndex = objectPrincipal.statePlants.findIndex(item => item.name === id)
+    const plantWeek = [...objectPrincipal.statePlants]
+    plantWeek[plantIndex].week = newWeek
+    plantWeek[plantIndex].srcWeek = newSrcWeek
+    plantWeek[plantIndex].textWeek = newTextWeek
+    savedPlants(plantWeek)
+  } // Estoy encontrando el camino, lo estoy haciendo de esta manera y estoy obteniendo buenos resultado, aunque debo mejorar la funcion, siguen habiendo bugs, pero estoy avanzando
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
-    const plantIndex = statePlants.findIndex(item => item.id === id)
-    const newPlants = [...statePlants]
+    const plantIndex = objectPrincipal.statePlants.findIndex(item => item.id === id)
+    const newPlants = [...objectPrincipal.statePlants]
     newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
   }
@@ -101,7 +105,7 @@ function ProgressProvider({children}){
             setNewImageProgress,
             newPlant, 
             setNewPlant,
-            //plantToPlant,
+            plantToPlant,
             addPlantWeek,
             objectPrincipal
         }}>
