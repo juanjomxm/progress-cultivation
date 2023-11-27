@@ -36,29 +36,46 @@ function ProgressProvider({children}){
   })
 
   // Funcion para agregar planta
-  
-  const addPlant = (week, textWeek) =>{
+  const addPlant = () =>{
     let plantId = newPlantId()
     const plantWeek = [...objectPrincipal.statePlants]
     plantWeek.push({
-        name: newPlant,
-        src: newImage.src,
-        id: plantId,
-        week,
-        srcWeek: newImageProgress.src,
-        textWeek
+      name: newPlant,
+      src: newImage.src,
+      id: plantId,
+      // week: [],
+      // srcWeek: [],
+      // textWeek: []
     })
     savedPlants(plantWeek)
   } // La funcion se ejecuta bien y agrega el objeto
 
-  const addPlantWeek = (id, newWeek, newSrcWeek, newTextWeek)=>{
-    const plantIndex = objectPrincipal.statePlants.findIndex(item => item.name === id)
+  // Funcion para editar la planta de inicio
+  const editPlant = (id)=>{
+    const plantIndex = objectPrincipal.statePlants.findIndex(item => item.id === id)
     const plantWeek = [...objectPrincipal.statePlants]
-    plantWeek[plantIndex].week = newWeek
-    plantWeek[plantIndex].srcWeek = newSrcWeek
-    plantWeek[plantIndex].textWeek = newTextWeek
+    plantWeek[plantIndex].name = newPlant
+    plantWeek[plantIndex].src = newImage.src
+    savedPlants(plantWeek) // Necesito reconocer el id para poderlo editar, no he econtrado la manera
+  }
+
+   // Funcion para agregar los nuevos atributos del progreso a cada planta
+  let newObject = {
+    week: newProgress,
+    srcWeek: newImageProgress.src,
+    textWeek: newProgressText
+  }
+  const addPlantWeek = (id)=>{
+    const plantIndex = objectPrincipal.statePlants.findIndex(item => item.name === id)
+    const plantWeek = {
+      ...objectPrincipal.statePlants[plantIndex], 
+      progressWeek: newObject
+    }
+    // plantWeek[plantIndex].week = newWeek
+    // plantWeek[plantIndex].srcWeek = newSrcWeek
+    // plantWeek[plantIndex].textWeek = newTextWeek
     savedPlants(plantWeek)
-  } // Estoy encontrando el camino, lo estoy haciendo de esta manera y estoy obteniendo buenos resultado, aunque debo mejorar la funcion, siguen habiendo bugs, pero estoy avanzando
+  }
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
@@ -66,20 +83,11 @@ function ProgressProvider({children}){
     const newPlants = [...objectPrincipal.statePlants]
     newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
-  }
+  } // Quedo lista esta funcion
 
-  //Funcion para editar planta
-  // const editPlant = (id, newWeek, srcWeek, newTextWeek) =>{
-  //  const plantIndex = statePlants.findIndex(item => item.id === id)
-  //   const newPlants = [...statePlants]
-  //   newPlants[plantIndex].week.push(newWeek)
-  //   newPlants[plantIndex].srcWeek.push(srcWeek)
-  //   newPlants[plantIndex].textWeek.push(newTextWeek)
-  //   savedPlants(newPlants)
-  // }
-
+  // Funcion para el id de la planta
   const newPlantId = ()=>{
-    return Date.now() // Esto es un metodo estatico que me retorna un numero de milisegundos transcurridos desde el primero de enero de 1970.  Y asi poder generar un id diferente para cada planta
+    return Date.now()
   }
 
     return(
@@ -107,7 +115,9 @@ function ProgressProvider({children}){
             setNewPlant,
             plantToPlant,
             addPlantWeek,
-            objectPrincipal
+            objectPrincipal,
+            editPlant,
+            newPlantId
         }}>
             {children}
         </ProgressContext.Provider>

@@ -2,19 +2,19 @@ import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 import { useNavigate } from "react-router-dom";
 
-function PlantNew(){
+function PlantEdit(){
     const navigate = useNavigate()
     const {
         newImage,
         setNewImage,
         newPlant, 
         setNewPlant,
-        addPlant
+        editPlant,
     } = React.useContext(ProgressContext)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlant()
+        editPlant(newPlant, newImage.src)
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 
@@ -39,8 +39,8 @@ function PlantNew(){
             className="new-plant"
             onSubmit={onSubmit}
             >
-                <label className="title-modal">Nueva planta</label>
-                
+                <label className="title-modal">Editar Planta</label>
+
                 <textarea
                 className="text-new-plant"
                 placeholder="Nombre de la planta"
@@ -74,4 +74,4 @@ function PlantNew(){
             </form>  
     )
 }
-export { PlantNew }
+export { PlantEdit }

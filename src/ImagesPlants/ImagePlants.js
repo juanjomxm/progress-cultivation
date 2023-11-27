@@ -15,7 +15,7 @@ function ContainerImagesPlants(){
                 {searchPlants.map(post => { // De esta manera funciona el input para buscar la planta
                     return <WeekPost
                     key={post.name}
-                    post={post}/>
+                    post={post}/> 
                 })}
             </ul>
         </div>  
@@ -27,7 +27,6 @@ function WeekPost({post}){
     const navigateProgress = useNavigate()
     const {
         deletedPlant,
-        newPlant
     } = React.useContext(ProgressContext)
     return(
         <li className="images">
@@ -39,13 +38,13 @@ function WeekPost({post}){
             />
             <button
                 onClick={()=>{
-                    deletedPlant(newPlant)
+                    deletedPlant(post.id)
                 }}
             >ELIMINAR</button>
             <button
                 onClick={()=>{
-                    navigateProgress('/edit/' + post.id) // De esta manera puedo abrir una pagina con navegacion para poder editar la pnata agregada
-                    console.log('Editar')
+                    navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
+                    console.log(`Editar-${post.name}-${post.id}`)
                 }}
             >EDITAR</button>
         </li>
@@ -55,6 +54,7 @@ function WeekPost({post}){
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica
 
 function ImageCultivation(){  // Estoy identificando que haciendolo de esta  manera es como se renderiza los atributos que deseo reconociendo el nombre de la planta
+    const navigateProgress = useNavigate()
     const{
         deletedPlantProgress,
         setNewProgressText,
@@ -71,6 +71,15 @@ function ImageCultivation(){  // Estoy identificando que haciendolo de esta  man
     return(
         <div className="modal-progress-images">
             <div className="images">
+
+                <div className="container-button-progress">
+                    <button className="button-progress-week"
+                        onClick={()=>{
+                            navigateProgress(`/form2/${post.id}`)
+                        }}
+                    >+</button>
+                </div>
+
                 <h2>{post.week}</h2>
 
                 <img

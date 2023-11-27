@@ -7,6 +7,7 @@ import { ContainerImagesPlants}  from "../ImagesPlants/ImagePlants";
 import { ImageCultivation } from "../ImagesPlants/ImagePlants";
 import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { PlantNew } from "../PlantForm/PlantNew";
+import { PlantEdit } from "../PlantForm/PlantEdit";
 
 import { TitleWeek } from "../TitleApp/TitleApp";
 import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
@@ -19,9 +20,7 @@ function Components(){
     const {
         loading,
         error,
-        searchPlants,
-        objectPrincipal,
-        plantToPlant
+        searchPlants
     } = React.useContext(ProgressContext)
 
     return (
@@ -71,14 +70,14 @@ function Components(){
                     // Cuando Utilizo el useNavigate no necesito agregar los dos puntos como cuando se hace con la etiqueta Link
                     />
 
-                    {/* <Route path={"/edit/" + searchPlants.id} element={ 
+                    <Route path={"/edit/:name/:id" } element={ 
                         <React.Fragment>
-                            <PlantNew/>
+                            <PlantEdit/>
                         </React.Fragment>
-                    }  Dejare esta seccion de editar en standby
-                    /> */}
+                    }
+                    />
 
-                    <Route path={"/form2/" + objectPrincipal.statePlants.id} element={ 
+                    <Route path="/form2/:id" element={ 
                         <React.Fragment>
                             <ProgressNewModal/>
                         </React.Fragment>

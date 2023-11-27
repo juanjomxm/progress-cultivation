@@ -5,25 +5,15 @@ import { Link, useNavigate } from "react-router-dom";
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()
     const{
-        objectPrincipal
     }= React.useContext(ProgressContext)
 
     return(
         <div className="container-buttons-progress">
-            <div className="container-button-progress">
-                <button className="button-progress-week"
-                    onClick={()=>{
-                        navigateProgress('/form2/' + objectPrincipal.statePlants.id)
-                        // setOpenmodalProgressImages(state => !state)
-                    }} // Boton para abrir el formulario donde se introduce la informacion del pogreso de la semana
-                >+</button>
-
                 <button
                 onClick={()=>{
                     navigateProgress('/')
                 }}
                 >Home</button>
-            </div>
         </div>
     )
 }
@@ -40,8 +30,7 @@ function ContainerProgressPlants(){
                     return <WeekPostWeek
                     key={post.week}
                     postWeek={post}
-                    />
-                    
+                    />   
                 })}
             </ul>
         </div> 
@@ -52,15 +41,17 @@ function WeekPostWeek({postWeek}){
     const {
     } = React.useContext(ProgressContext)
     return(
-        <li className="div-content-progress"> 
-            <Link to={`/${postWeek.week}`}>{postWeek.week}</Link>
-            <img
-            src={postWeek.srcWeek}
-            width={300}
-            height={300}
-            />
-            <p>{postWeek.textWeek}</p>
-        </li>
+        <div>
+            <li className="div-content-progress"> 
+                <Link to={`/${postWeek.week}`}>{postWeek.week}</Link>
+                <img
+                src={postWeek.srcWeek}
+                width={300}
+                height={300}
+                />
+                <p>{postWeek.textWeek}</p>
+            </li>
+        </div>
     )
 }
 
