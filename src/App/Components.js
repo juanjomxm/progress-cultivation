@@ -20,7 +20,8 @@ function Components(){
     const {
         loading,
         error,
-        searchPlants
+        searchPlants,
+        plantToPlant
     } = React.useContext(ProgressContext)
 
     return (
@@ -47,16 +48,14 @@ function Components(){
                             {error && <p>Hubo un error</p>}
                             <TitleWeek/>
                             <ButtonModalProgress/>
-                            <ImageCultivation/>
-                            {/* <ContainerProgressPlants/> */}
-                            {/* {plantToPlant.map(item=>{
+                            {plantToPlant.map(item=>{
                                 return <ProgressNew
                                 key={item.week}
                                 week={item.week}
                                 srcWeek={item.srcWeek}
                                 textWeek={item.textWeek}
                                 />
-                            })} */}
+                            })}
                         </React.Fragment>
                     }
                     // Para hacer este cambio debo escribir el hsh primero = /#/
@@ -72,7 +71,12 @@ function Components(){
 
                     <Route path={"/edit/:name/:id" } element={ 
                         <React.Fragment>
-                            <PlantEdit/>
+                            {searchPlants.map(item=>{
+                                return <PlantEdit
+                                key={item.name}
+                                post={item}
+                                />
+                            })}
                         </React.Fragment>
                     }
                     />

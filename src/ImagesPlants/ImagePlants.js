@@ -44,8 +44,9 @@ function WeekPost({post}){
             <button
                 onClick={()=>{
                     navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
-                    console.log(`Editar-${post.name}-${post.id}`)
-                }}
+                    console.log('Editar')
+                }
+                }
             >EDITAR</button>
         </li>
     )
@@ -58,7 +59,7 @@ function ImageCultivation(){  // Estoy identificando que haciendolo de esta  man
     const{
         deletedPlantProgress,
         setNewProgressText,
-        objectPrincipal
+        statePlants
     } = React.useContext(ProgressContext)
 
     const onchangeText = (event)=>{
@@ -66,19 +67,11 @@ function ImageCultivation(){  // Estoy identificando que haciendolo de esta  man
     }
 
     const { name } = useParams()
-    const post = objectPrincipal.statePlants.find(item => item.name === name)
+    const post = statePlants.find(item => item.name === name)
 
     return(
         <div className="modal-progress-images">
             <div className="images">
-
-                <div className="container-button-progress">
-                    <button className="button-progress-week"
-                        onClick={()=>{
-                            navigateProgress(`/form2/${post.id}`)
-                        }}
-                    >+</button>
-                </div>
 
                 <h2>{post.week}</h2>
 

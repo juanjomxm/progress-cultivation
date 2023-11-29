@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function ProgressNewModal(){
     const navigateProgress = useNavigate()
     const {
-        newPlant,
         setNewImageProgress,
         newImageProgress,
         newProgress, 

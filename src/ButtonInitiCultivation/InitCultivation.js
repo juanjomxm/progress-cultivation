@@ -7,12 +7,15 @@ function InitCultivation(){
     const{
     } = React.useContext(ProgressContext)
     return(
-        <div className="button-add-plant">
-           <button
-                onClick={()=>{
-                    navigate('/form1')
-                }}
-           >Agregar planta</button>
+        <div>
+
+            <div className="button-add-plant">
+            <button
+                    onClick={()=>{
+                        navigate('/form1')
+                    }}
+            >Agregar planta</button>
+            </div>
         </div>
     )
 }

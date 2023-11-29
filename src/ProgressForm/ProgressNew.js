@@ -8,12 +8,22 @@ function ButtonModalProgress(){
     }= React.useContext(ProgressContext)
 
     return(
-        <div className="container-buttons-progress">
+        <div>
+            <div className="container-buttons-progress">
                 <button
                 onClick={()=>{
                     navigateProgress('/')
                 }}
                 >Home</button>
+
+                <div className="container-button-progress">
+                <button className="button-progress-week"
+                    onClick={()=>{
+                        navigateProgress(`/form2/id`)
+                    }}
+                >+</button>
+                </div>
+            </div>
         </div>
     )
 }
