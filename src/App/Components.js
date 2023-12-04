@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, useParams} from "react-router-dom";
 
 import { TitleCultivation } from "../TitleApp/TitleApp";
 import { SearchPlants } from "../SearchPlants/SearchPlants";
@@ -21,8 +21,11 @@ function Components(){
         loading,
         error,
         searchPlants,
-        plantToPlant
+        editPlant
     } = React.useContext(ProgressContext)
+
+    const params = useParams()
+    const {id} = Number(params.id)
 
     return (
     <React.Fragment>
@@ -42,20 +45,13 @@ function Components(){
                         }
                     />
 
-                    <Route path="/:name/:id" element={
+                    <Route path="/:name" element={
                         <React.Fragment>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                             {error && <p>Hubo un error</p>}
                             <TitleWeek/>
                             <ButtonModalProgress/>
-                            {plantToPlant.map(item=>{
-                                return <ProgressNew
-                                key={item.week}
-                                week={item.week}
-                                srcWeek={item.srcWeek}
-                                textWeek={item.textWeek}
-                                />
-                            })}
+                            <ImageCultivation/>
                         </React.Fragment>
                     }
                     // Para hacer este cambio debo escribir el hsh primero = /#/
@@ -71,12 +67,7 @@ function Components(){
 
                     <Route path={"/edit/:name/:id" } element={ 
                         <React.Fragment>
-                            {searchPlants.map(item=>{
-                                return <PlantEdit
-                                key={item.name}
-                                post={item}
-                                />
-                            })}
+                            <PlantEdit/>
                         </React.Fragment>
                     }
                     />

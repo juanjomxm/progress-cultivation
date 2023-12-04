@@ -12,12 +12,12 @@ function ProgressNewModal(){
         setNewProgress,
         newProgressText, 
         setNewProgressText,
-        addPlantWeek 
+        addPlantWeek,
     } = React.useContext(ProgressContext)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlantWeek() // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
+        addPlantWeek(newProgress, newImageProgress.src, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 

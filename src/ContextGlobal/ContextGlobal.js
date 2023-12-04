@@ -18,7 +18,6 @@ function ProgressProvider({children}){
   } = useLocalStorage('cultivation', [])
 
   const [newPlant, setNewPlant] = React.useState('') // Estado para agregar planta del inicio
-  const [newPlantEdit, setNewPlantEdit] = React.useState('')
   const [newProgress, setNewProgress] = React.useState('') // Text area de numero de semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
 
@@ -45,27 +44,29 @@ function ProgressProvider({children}){
   } // La funcion se ejecuta bien y agrega el objeto
 
   // Funcion para editar la planta de inicio
-  const editPlant = (id, newName, newSrc)=>{
+  const editPlant = (id)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
     const plantWeek = [...statePlants]
-    plantWeek[plantIndex].name = newName
-    plantWeek[plantIndex].src = newSrc
-    savedPlants(plantWeek) // Falta poco para dejar lista esta funcion, al momento de abrir el formuario aparece la misma cantidad de formularios que de plantas, solo debe aparecer un formulario
+    plantWeek[plantIndex].name = newPlant
+    plantWeek[plantIndex].src = newImage.src
+    savedPlants(plantWeek) // Quedo lista esta funcion
   }
 
    // Funcion para agregar los nuevos atributos del progreso a cada planta
-  const addPlantWeek = ()=>{
+  const addPlantWeek = (newWeek, newSrcWeek, newProgressTextWeek)=>{
     const plantWeek = [...statePlants]
     const responsePlant = plantWeek.map(item => {
       return{
           ...item, 
-          week: newProgress,
-          srcWeek: newImageProgress.src,
-          textWeek: newProgressText
+          week: [newWeek],
+          srcWeek: [newSrcWeek],
+          textWeek: [newProgressTextWeek]
       }
     })
     savedPlants(responsePlant)
-  } // Estoy consiguiendo que se guarde donde deseo, pero no se agregan mas sino que es como si se estuviera editando, voy a dejar esta funcion tengo que conseguir que se agregue cada semana
+    console.log(plantWeek)
+    console.log(responsePlant)
+  } // Estoy consiguiendo que se guarde donde deseo, pero no se agregan mas, sino que se edita la que esta, voy a dejar esta funcion y tengo que conseguir que se agregue cada semana
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
@@ -106,9 +107,7 @@ function ProgressProvider({children}){
             plantToPlant,
             addPlantWeek,
             editPlant,
-            newPlantId,
-            newPlantEdit, 
-            setNewPlantEdit,
+            newPlantId
         }}>
             {children}
         </ProgressContext.Provider>

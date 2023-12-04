@@ -1,21 +1,23 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function PlantEdit({post}){
+function PlantEdit(){
     const navigate = useNavigate()
     const {
         newImage,
         setNewImage,
-        newPlantEdit, 
-        setNewPlantEdit,
-        editPlant,
+        newPlant,
+        setNewPlant,
+        editPlant
     } = React.useContext(ProgressContext)
 
+    const params = useParams()
+    const id = Number(params.id) // Con estas dos variables pude resolver el bug que tenia al editar la planta
 
-    const onSubmit = (event)=>{
+    const onSubmitProgress = (event)=>{
         event.preventDefault()
-        editPlant(post.id, newPlantEdit, newImage.src)
+        editPlant(id)
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 
@@ -25,7 +27,7 @@ function PlantEdit({post}){
     }
 
     const onChange = (event)=>{
-        setNewPlantEdit(event.target.value)
+        setNewPlant(event.target.value)
     }
 
     const onSubmitImage = (event)=>{
@@ -38,14 +40,14 @@ function PlantEdit({post}){
     return(
             <form 
             className="new-plant"
-            onSubmit={onSubmit}
+            onSubmit={onSubmitProgress}
             >
                 <label className="title-modal">Editar Planta</label>
 
                 <textarea
                 className="text-new-plant"
                 placeholder="Nombre de la planta"
-                value={newPlantEdit}
+                value={newPlant}
                 onChange={onChange}
                 >   
                 </textarea>
@@ -65,8 +67,8 @@ function PlantEdit({post}){
                     <button 
                     className="button-add-submit"
                     type="submit"
-                    onClick={onSubmit}
-                    >Añadir</button>
+                    onClick={onSubmitProgress}
+                    >Editar</button>
                 </div>
                 <img
                 className="image-form"

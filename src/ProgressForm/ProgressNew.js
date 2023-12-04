@@ -1,6 +1,6 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()

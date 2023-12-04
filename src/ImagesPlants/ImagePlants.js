@@ -28,9 +28,10 @@ function WeekPost({post}){
     const {
         deletedPlant,
     } = React.useContext(ProgressContext)
+
     return(
         <li className="images">
-            <Link to={`/${post.name}/${post.id}`}>{post.name}</Link>
+            <Link to={`/${post.name}`}>{post.name}</Link>
             <img
             src={post.src}
             width={300}
@@ -44,7 +45,7 @@ function WeekPost({post}){
             <button
                 onClick={()=>{
                     navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
-                    console.log('Editar')
+                    console.log(`editar planta => ${post.name}/${post.id}`)
                 }
                 }
             >EDITAR</button>
@@ -55,7 +56,6 @@ function WeekPost({post}){
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica
 
 function ImageCultivation(){  // Estoy identificando que haciendolo de esta  manera es como se renderiza los atributos que deseo reconociendo el nombre de la planta
-    const navigateProgress = useNavigate()
     const{
         deletedPlantProgress,
         setNewProgressText,
