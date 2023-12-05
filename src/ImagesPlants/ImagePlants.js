@@ -31,7 +31,7 @@ function WeekPost({post}){
 
     return(
         <li className="images">
-            <Link to={`/${post.name}`}>{post.name}</Link>
+            <Link to={`/${post.name}/${post.id}`}>{post.name}</Link>
             <img
             src={post.src}
             width={300}
@@ -45,7 +45,6 @@ function WeekPost({post}){
             <button
                 onClick={()=>{
                     navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
-                    console.log(`editar planta => ${post.name}/${post.id}`)
                 }
                 }
             >EDITAR</button>
@@ -55,26 +54,24 @@ function WeekPost({post}){
 
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica
 
-function ImageCultivation(){  // Estoy identificando que haciendolo de esta  manera es como se renderiza los atributos que deseo reconociendo el nombre de la planta
+function ImageCultivation(){ // Enviar props
     const{
-        deletedPlantProgress,
         setNewProgressText,
-        statePlants
+        statePlants,
+        deletedPlantProgress
     } = React.useContext(ProgressContext)
 
     const onchangeText = (event)=>{
         setNewProgressText(event.target.value)
     }
 
-    const { name } = useParams()
+    const { name } = useParams() // Cambiar este useParams por useNavigate y enviar props para recibirlos desde la pagina de componentes
     const post = statePlants.find(item => item.name === name)
 
     return(
         <div className="modal-progress-images">
             <div className="images">
-
                 <h2>{post.week}</h2>
-
                 <img
                 src={post.srcWeek}
                 width={200}
@@ -90,7 +87,10 @@ function ImageCultivation(){  // Estoy identificando que haciendolo de esta  man
                 </textarea>
 
                 <button
-                onClick={deletedPlantProgress}
+                onClick={()=>{
+                    console.log('Delete')
+                    // deletedPlantProgress(post.id)
+                }}
                 >
                 Eliminar
                 </button>

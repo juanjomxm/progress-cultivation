@@ -1,11 +1,14 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams} from "react-router-dom";
 
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()
     const{
     }= React.useContext(ProgressContext)
+
+    const params = useParams()
+    const id = Number(params.id)
 
     return(
         <div>
@@ -19,7 +22,7 @@ function ButtonModalProgress(){
                 <div className="container-button-progress">
                 <button className="button-progress-week"
                     onClick={()=>{
-                        navigateProgress(`/form2/id`)
+                        navigateProgress(`/form2/${id}`)
                     }}
                 >+</button>
                 </div>
@@ -66,33 +69,40 @@ function WeekPostWeek({postWeek}){
 }
 
 // // Esta es la funcion que renderiza el progreso del cultivo semana por semana
-function ProgressNew({week, srcWeek, textWeek}){ 
+function ProgressNew(){ 
     const {
         deletedPlantProgress,
         setNewProgressText,
+        statePlants
     } = React.useContext(ProgressContext)
 
     const onchangeTextProgress = (event)=>{
         setNewProgressText(event.target.value)
     }
 
+    const { name } = useParams()
+    const post = statePlants.find(item => item.id === name)
+
         return(
             <div className="modal-progress-images">
                 <div className="div-content-progress">
-                    <h2>{week}</h2>
+                    <h2>{post.week}</h2>
                     <img
-                    src={srcWeek}
+                    src={post.srcWeek}
                     width={200}
                     height={200}
                     ></img>
                     <textarea
                     className="text-progress-plant"
-                    value={textWeek}
+                    value={post.textWeek}
                     onChange={onchangeTextProgress}
                     >   
                     </textarea>
                     <button
-                    onClick={deletedPlantProgress}
+                    onClick={()=>{
+                        console.log('delete')
+                        // deletedPlantProgress(post.id)
+                    }}
                     >
                     Eliminar
                     </button>

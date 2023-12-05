@@ -21,11 +21,8 @@ function Components(){
         loading,
         error,
         searchPlants,
-        editPlant
+        plantToPlant
     } = React.useContext(ProgressContext)
-
-    const params = useParams()
-    const {id} = Number(params.id)
 
     return (
     <React.Fragment>
@@ -45,15 +42,16 @@ function Components(){
                         }
                     />
 
-                    <Route path="/:name" element={
+                    <Route path="/:name/:id" element={
                         <React.Fragment>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                             {error && <p>Hubo un error</p>}
                             <TitleWeek/>
                             <ButtonModalProgress/>
-                            <ImageCultivation/>
+                            <ImageCultivation/> 
                         </React.Fragment>
-                    }
+                    } // Intentar hacerlo quitando el link que me lleva a la pagina de progreso y cambiarlko por useNavigate(), despues manipularlo desde los componentes con el .map
+
                     // Para hacer este cambio debo escribir el hsh primero = /#/
                     />
 

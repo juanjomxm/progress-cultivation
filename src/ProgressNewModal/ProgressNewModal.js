@@ -1,6 +1,6 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
 function ProgressNewModal(){
@@ -15,9 +15,12 @@ function ProgressNewModal(){
         addPlantWeek,
     } = React.useContext(ProgressContext)
 
+    const params = useParams()
+    const id = Number(params.id)
+
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlantWeek(newProgress, newImageProgress.src, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
+        addPlantWeek(id) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 

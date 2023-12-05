@@ -27,7 +27,7 @@ function ProgressProvider({children}){
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
   })
 
-  const plantToPlant = statePlants.filter(item =>{
+  const plantToPlant = statePlants.filter(item=>{
     return `${item.week}${item.srcWeek}${item.textWeek}`
   })
 
@@ -39,6 +39,9 @@ function ProgressProvider({children}){
       name: newPlant,
       src: newImage.src,
       id: plantId,
+      week: [],
+      srcWeek: [],
+      textWeek: []
     })
     savedPlants(plantWeek)
   } // La funcion se ejecuta bien y agrega el objeto
@@ -53,20 +56,14 @@ function ProgressProvider({children}){
   }
 
    // Funcion para agregar los nuevos atributos del progreso a cada planta
-  const addPlantWeek = (newWeek, newSrcWeek, newProgressTextWeek)=>{
-    const plantWeek = [...statePlants]
-    const responsePlant = plantWeek.map(item => {
-      return{
-          ...item, 
-          week: [newWeek],
-          srcWeek: [newSrcWeek],
-          textWeek: [newProgressTextWeek]
-      }
-    })
-    savedPlants(responsePlant)
-    console.log(plantWeek)
-    console.log(responsePlant)
-  } // Estoy consiguiendo que se guarde donde deseo, pero no se agregan mas, sino que se edita la que esta, voy a dejar esta funcion y tengo que conseguir que se agregue cada semana
+  const addPlantWeek = (id)=>{
+    const plantIndex = statePlants.findIndex(item => item.id === id)
+    let plantWeek = [...statePlants]
+    plantWeek[plantIndex].week.push(newProgress)
+    plantWeek[plantIndex].srcWeek.push(newImageProgress.src)
+    plantWeek[plantIndex].textWeek.push(newProgressText)
+    savedPlants(plantWeek)
+  } // Por fin estoy consiguiendo que se agregue como lo deseo, tengo que solucionar al momento del renderizado para que se renderice uno por uno
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
@@ -75,6 +72,14 @@ function ProgressProvider({children}){
     newPlants.splice(plantIndex, 1)
     savedPlants(newPlants)
   } // Quedo lista esta funcion
+
+  // Funcion parfa eliminar progreso de semana 
+  const deletedPlantProgress = (id) =>{
+    const plantIndex = statePlants.findIndex(item => item.id === id)
+    const newPlants = [...statePlants]
+    newPlants.splice(plantIndex, 1)
+    savedPlants(newPlants) // Hay un bug en esta funcion y es que cuando elimino una planta del progreso tambien se eliminar en la misma posicion la del inicio
+  }
 
   // Funcion para el id de la planta
   const newPlantId = ()=>{
@@ -107,7 +112,8 @@ function ProgressProvider({children}){
             plantToPlant,
             addPlantWeek,
             editPlant,
-            newPlantId
+            newPlantId,
+            deletedPlantProgress
         }}>
             {children}
         </ProgressContext.Provider>
