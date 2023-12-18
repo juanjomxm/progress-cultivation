@@ -14,6 +14,7 @@ function PlantEdit(){
 
     const params = useParams()
     const id = Number(params.id) // Con estas dos variables pude resolver el bug que tenia al editar la planta
+    
 
     const onSubmitProgress = (event)=>{
         event.preventDefault()
@@ -38,6 +39,7 @@ function PlantEdit(){
 
 
     return(
+        <div className="container-images-edit">
             <form 
             className="new-plant"
             onSubmit={onSubmitProgress}
@@ -75,6 +77,7 @@ function PlantEdit(){
                 src={newImage.src}
                 ></img>
             </form>  
+        </div>
     )
 }
 export { PlantEdit }

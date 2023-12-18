@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Routes, Route, useParams} from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import { TitleCultivation } from "../TitleApp/TitleApp";
 import { SearchPlants } from "../SearchPlants/SearchPlants";
@@ -13,6 +13,7 @@ import { TitleWeek } from "../TitleApp/TitleApp";
 import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
 import { ProgressNew } from "../ProgressForm/ProgressNew";
 import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
+import { ProgressEdit } from "../ProgressNewModal/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
@@ -21,7 +22,7 @@ function Components(){
         loading,
         error,
         searchPlants,
-        plantToPlant
+        statePlants
     } = React.useContext(ProgressContext)
 
     return (
@@ -31,13 +32,14 @@ function Components(){
                 <Routes>
                     <Route path="/" element={
                         <React.Fragment>
-                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
                             {error && <p>Hubo un error</p>}
                             <TitleCultivation />
                             <InitCultivation />
                             <SearchPlants/>
-                            {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>}
+                            {(!loading && statePlants.length === 0) && <p>Inica tu cultivo</p>}
+                            {/* {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>} */}
                             <ContainerImagesPlants/>
+                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
                         </React.Fragment>
                         }
                     />
@@ -48,10 +50,9 @@ function Components(){
                             {error && <p>Hubo un error</p>}
                             <TitleWeek/>
                             <ButtonModalProgress/>
-                            <ImageCultivation/> 
+                            <ProgressNew/>
                         </React.Fragment>
-                    } // Intentar hacerlo quitando el link que me lleva a la pagina de progreso y cambiarlko por useNavigate(), despues manipularlo desde los componentes con el .map
-
+                    } 
                     // Para hacer este cambio debo escribir el hsh primero = /#/
                     />
 
@@ -63,6 +64,7 @@ function Components(){
                     // Cuando Utilizo el useNavigate no necesito agregar los dos puntos como cuando se hace con la etiqueta Link
                     />
 
+                    {/* Ruta para editar la planta del principio */}
                     <Route path={"/edit/:name/:id" } element={ 
                         <React.Fragment>
                             <PlantEdit/>
@@ -75,7 +77,14 @@ function Components(){
                             <ProgressNewModal/>
                         </React.Fragment>
                     }
-                    // Cuando Utilizo el useNavigate no necesito agregar los dos puntos como cuando se hace con la etiqueta Link
+                    />
+
+                    {/* Ruta para editar la planta del principio */}
+                    <Route path={"/edit/:name/:week/:id" } element={ 
+                        <React.Fragment>
+                            <ProgressEdit/>
+                        </React.Fragment>
+                    }
                     />
                 </Routes>
             </HashRouter>

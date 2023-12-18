@@ -35,6 +35,7 @@ function PlantNew(){
 
 
     return(
+        <div className="container-images-start">
             <form 
             className="new-plant"
             onSubmit={onSubmit}
@@ -71,7 +72,8 @@ function PlantNew(){
                 className="image-form"
                 src={newImage.src}
                 ></img>
-            </form>  
+            </form> 
+        </div> 
     )
 }
 export { PlantNew }

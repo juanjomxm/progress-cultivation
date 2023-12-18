@@ -1,6 +1,7 @@
 import React from "react";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { Link, useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
+
 
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()
@@ -33,16 +34,16 @@ function ButtonModalProgress(){
 
 function ContainerProgressPlants(){
     const {
-        plantToPlant
+        statePlants
     } = React.useContext(ProgressContext)
 
     return(
         <div>
             <ul>
-                {plantToPlant.map(post => {
+                {statePlants.map(post => {
                     return <WeekPostWeek
                     key={post.week}
-                    postWeek={post}
+                    post={post}
                     />   
                 })}
             </ul>
@@ -50,67 +51,85 @@ function ContainerProgressPlants(){
     )
 }
 
-function WeekPostWeek({postWeek}){
+function WeekPostWeek({post}){
     const {
     } = React.useContext(ProgressContext)
+
     return(
         <div>
-            <li className="div-content-progress"> 
-                <Link to={`/${postWeek.week}`}>{postWeek.week}</Link>
+            <li className="div-content-progress">
+                <h2>{post.week}</h2>
                 <img
-                src={postWeek.srcWeek}
+                src={post.srcWeek}
                 width={300}
                 height={300}
                 />
-                <p>{postWeek.textWeek}</p>
+                <p>{post.textWeek}</p>
             </li>
         </div>
     )
 }
 
 // // Esta es la funcion que renderiza el progreso del cultivo semana por semana
-function ProgressNew(){ 
+function ProgressNew() {
+    const navigateProgressEdit = useNavigate()
     const {
-        deletedPlantProgress,
-        setNewProgressText,
-        statePlants
-    } = React.useContext(ProgressContext)
+      statePlants,
+      setNewProgressText,
+      deletedProgress
+    } = React.useContext(ProgressContext);
+  
+    const { name } = useParams();
+    const post = statePlants.find((item) => item.name === name);
+  
+    const onChangeTextProgress = (event, index) => {
+      const newArray = [...post.textWeek];
+      newArray[index] = event.target.value;
+      setNewProgressText(newArray);
+    };
+  
+    return (
+      <div className="modal-progress-images">
+      {post && Array.isArray(post.week) && post.week.map((item, index) => (
+      <li key={index} className="div-content-progress">
+        <h2>{item}</h2>
 
-    const onchangeTextProgress = (event)=>{
-        setNewProgressText(event.target.value)
-    }
+        <img
+          src={post.srcWeek[index]}
+          width={200}
+          height={200}
+          alt={`Week ${index + 1}`}
+        />
 
-    const { name } = useParams()
-    const post = statePlants.find(item => item.id === name)
+        <textarea
+          className="text-progress-plant"
+          value={post.textWeek[index]}
+          onChange={(event) => onChangeTextProgress(event, index)}
+        ></textarea>
 
-        return(
-            <div className="modal-progress-images">
-                <div className="div-content-progress">
-                    <h2>{post.week}</h2>
-                    <img
-                    src={post.srcWeek}
-                    width={200}
-                    height={200}
-                    ></img>
-                    <textarea
-                    className="text-progress-plant"
-                    value={post.textWeek}
-                    onChange={onchangeTextProgress}
-                    >   
-                    </textarea>
-                    <button
-                    onClick={()=>{
-                        console.log('delete')
-                        // deletedPlantProgress(post.id)
-                    }}
-                    >
-                    Eliminar
-                    </button>
-                </div>
-            </div>
-        )
-}
-export { ContainerProgressPlants }
-export { ProgressNew }
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            navigateProgressEdit(`/edit/${post.name}/${post.week[index]}/${post.id}`);
+          }}
+        >
+        Editar
+        </button>
+
+        <button
+        onClick={()=>{
+          deletedProgress(post.id, item)
+        }}
+        >
+        Eliminar
+        </button>
+      </li>
+      ))}
+      </div>
+    );
+  } // En esta funcion me apoye en chatGPT ayudandome a encontrar una mejor solucion
+
 export { ButtonModalProgress }
+export { ContainerProgressPlants }
 export { WeekPostWeek }
+export { ProgressNew }

@@ -20,7 +20,8 @@ function ProgressNewModal(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlantWeek(id) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
+        console.log("id antes de llamar a addPlantWeek:", id)
+        addPlantWeek(id, newProgress, newImageProgress.src, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
@@ -44,7 +45,8 @@ function ProgressNewModal(){
     }
 
     return(
-        <form 
+        <div className="container-images-progress">
+            <form 
         className="new-progress"
         onSubmit={onSubmit}
         > 
@@ -88,6 +90,9 @@ function ProgressNewModal(){
                 >Añadir</button>
             </div>
         </form>
+
+        </div>
     )
 }
+
 export { ProgressNewModal }

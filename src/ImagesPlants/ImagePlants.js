@@ -31,30 +31,38 @@ function WeekPost({post}){
 
     return(
         <li className="images">
-            <Link to={`/${post.name}/${post.id}`}>{post.name}</Link>
+            {/* <Link to={`/${post.name}/${post.id}`}>{post.name}</Link> */}
+            <h2>{post.name}</h2>
             <img
             src={post.src}
             width={300}
             height={300}
             />
+            <button className="water-text"
+            onClick={()=>{
+                navigateProgress(`/${post.name}/${post.id}`)
+            }}
+            >
+            Ver progreso
+            </button>
+
+            <button
+                onClick={()=>{
+                    navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
+                    }
+                }
+            >EDITAR</button>
             <button
                 onClick={()=>{
                     deletedPlant(post.id)
                 }}
             >ELIMINAR</button>
-            <button
-                onClick={()=>{
-                    navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
-                }
-                }
-            >EDITAR</button>
         </li>
     )
 }
 
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica
-
-function ImageCultivation(){ // Enviar props
+function ImageCultivation(){
     const{
         setNewProgressText,
         statePlants,
@@ -65,38 +73,38 @@ function ImageCultivation(){ // Enviar props
         setNewProgressText(event.target.value)
     }
 
-    const { name } = useParams() // Cambiar este useParams por useNavigate y enviar props para recibirlos desde la pagina de componentes
+    const { name } = useParams()
     const post = statePlants.find(item => item.name === name)
 
-    return(
-        <div className="modal-progress-images">
-            <div className="images">
-                <h2>{post.week}</h2>
-                <img
-                src={post.srcWeek}
-                width={200}
-                height={200}
-                >
-                </img>
-
-                <textarea
-                className="text-progress-plant"
-                value={post.textWeek}
-                onChange={onchangeText}
-                >   
-                </textarea>
-
-                <button
-                onClick={()=>{
-                    console.log('Delete')
-                    // deletedPlantProgress(post.id)
-                }}
-                >
-                Eliminar
-                </button>
+        return(
+            <div className="modal-progress-images">
+                <li className="images">
+                    <h2>{post.week}</h2>
+                    <img
+                    src={post.srcWeek}
+                    width={200}
+                    height={200}
+                    >
+                    </img>
+    
+                    <textarea
+                    className="text-progress-plant"
+                    value={post.textWeek}
+                    onChange={onchangeText}
+                    >   
+                    </textarea>
+    
+                    <button
+                    onClick={()=>{
+                        console.log('Delete')
+                        // deletedPlantProgress(post.id)
+                    }}
+                    >
+                    Eliminar
+                    </button>
+                </li>
             </div>
-        </div>
-    )
+        )
 }
 export { ContainerImagesPlants }
 export { WeekPost }
