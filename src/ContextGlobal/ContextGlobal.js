@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalstorage";
+
 const ProgressContext = React.createContext()
 
 function ProgressProvider({children}){
@@ -19,8 +20,8 @@ function ProgressProvider({children}){
 
   const [newPlant, setNewPlant] = React.useState('') // Estado para agregar planta del inicio
   const [newProgress, setNewProgress] = React.useState('') // Titulo numero de semana
-  const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo numero de semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
+  const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
 
 
   // ESTADOS DERIVADOS
@@ -31,19 +32,22 @@ function ProgressProvider({children}){
   //                               FUNCIONES PARA LA PLANTA DEL INICIO
 
   // Funcion para agregar planta
-  const addPlant = () =>{
-    let plantId = newPlantId()
-    const plantWeek = [...statePlants]
-    plantWeek.push({
-      name: newPlant,
-      src: newImage.src,
-      id: plantId,
-      week: [],
-      srcWeek: [],
-      textWeek: []
-    })
-    savedPlants(plantWeek)
-  } // La funcion se ejecuta bien y agrega el objeto
+  
+  function addPlant(namePlant, imagePlant) {
+    let plantId = newPlantId();
+    
+        let plantWeek = [...statePlants];
+        plantWeek.push({
+          name: namePlant,
+          src: imagePlant,
+          id: plantId,
+          week: [],
+          srcWeek: [],
+          textWeek: []
+        });
+  
+      savedPlants(plantWeek);
+  }
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
@@ -110,7 +114,7 @@ function ProgressProvider({children}){
     const progressIndex = newPlants[plantIndex].week.findIndex(item => item === week);
 
     // Si se encuentra el progreso, lo elimina del array
-    if (progressIndex !== 1) {
+    if (progressIndex !== -1) {
         newPlants[plantIndex].week.splice(progressIndex, 1);
         newPlants[plantIndex].srcWeek.splice(progressIndex, 1);
         newPlants[plantIndex].textWeek.splice(progressIndex, 1)
@@ -154,7 +158,7 @@ function ProgressProvider({children}){
             editProgress,
             deletedProgress,
             newProgressEdit, 
-            setNewProgressEdit
+            setNewProgressEdit,
         }}>
             {children}
         </ProgressContext.Provider>

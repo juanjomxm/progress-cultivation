@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 function PlantNew(){
     const navigate = useNavigate()
     const {
-        newImage,
-        setNewImage,
         newPlant, 
         setNewPlant,
-        addPlant
+        addPlant,
+        newImage,
+        setNewImage,
     } = React.useContext(ProgressContext)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlant()
+        addPlant(newPlant, newImage.src)
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 

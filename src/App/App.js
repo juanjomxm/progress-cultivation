@@ -1,11 +1,14 @@
 import React from "react"
 import { ProgressProvider } from "../ContextGlobal/ContextGlobal";
+import { ImageCacheProvider } from "../ContextGlobal/ContextImagesCache";
 import { Components } from "./Components";
 
 function App() {
   return (
       <ProgressProvider>
-        <Components/>
+        <ImageCacheProvider>
+          <Components/>
+        </ImageCacheProvider>
       </ProgressProvider>
   );
 }

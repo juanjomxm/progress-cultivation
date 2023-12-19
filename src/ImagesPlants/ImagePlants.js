@@ -1,7 +1,7 @@
 import React from "react"
 import { ProgressContext } from "../ContextGlobal/ContextGlobal"
 import { Link, useParams, useNavigate} from "react-router-dom"
-
+import { useImageCache } from "../ContextGlobal/ContextImagesCache"
 
 // En esta funcion es donde se renderiza laas nuevas plantas que agrego en el home
 function ContainerImagesPlants(){
@@ -23,42 +23,45 @@ function ContainerImagesPlants(){
 }
 
 // Con esta funcion es donde organizo la lista como deseo que se muestre y le envo el componente a la funcion que renderiza las plantas
-function WeekPost({post}){
-    const navigateProgress = useNavigate()
-    const {
-        deletedPlant,
-    } = React.useContext(ProgressContext)
+function WeekPost({ post }) {
+  const navigateProgress = useNavigate();
+  const { deletedPlant } = React.useContext(ProgressContext);
 
-    return(
-        <li className="images">
-            {/* <Link to={`/${post.name}/${post.id}`}>{post.name}</Link> */}
-            <h2>{post.name}</h2>
-            <img
-            src={post.src}
-            width={300}
-            height={300}
-            />
-            <button className="water-text"
-            onClick={()=>{
-                navigateProgress(`/${post.name}/${post.id}`)
-            }}
-            >
-            Ver progreso
-            </button>
+  return (
+    <li className="images">
+      <h2>{post.name}</h2>
+      <img
+        src={post.src}
+        width={300}
+        height={300}
+        alt={post.name}
+      />
+      <button
+        className="water-text"
+        onClick={() => {
+          navigateProgress(`/${post.name}/${post.id}`);
+        }}
+      >
+        Ver progreso
+      </button>
 
-            <button
-                onClick={()=>{
-                    navigateProgress(`/edit/${post.name}/${post.id}`) // De esta manera puedo abrir una pagina con navegacion para poder editar la planta agregada
-                    }
-                }
-            >EDITAR</button>
-            <button
-                onClick={()=>{
-                    deletedPlant(post.id)
-                }}
-            >ELIMINAR</button>
-        </li>
-    )
+      <button
+        onClick={() => {
+          navigateProgress(`/edit/${post.name}/${post.id}`);
+        }}
+      >
+        EDITAR
+      </button>
+
+      <button
+        onClick={() => {
+          deletedPlant(post.id);
+        }}
+      >
+        ELIMINAR
+      </button>
+    </li>
+  );
 }
 
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica

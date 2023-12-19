@@ -6,8 +6,8 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
     const [item, setItem] = React.useState(initialValue)
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(false)
+    
     const [newImage, setNewImage] = React.useState(initialValue) // Estado que controla subir la imagen de la planta de inincio
-
     const [newImageProgress, setNewImageProgress] = React.useState(initialValue) // Estado que controla subir la imagen del progreso semana por semana
 
     React.useEffect(()=>{
@@ -16,6 +16,7 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
           // LOCAL STORAGE
           const localStorageItem = localStorage.getItem(itemName)
           let parsedItem
+
 
           if(localStorageItem){
             parsedItem = JSON.parse(localStorageItem)
