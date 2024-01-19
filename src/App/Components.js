@@ -10,10 +10,9 @@ import { PlantNew } from "../PlantForm/PlantNew";
 import { PlantEdit } from "../PlantForm/PlantEdit";
 
 import { TitleWeek } from "../TitleApp/TitleApp";
-import { ContainerProgressPlants } from "../ProgressForm/ProgressNew";
 import { ProgressNew } from "../ProgressForm/ProgressNew";
-import { ProgressNewModal } from "../ProgressNewModal/ProgressNewModal";
-import { ProgressEdit } from "../ProgressNewModal/ProgressEdit";
+import { ProgressNewWeek } from "../ProgressNewWeek/ProgressWeekForm";
+import { ProgressEdit } from "../ProgressNewWeek/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
@@ -74,7 +73,7 @@ function Components(){
 
                     <Route path="/form2/:id" element={ 
                         <React.Fragment>
-                            <ProgressNewModal/>
+                            <ProgressNewWeek/>
                         </React.Fragment>
                     }
                     />

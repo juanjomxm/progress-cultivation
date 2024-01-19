@@ -3,7 +3,7 @@ import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 import { useNavigate, useParams } from "react-router-dom";
 
 // Esta funcion es el modal como el de agregar planta, pero en este debo agregar el progreso por semana de la planta
-function ProgressNewModal(){
+function ProgressNewWeek(){
     const navigateProgress = useNavigate()
     const {
         setNewImageProgress,
@@ -94,4 +94,4 @@ function ProgressNewModal(){
     )
 }
 
-export { ProgressNewModal }
+export { ProgressNewWeek }

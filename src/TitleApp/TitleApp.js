@@ -1,13 +1,8 @@
-const styleTitle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
-}
+import React from "react"
 
 function TitleCultivation(){
     return(
-        <div style={styleTitle}>
+        <div>
             <h1>CULTIVO</h1>
         </div>
     )
@@ -15,7 +10,7 @@ function TitleCultivation(){
 
 function TitleWeek(){
     return(
-        <div style={styleTitle}>
+        <div>
             <h1>PROGRESO</h1>
         </div>
     )

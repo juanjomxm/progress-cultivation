@@ -7,19 +7,18 @@ function ProgressProvider({children}){
 
   // ESTADOS
   const [inputSearchPlant, setInputSearchPlant] = React.useState('')
+
   const {
     item: statePlants, 
     saveItem: savedPlants,
     loading,
-    error,
-    newImage,
-    setNewImage,
-    newImageProgress, 
-    setNewImageProgress
+    error
   } = useLocalStorage('cultivation', [])
 
   const [newPlant, setNewPlant] = React.useState('') // Estado para agregar planta del inicio
+  const [newImage, setNewImage] = React.useState([]) // Estado que controla subir la imagen de la planta de inincio
   const [newProgress, setNewProgress] = React.useState('') // Titulo numero de semana
+  const [newImageProgress, setNewImageProgress] = React.useState([]) // Estado que controla subir la imagen del progreso semana por semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
   const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
 
@@ -87,12 +86,10 @@ function ProgressProvider({children}){
         const progressIndex = newPlants[plantIndex].week.findIndex(item => item === oldWeekTitle);
 
         if (progressIndex !== -1) {
-          // Asegurarse de que 'week' sea un array antes de intentar acceder a su índice
           if (!Array.isArray(newPlants[plantIndex].week)) {
               newPlants[plantIndex].week = [];
           }
       
-          // Edita el título de la semana, la imagen y el texto
           newPlants[plantIndex].week[progressIndex] = newWeekTitle;
           newPlants[plantIndex].srcWeek[progressIndex] = newImage;
           newPlants[plantIndex].textWeek[progressIndex] = newProgressText;

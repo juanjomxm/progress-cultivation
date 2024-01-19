@@ -11,7 +11,7 @@ function ContainerImagesPlants(){
 
     return(
         <div>
-            <ul>
+            <ul className="container-data-images">
                 {searchPlants.map(post => { // De esta manera funciona el input para buscar la planta
                     return <WeekPost
                     key={post.name}
@@ -28,40 +28,44 @@ function WeekPost({ post }) {
   const { deletedPlant } = React.useContext(ProgressContext);
 
   return (
-    <li className="images">
-      <h2>{post.name}</h2>
-      <img
-        src={post.src}
-        width={300}
-        height={300}
-        alt={post.name}
-      />
-      <button
-        className="water-text"
-        onClick={() => {
-          navigateProgress(`/${post.name}/${post.id}`);
-        }}
-      >
-        Ver progreso
-      </button>
+      <li className="images">
+          <h2>{post.name}</h2>
 
-      <button
-        onClick={() => {
-          navigateProgress(`/edit/${post.name}/${post.id}`);
-        }}
-      >
-        EDITAR
-      </button>
+          <img
+            src={post.src}
+            width={300}
+            height={300}
+            alt={post.name}
+          />
 
-      <button
-        onClick={() => {
-          deletedPlant(post.id);
-        }}
-      >
-        ELIMINAR
-      </button>
-    </li>
-  );
+          <button
+            className="water-text"
+            onClick={() => {
+              navigateProgress(`/${post.name}/${post.id}`);
+            }}
+          >
+          Ver progreso
+          </button>
+
+          <div className="container-button-edit-delete">
+            <button
+              onClick={() => {
+                navigateProgress(`/edit/${post.name}/${post.id}`);
+              }}
+            >
+            EDITAR
+            </button>
+
+            <button
+              onClick={() => {
+                deletedPlant(post.id);
+              }}
+            >
+            ELIMINAR
+            </button>
+          </div>
+      </li>
+  )
 }
 
 // Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica

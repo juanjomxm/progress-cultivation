@@ -56,6 +56,7 @@ function ProgressEdit(){
                 onChange={onChange}
                 >   
                 </textarea>
+
                 <input 
                 className="load-image" 
                 id="file" 
@@ -65,10 +66,12 @@ function ProgressEdit(){
                 placeholder="subir imagen"
                 onChange={onSubmitImageProgress}
                 ></input>
+
                 <img
                 className="image-form-progress"
                 src={newImageProgress.src}
                 ></img>
+
                 <textarea
                 className="text-new-progress"
                 placeholder="Progreso"
@@ -76,6 +79,7 @@ function ProgressEdit(){
                 onChange={onChangeText}
                 >   
                 </textarea>
+                
                 <div className="section-buttons">
                     <button 
                     className="button-cancel"

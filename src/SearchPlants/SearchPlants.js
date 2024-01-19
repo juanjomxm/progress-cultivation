@@ -6,6 +6,7 @@ function SearchPlants(){
         inputSearchPlant, 
         setInputSearchPlant
     }= React.useContext(ProgressContext)
+    
     return(
         <div className="search-plants">
             <input
@@ -16,7 +17,6 @@ function SearchPlants(){
                 setInputSearchPlant(event.target.value)
             }}
             />
-            <p></p>
         </div>
     )
 }

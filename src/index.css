@@ -12,46 +12,13 @@ body {
 img{
   border-radius: 10px;
   cursor: pointer;
-  border: transparent;
-  
-}
-.images{
-  width: 400px;
-  background-color: transparent;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-  border-radius: 10px;
-  position: relative;
-}
-.images:hover .water-text{
-  visibility: visible;
-} 
-.water-text{
-  visibility: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(32, 35, 41, .8);
-  width: 40%;
-  border-radius: 5px;
-  text-align: center;
-  padding: 10px;
-  font-size: 20px;
-  color: white;
-  transition: visibilyty 1s;
-}
-.image-form{
-  max-width: 200px;
-  height: 200px;
+  border: transparent; 
 }
 
 h1, h2{
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 p{
@@ -78,7 +45,50 @@ button{
   background-color: rgba(19, 71, 11, 0.8);
   border-color: aquamarine;
   border-radius: 5px;
-  cursor: pointer
+  cursor: pointer;
+  margin-top: 5px
+}
+
+.container-data-images{
+  display: contents;
+}
+.images{
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.images:hover .water-text{
+  visibility: visible;
+} 
+.water-text{
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(32, 35, 41, .8);
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  transition: visibilyty 1s;
+}
+.image-form{
+  max-width: 200px;
+  height: 200px;
+}
+
+.container-button-edit-delete{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .button-add-plant{
@@ -191,6 +201,7 @@ button{
   color: white;
   border-radius: 10px;
   border-color: green;
+  text-align: center
 }
 
 .modal-progress-images{
