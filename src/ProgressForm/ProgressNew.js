@@ -25,7 +25,7 @@ function ButtonModalProgress(){
                     onClick={()=>{
                         navigateProgress(`/form2/${id}`)
                     }}
-                >Progreso semana</button>
+                >Agregar Progreso</button>
                 </div>
             </div>
         </div>
