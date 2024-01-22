@@ -14,7 +14,6 @@ function useLocalStorage(itemName, initialValue){ // Este primer argumento de la
           const localStorageItem = localStorage.getItem(itemName)
           let parsedItem
 
-
           if(localStorageItem){
             parsedItem = JSON.parse(localStorageItem)
             setItem(parsedItem)

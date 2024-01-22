@@ -1,5 +1,6 @@
-import React from "react";
-import { useLocalStorage } from "./useLocalstorage";
+import React from "react"
+
+import { useLocalStorage } from "./useLocalstorage"
 
 const ProgressContext = React.createContext()
 

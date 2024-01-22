@@ -10,10 +10,10 @@ import { PlantNew } from "../PlantForm/PlantNew";
 import { PlantEdit } from "../PlantForm/PlantEdit";
 
 import { TitleWeek } from "../TitleApp/TitleApp";
-import { ProgressNew } from "../ProgressForm/ProgressNew";
-import { ProgressNewWeek } from "../ProgressNewWeek/ProgressWeekForm";
-import { ProgressEdit } from "../ProgressNewWeek/ProgressEdit";
-import { ButtonModalProgress } from "../ProgressForm/ProgressNew";
+import { ProgressNew } from "../ProgressNewWeek/ProgressNew";
+import { ProgressNewWeek } from "../ProgressNewForms/ProgressWeekForm";
+import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
+import { ButtonModalProgress } from "../ProgressNewWeek/ProgressNew";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
 function Components(){
@@ -35,7 +35,7 @@ function Components(){
                             <TitleCultivation />
                             <InitCultivation />
                             <SearchPlants/>
-                            {(!loading && statePlants.length === 0) && <p>Inica tu cultivo</p>}
+                            {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {/* {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>} */}
                             <ContainerImagesPlants/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
