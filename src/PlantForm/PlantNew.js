@@ -32,7 +32,7 @@ function PlantNew(){
         setNewImage({
           src: URL.createObjectURL(file),
           file: file
-        })
+        }) // Al subir la imagen de esta manera me puedo permitir una mejor organizacion y evitar los problemas que ocasiona al subir la imagen directamente en el actualizador del estado
     }
 
 

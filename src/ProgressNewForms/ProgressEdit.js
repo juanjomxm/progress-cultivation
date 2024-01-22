@@ -20,7 +20,7 @@ function ProgressEdit(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        editProgress(id, newProgress, newProgressEdit, newImageProgress.src, newProgressText)  //Se ejecuta muy bien, pero solo deja editar una vez
+        editProgress(id, newProgress, newProgressEdit, newImageProgress.file, newProgressText)  //Se ejecuta muy bien, pero solo deja editar una vez
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
@@ -37,10 +37,12 @@ function ProgressEdit(){
         navigateProgress(-1)
     }
 
-    const onSubmitImageProgress = (event)=>{
+    const onSubmitImageProgress = (event) => {
+        const file = event.target.files[0];
         setNewImageProgress({
-          src: URL.createObjectURL(event.target.files[0])
-        })
+          src: URL.createObjectURL(file),
+          file: file
+        }) // Al subir la imagen de esta manera me puedo permitir una mejor organizacion y evitar los problemas que ocasiona al subir la imagen directamente en el actualizador del estado
     }
 
     return(

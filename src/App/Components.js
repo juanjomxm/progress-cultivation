@@ -35,7 +35,7 @@ function Components(){
                             <InitCultivation />
                             <SearchPlants/>
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
-                            {(!loading && statePlants.length === 1 && searchPlants.length === 0) &&  <p>No hay coincidencias</p>}
+                            {(!loading && statePlants.length === 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
                             <ContainerImagesPlants/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                         </React.Fragment>
@@ -44,11 +44,11 @@ function Components(){
 
                     <Route path="/:name/:id" element={
                         <React.Fragment>
-                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
-                            {error && <p>Hubo un error</p>}
                             <TitleWeek/>
                             <ButtonModalProgress/>
                             <ProgressNew/>
+                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
+                            {error && <p>Hubo un error</p>}
                         </React.Fragment>
                     } 
                     // Para hacer este cambio debo escribir el hsh primero = /#/

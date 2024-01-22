@@ -38,7 +38,7 @@ function ProgressProvider({children}){
 
     const reader = new FileReader();
     reader.onload = () => {
-    const base64Image = reader.result;
+    const base64Image = reader.result // De esta manera puedo convertir la imagen en base64 y asi se sigue renderizando aunque cierre la app
     
       let plantWeek = [...statePlants];
       plantWeek.push({
@@ -63,12 +63,19 @@ function ProgressProvider({children}){
   } // Quedo lista esta funcion
 
   // Funcion para editar la planta de inicio
-  const editPlant = (id)=>{
+  const editPlant = (id, editImage)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
-    const plantWeek = [...statePlants]
-    plantWeek[plantIndex].name = newPlant
-    plantWeek[plantIndex].src = newImage.src
-    savedPlants(plantWeek) // Quedo lista esta funcion
+
+    const reader = new FileReader();
+    reader.onload = () => {
+    const base64Image = reader.result    
+
+      const plantWeek = [...statePlants]
+      plantWeek[plantIndex].name = newPlant
+      plantWeek[plantIndex].src = base64Image
+      savedPlants(plantWeek) // Quedo lista esta funcion
+    }
+    reader.readAsDataURL(editImage)
   }
 
   //                               FUNCIONES PARA EL PROGRESO DE LA PLANTA
@@ -76,16 +83,23 @@ function ProgressProvider({children}){
    // Funcion para agregar los nuevos atributos del progreso a cada planta
   const addPlantWeek = (id, week, srcWeek, textWeek)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
-    let plantWeek = [...statePlants]
-    plantWeek[plantIndex].week.push(week)
-    plantWeek[plantIndex].srcWeek.push(srcWeek)
-    plantWeek[plantIndex].textWeek.push(textWeek)
-    savedPlants(plantWeek)
+
+    const reader = new FileReader()
+    reader.onload = () => {
+    const base64Image = reader.result
+
+      let plantWeek = [...statePlants]
+      plantWeek[plantIndex].week.push(week)
+      plantWeek[plantIndex].srcWeek.push(base64Image)
+      plantWeek[plantIndex].textWeek.push(textWeek)
+      savedPlants(plantWeek)
+    }
+    reader.readAsDataURL(srcWeek)
   } // Por fin estoy consiguiendo que se agregue como lo deseo, tengo que solucionar al momento del renderizado para que se renderice uno por uno
 
   // Funcion para editar el progreso
   const editProgress = (id, oldWeekTitle, newWeekTitle, newImage, newProgressText) => {
-    const plantIndex = statePlants.findIndex(item => item.id === id);
+    const plantIndex = statePlants.findIndex(item => item.id === id)
 
     if (plantIndex !== -1) {
         let newPlants = [...statePlants];
@@ -96,11 +110,15 @@ function ProgressProvider({children}){
               newPlants[plantIndex].week = [];
           }
       
-          newPlants[plantIndex].week[progressIndex] = newWeekTitle;
-          newPlants[plantIndex].srcWeek[progressIndex] = newImage;
-          newPlants[plantIndex].textWeek[progressIndex] = newProgressText;
-      
-          savedPlants(newPlants);
+          const reader = new FileReader()
+          reader.onload = () => {
+          const base64Image = reader.result
+            newPlants[plantIndex].week[progressIndex] = newWeekTitle;
+            newPlants[plantIndex].srcWeek[progressIndex] = base64Image;
+            newPlants[plantIndex].textWeek[progressIndex] = newProgressText;
+            savedPlants(newPlants)
+          }
+          reader.readAsDataURL(newImage)
       } else {
           console.error("Semana no encontrada para la planta con ID:", id, "y título de semana:", oldWeekTitle);
       }

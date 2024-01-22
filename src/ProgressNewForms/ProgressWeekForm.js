@@ -20,7 +20,7 @@ function ProgressNewWeek(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlantWeek(id, newProgress, newImageProgress.src, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
+        addPlantWeek(id, newProgress, newImageProgress.file, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
@@ -37,9 +37,11 @@ function ProgressNewWeek(){
         navigateProgress(-1)
     }
 
-    const onSubmitImageProgress = (event)=>{
+    const onSubmitImageProgress = (event) => {
+        const file = event.target.files[0];
         setNewImageProgress({
-          src: URL.createObjectURL(event.target.files[0])
+          src: URL.createObjectURL(file),
+          file: file
         })
     }
 

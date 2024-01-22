@@ -41,7 +41,7 @@ function WeekPost({ post }) {
           <button
             className="water-text"
             onClick={() => {
-              navigateProgress(`/${post.name}/${post.id}`);
+              navigateProgress(`/${post.name}/id:${post.id}`);
             }}
           >
           Ver progreso
