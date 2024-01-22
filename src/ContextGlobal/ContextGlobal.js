@@ -95,7 +95,7 @@ function ProgressProvider({children}){
       savedPlants(plantWeek)
     }
     reader.readAsDataURL(srcWeek)
-  } // Por fin estoy consiguiendo que se agregue como lo deseo, tengo que solucionar al momento del renderizado para que se renderice uno por uno
+  }
 
   // Funcion para editar el progreso
   const editProgress = (id, oldWeekTitle, newWeekTitle, newImage, newProgressText) => {
