@@ -18,7 +18,7 @@ function ButtonModalProgress(){
                 onClick={()=>{
                     navigateProgress('/')
                 }}
-                >Home</button>
+                >Menu Principal</button>
 
                 <div className="container-button-progress">
                 <button className="button-progress-week"
@@ -91,39 +91,39 @@ function ProgressNew() {
     return (
       <div className="modal-progress-images">
         {post && Array.isArray(post.week) && post.week.map((item, index) => (
-        <li key={index} className="div-content-progress">
-          <h2>{item}</h2>
+          <li key={index} className="div-content-progress">
+            <h2>{item}</h2>
 
-          <img
-            src={post.srcWeek[index]}
-            width={200}
-            height={200}
-            alt={`Week ${index + 1}`}
-          />
+            <img
+              src={post.srcWeek[index]}
+              width={200}
+              height={200}
+              alt={`Week ${index + 1}`}
+            />
 
-          <textarea
-            className="text-progress-plant"
-            value={post.textWeek[index]}
-            onChange={(event) => onChangeTextProgress(event, index)}
-          ></textarea>
+            <textarea
+              className="text-progress-plant"
+              value={post.textWeek[index]}
+              onChange={(event) => onChangeTextProgress(event, index)}
+            ></textarea>
 
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              navigateProgressEdit(`/edit/${post.name}/${post.week[index]}/${post.id}`);
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                navigateProgressEdit(`/edit/${post.name}/${post.week[index]}/${post.id}`);
+              }}
+            >
+            Editar
+            </button>
+
+            <button
+            onClick={()=>{
+              deletedProgress(post.id, item)
             }}
-          >
-          Editar
-          </button>
-
-          <button
-          onClick={()=>{
-            deletedProgress(post.id, item)
-          }}
-          >
-          Eliminar
-          </button>
-        </li>
+            >
+            Eliminar
+            </button>
+          </li>
         ))}
       </div>
     );

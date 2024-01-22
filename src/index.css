@@ -137,20 +137,6 @@ button{
   100% { transform: rotate(360deg); }
 }
 
-/* Este es el modal del inicio para agregar la imagen y el titulo de la planta nueva */
-.modal-background{
-  background-color: rgba(32, 35, 41, .8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .container-images-edit{
   width: 100vw;
   height: 100vh;

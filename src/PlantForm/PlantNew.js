@@ -14,7 +14,7 @@ function PlantNew(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlant(newPlant, newImage.src)
+        addPlant(newPlant, newImage.file)
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 
@@ -27,9 +27,11 @@ function PlantNew(){
         setNewPlant(event.target.value)
     }
 
-    const onSubmitImage = (event)=>{
+    const onSubmitImage = (event) => {
+        const file = event.target.files[0];
         setNewImage({
-          src: URL.createObjectURL(event.target.files[0])
+          src: URL.createObjectURL(file),
+          file: file
         })
     }
 

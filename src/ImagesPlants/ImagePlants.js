@@ -68,51 +68,6 @@ function WeekPost({ post }) {
   )
 }
 
-// Con esta funcion es donde organizo el componente como deseo que se muestre en la navegacion dinamica
-function ImageCultivation(){
-    const{
-        setNewProgressText,
-        statePlants,
-        deletedPlantProgress
-    } = React.useContext(ProgressContext)
 
-    const onchangeText = (event)=>{
-        setNewProgressText(event.target.value)
-    }
-
-    const { name } = useParams()
-    const post = statePlants.find(item => item.name === name)
-
-        return(
-            <div className="modal-progress-images">
-                <li className="images">
-                    <h2>{post.week}</h2>
-                    <img
-                    src={post.srcWeek}
-                    width={200}
-                    height={200}
-                    >
-                    </img>
-    
-                    <textarea
-                    className="text-progress-plant"
-                    value={post.textWeek}
-                    onChange={onchangeText}
-                    >   
-                    </textarea>
-    
-                    <button
-                    onClick={()=>{
-                        console.log('Delete')
-                        // deletedPlantProgress(post.id)
-                    }}
-                    >
-                    Eliminar
-                    </button>
-                </li>
-            </div>
-        )
-}
 export { ContainerImagesPlants }
 export { WeekPost }
-export { ImageCultivation}

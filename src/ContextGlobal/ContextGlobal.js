@@ -35,18 +35,23 @@ function ProgressProvider({children}){
   
   function addPlant(namePlant, imagePlant) {
     let plantId = newPlantId();
+
+    const reader = new FileReader();
+    reader.onload = () => {
+    const base64Image = reader.result;
     
-        let plantWeek = [...statePlants];
-        plantWeek.push({
-          name: namePlant,
-          src: imagePlant,
-          id: plantId,
-          week: [],
-          srcWeek: [],
-          textWeek: []
-        });
-  
-      savedPlants(plantWeek);
+      let plantWeek = [...statePlants];
+      plantWeek.push({
+        name: namePlant,
+        src: base64Image,
+        id: plantId,
+        week: [],
+        srcWeek: [],
+        textWeek: []
+      })
+      savedPlants(plantWeek)
+    }
+    reader.readAsDataURL(imagePlant)
   }
 
   // Funcion para eliminar planta
@@ -156,7 +161,7 @@ function ProgressProvider({children}){
             editProgress,
             deletedProgress,
             newProgressEdit, 
-            setNewProgressEdit,
+            setNewProgressEdit
         }}>
             {children}
         </ProgressContext.Provider>

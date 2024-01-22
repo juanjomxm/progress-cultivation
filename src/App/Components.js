@@ -4,7 +4,6 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { TitleCultivation } from "../TitleApp/TitleApp";
 import { SearchPlants } from "../SearchPlants/SearchPlants";
 import { ContainerImagesPlants}  from "../ImagesPlants/ImagePlants";
-import { ImageCultivation } from "../ImagesPlants/ImagePlants";
 import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { PlantNew } from "../PlantForm/PlantNew";
 import { PlantEdit } from "../PlantForm/PlantEdit";
@@ -20,8 +19,8 @@ function Components(){
     const {
         loading,
         error,
-        searchPlants,
-        statePlants
+        statePlants,
+        searchPlants
     } = React.useContext(ProgressContext)
 
     return (
@@ -36,7 +35,7 @@ function Components(){
                             <InitCultivation />
                             <SearchPlants/>
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
-                            {/* {(!loading && searchPlants.length === 0) && <p>No hay coincidencias</p>} */}
+                            {(!loading && statePlants.length === 1 && searchPlants.length === 0) &&  <p>No hay coincidencias</p>}
                             <ContainerImagesPlants/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                         </React.Fragment>
