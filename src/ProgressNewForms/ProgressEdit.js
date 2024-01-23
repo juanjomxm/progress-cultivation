@@ -15,12 +15,20 @@ function ProgressEdit(){
         setNewProgressEdit
     } = React.useContext(ProgressContext)
 
+    const cleanFormProgressEdit = () => {
+        setNewProgressEdit('')
+        setNewImageProgress({ src: '', file: null })
+        setNewProgressText('')
+    }
+
     const params = useParams()
     const id = Number(params.id)
+    const week = (params.week)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        editProgress(id, newProgress, newProgressEdit, newImageProgress.file, newProgressText) 
+        editProgress(id, week, newProgressEdit, newImageProgress.file, newProgressText) 
+        cleanFormProgressEdit()
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
