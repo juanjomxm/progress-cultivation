@@ -12,6 +12,11 @@ function PlantEdit(){
         editPlant
     } = React.useContext(ProgressContext)
 
+    const cleanFormEditPlant = () => {
+        setNewPlant('')
+        setNewImage({ src: '', file: null })
+    }
+
     const params = useParams()
     const id = Number(params.id) // Con estas dos variables pude resolver el bug que tenia al editar la planta
     
@@ -19,6 +24,7 @@ function PlantEdit(){
     const onSubmitProgress = (event)=>{
         event.preventDefault()
         editPlant(id, newImage.file)
+        cleanFormEditPlant()
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 

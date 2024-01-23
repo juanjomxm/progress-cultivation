@@ -1,7 +1,6 @@
 import React from "react"
 import { ProgressContext } from "../ContextGlobal/ContextGlobal"
-import { Link, useParams, useNavigate} from "react-router-dom"
-import { useImageCache } from "../ContextGlobal/ContextImagesCache"
+import { useNavigate } from "react-router-dom"
 
 // En esta funcion es donde se renderiza laas nuevas plantas que agrego en el home
 function ContainerImagesPlants(){

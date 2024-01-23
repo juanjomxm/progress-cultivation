@@ -103,11 +103,11 @@ function ProgressProvider({children}){
 
     if (plantIndex !== -1) {
         let newPlants = [...statePlants];
-        const progressIndex = newPlants[plantIndex].week.findIndex(item => item === oldWeekTitle);
+        const progressIndex = newPlants[plantIndex].week.findIndex(item => item.trim().toLowerCase() === oldWeekTitle.trim().toLowerCase());
 
         if (progressIndex !== -1) {
           if (!Array.isArray(newPlants[plantIndex].week)) {
-              newPlants[plantIndex].week = [];
+              newPlants[plantIndex].week = []
           }
       
           const reader = new FileReader()
@@ -125,8 +125,9 @@ function ProgressProvider({children}){
     } else {
         console.error("Planta no encontrada con ID:", id);
     }
-  } // Quedo lista con ayuda de gpt, es una gran erramienta
+  }
 
+  // Funcion para eliminar el progreso
   const deletedProgress = (id, week) =>{
     const plantIndex = statePlants.findIndex(item => item.id === id);
     const newPlants = [...statePlants];
@@ -143,7 +144,7 @@ function ProgressProvider({children}){
     } else {
         console.error("Progreso no encontrado para la planta con ID:", id, "y semana:", week);
     }
-  } // Quedo lista, y con la ayuda de chatGPT
+  } 
 
   // Funcion para el id de la planta
   const newPlantId = ()=>{

@@ -20,7 +20,7 @@ function ProgressEdit(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        editProgress(id, newProgress, newProgressEdit, newImageProgress.file, newProgressText)  //Se ejecuta muy bien, pero solo deja editar una vez
+        editProgress(id, newProgress, newProgressEdit, newImageProgress.file, newProgressText) 
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
@@ -88,6 +88,7 @@ function ProgressEdit(){
                     type="button"
                     onClick={onCancel}
                     >Cancelar</button>
+
                     <button 
                     className="button-add-submit"
                     type="submit"

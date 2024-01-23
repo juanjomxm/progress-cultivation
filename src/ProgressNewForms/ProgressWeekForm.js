@@ -15,12 +15,19 @@ function ProgressNewWeek(){
         addPlantWeek,
     } = React.useContext(ProgressContext)
 
+    const cleanFormProgress = () => {
+        setNewProgress('')
+        setNewImageProgress({ src: '', file: null })
+        setNewProgressText('')
+    }
+
     const params = useParams()
     const id = Number(params.id)
 
     const onSubmit = (event)=>{
         event.preventDefault()
         addPlantWeek(id, newProgress, newImageProgress.file, newProgressText) // Todavia no he podido encontrar la forma de agregar el otro objeto con los atributos que quiero que se rendericen en la pagina de progreso por semana
+        cleanFormProgress()
         navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 

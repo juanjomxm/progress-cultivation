@@ -35,7 +35,7 @@ function Components(){
                             <InitCultivation />
                             <SearchPlants/>
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
-                            {(!loading && statePlants.length === 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
+                            {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
                             <ContainerImagesPlants/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                         </React.Fragment>
@@ -54,6 +54,7 @@ function Components(){
                     // Para hacer este cambio debo escribir el hsh primero = /#/
                     />
 
+                    {/* Ruta para agregar la planta del principio */}
                     <Route path="/form1" element={ 
                         <React.Fragment>
                             <PlantNew/>
@@ -70,6 +71,7 @@ function Components(){
                     }
                     />
 
+                    {/* Ruta para agregar la planta del progreso*/}
                     <Route path="/form2/:id" element={ 
                         <React.Fragment>
                             <ProgressNewWeek/>
@@ -77,7 +79,7 @@ function Components(){
                     }
                     />
 
-                    {/* Ruta para editar la planta del principio */}
+                    {/* Ruta para editar la planta del progreso*/}
                     <Route path={"/edit/:name/:week/:id" } element={ 
                         <React.Fragment>
                             <ProgressEdit/>

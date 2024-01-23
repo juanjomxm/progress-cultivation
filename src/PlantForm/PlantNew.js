@@ -12,9 +12,15 @@ function PlantNew(){
         setNewImage,
     } = React.useContext(ProgressContext)
 
+    const cleanForm = () => {
+        setNewPlant('')
+        setNewImage({ src: '', file: null })
+    }
+
     const onSubmit = (event)=>{
         event.preventDefault()
         addPlant(newPlant, newImage.file)
+        cleanForm()
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 
@@ -64,6 +70,7 @@ function PlantNew(){
                     type="button"
                     onClick={onCancel}
                     >Cancelar</button>
+                    
                     <button 
                     className="button-add-submit"
                     type="submit"
