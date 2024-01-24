@@ -32,7 +32,7 @@ function Components(){
                             {error && <p>Hubo un error</p>}
                             <TitleCultivation />
                             <InitCultivation />
-                            <SearchPlants/>
+                            {(statePlants.length >= 1) && <SearchPlants/>}
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
                             <ContainerImagesPlants/>
