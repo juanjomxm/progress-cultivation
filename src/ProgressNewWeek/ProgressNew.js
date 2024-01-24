@@ -12,23 +12,25 @@ function ButtonModalProgress(){
     const id = Number(params.id)
 
     return(
-        <div>
-            <div className="container-buttons-progress">
-                <button
-                onClick={()=>{
-                    navigateProgress('/')
-                }}
-                >Menu Principal</button>
+      <div className="container-title-and-buttons">
+          <div className="container-title-progress">
+            <h1>PROGRESO</h1>
+          </div>
 
-                <div className="container-button-progress">
-                <button className="button-progress-week"
-                    onClick={()=>{
-                        navigateProgress(`/form2/${id}`)
-                    }}
-                >Agregar Progreso</button>
-                </div>
-            </div>
-        </div>
+          <div className="container-buttons-progress">
+            <button
+              onClick={()=>{
+                navigateProgress('/')
+              }}
+            >Menu Principal</button>
+
+            <button className="button-progress-week"
+              onClick={()=>{
+                navigateProgress(`/form2/${id}`)
+              }}
+            >Agregar Progreso</button>
+          </div>
+      </div>
     )
 }
 

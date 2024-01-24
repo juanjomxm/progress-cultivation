@@ -19,7 +19,9 @@ function PlantNew(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        addPlant(newPlant, newImage.file)
+        if(newImage.file){
+            addPlant(newPlant, newImage.file)
+        } // Con esta validacion lo que hago es que si no subo la imagen con el nombre no se renderiza, pero si agrego la imagen se renderiza normal
         cleanForm()
         navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
@@ -36,8 +38,8 @@ function PlantNew(){
     const onSubmitImage = (event) => {
         const file = event.target.files[0];
         setNewImage({
-          src: URL.createObjectURL(file),
-          file: file
+            src: URL.createObjectURL(file),
+            file: file
         }) // Al subir la imagen de esta manera me puedo permitir una mejor organizacion y evitar los problemas que ocasiona al subir la imagen directamente en el actualizador del estado
     }
 

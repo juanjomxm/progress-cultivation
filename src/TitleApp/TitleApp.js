@@ -8,12 +8,4 @@ function TitleCultivation(){
     )
 }
 
-function TitleWeek(){
-    return(
-        <div>
-            <h1>PROGRESO</h1>
-        </div>
-    )
-}
 export { TitleCultivation }
-export { TitleWeek }

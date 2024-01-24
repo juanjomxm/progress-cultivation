@@ -8,7 +8,6 @@ import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { PlantNew } from "../PlantForm/PlantNew";
 import { PlantEdit } from "../PlantForm/PlantEdit";
 
-import { TitleWeek } from "../TitleApp/TitleApp";
 import { ProgressNew } from "../ProgressNewWeek/ProgressNew";
 import { ProgressNewWeek } from "../ProgressNewForms/ProgressWeekForm";
 import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
@@ -44,7 +43,6 @@ function Components(){
 
                     <Route path="/:name/:id" element={
                         <React.Fragment>
-                            <TitleWeek/>
                             <ButtonModalProgress/>
                             <ProgressNew/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
