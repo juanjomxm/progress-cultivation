@@ -1,5 +1,4 @@
 import React from "react"
-
 import { useLocalStorage } from "./useLocalstorage"
 
 const ProgressContext = React.createContext()
@@ -32,27 +31,28 @@ function ProgressProvider({children}){
   //                               FUNCIONES PARA LA PLANTA DEL INICIO
 
   // Funcion para agregar planta
-  
-  function addPlant(namePlant, imagePlant) {
-    let plantId = newPlantId();
+  // API KEY IMAGEBB = d4985fddf5d68320fd8db8f755493d43
 
-    const reader = new FileReader();
-    reader.onload = () => {
-    const base64Image = reader.result // De esta manera puedo convertir la imagen en base64 y asi se sigue renderizando aunque cierre la app
+  async function addPlant(namePlant, imagePlant) {
+    let plantId = newPlantId()
     
-      let plantWeek = [...statePlants];
-      plantWeek.push({
-        name: namePlant,
-        src: base64Image,
-        id: plantId,
-        week: [],
-        srcWeek: [],
-        textWeek: []
-      })
-      savedPlants(plantWeek)
-    }
-    reader.readAsDataURL(imagePlant)
+    const reader = new FileReader()
+    reader.onload = () => {
+    const base64Image = reader.result
+
+    const plantWeek = [...statePlants]
+    plantWeek.push({
+      name: namePlant,
+      src: base64Image,
+      id: plantId,
+      week: [],
+      srcWeek: [],
+      textWeek: [],
+    })
+    savedPlants(plantWeek)
   }
+  reader.readAsDataURL(imagePlant)
+}
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
@@ -80,7 +80,7 @@ function ProgressProvider({children}){
 
   //                               FUNCIONES PARA EL PROGRESO DE LA PLANTA
 
-   // Funcion para agregar los nuevos atributos del progreso a cada planta
+  //  Funcion para agregar los nuevos atributos del progreso a cada planta
   const addPlantWeek = (id, week, srcWeek, textWeek)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
 
