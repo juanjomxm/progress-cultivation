@@ -1,8 +1,11 @@
 import React from "react"
-import axios from "axios"
+import { config } from "../config"
+
 import { useLocalStorage } from "./useLocalstorage"
 
 const ProgressContext = React.createContext()
+
+const apiKey = config.apiKey
 
 function ProgressProvider({children}){
 
@@ -36,7 +39,7 @@ function ProgressProvider({children}){
 
   function addPlant(namePlant, imagePlant) {
     let plantId = newPlantId()
-    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = imagePlant
 
     const formData = new FormData()
@@ -76,7 +79,7 @@ function ProgressProvider({children}){
   // Funcion para editar la planta de inicio
   const editPlant = (id, editImage)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
-    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = editImage
 
     const formData = new FormData()
@@ -105,7 +108,7 @@ function ProgressProvider({children}){
   const addPlantWeek = (id, week, srcWeek, textWeek)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
 
-    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = srcWeek
 
     const formData = new FormData()
@@ -134,7 +137,7 @@ function ProgressProvider({children}){
   const editProgress = (id, oldWeekTitle, newWeekTitle, newImage, newProgressText) => {
     const plantIndex = statePlants.findIndex(item => item.id === id)
 
-    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = newImage
 
     const formData = new FormData()
