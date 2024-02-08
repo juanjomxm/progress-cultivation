@@ -1,4 +1,5 @@
 import React from "react"
+import axios from "axios"
 import { useLocalStorage } from "./useLocalstorage"
 
 const ProgressContext = React.createContext()
@@ -31,28 +32,38 @@ function ProgressProvider({children}){
   //                               FUNCIONES PARA LA PLANTA DEL INICIO
 
   // Funcion para agregar planta
-  // API KEY IMAGEBB = d4985fddf5d68320fd8db8f755493d43
+  // API KEY IMAGEBB = d1e5abf1bd6b35a0741945fc493b156e
 
-  async function addPlant(namePlant, imagePlant) {
+  function addPlant(namePlant, imagePlant) {
     let plantId = newPlantId()
-    
-    const reader = new FileReader()
-    reader.onload = () => {
-    const base64Image = reader.result
+    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const imageUrl = imagePlant
 
-    const plantWeek = [...statePlants]
-    plantWeek.push({
-      name: namePlant,
-      src: base64Image,
-      id: plantId,
-      week: [],
-      srcWeek: [],
-      textWeek: [],
+    const formData = new FormData()
+    formData.append('image', imageUrl)
+
+    fetch(apiUrl, {
+      method: 'POST',
+      body: formData,
     })
-    savedPlants(plantWeek)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.data.image.url)
+        const plantWeek = [...statePlants]
+        plantWeek.push({
+          name: namePlant,
+          src: data.data.image.url,
+          id: plantId,
+          week: [],
+          srcWeek: [],
+          textWeek: [],
+        })
+        savedPlants(plantWeek)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+    })
   }
-  reader.readAsDataURL(imagePlant)
-}
 
   // Funcion para eliminar planta
   const deletedPlant = (id) =>{
@@ -65,17 +76,27 @@ function ProgressProvider({children}){
   // Funcion para editar la planta de inicio
   const editPlant = (id, editImage)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
+    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const imageUrl = editImage
 
-    const reader = new FileReader();
-    reader.onload = () => {
-    const base64Image = reader.result    
+    const formData = new FormData()
+    formData.append('image', imageUrl)
 
-      const plantWeek = [...statePlants]
-      plantWeek[plantIndex].name = newPlant
-      plantWeek[plantIndex].src = base64Image
-      savedPlants(plantWeek) // Quedo lista esta funcion
-    }
-    reader.readAsDataURL(editImage)
+    fetch(apiUrl, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.data.image.url)
+        const plantWeek = [...statePlants]
+        plantWeek[plantIndex].name = newPlant
+        plantWeek[plantIndex].src = data.data.image.url
+        savedPlants(plantWeek) // Quedo lista esta funcion
+      })
+      .catch(error => {
+        console.error('Error:', error)
+    })
   }
 
   //                               FUNCIONES PARA EL PROGRESO DE LA PLANTA
@@ -84,22 +105,40 @@ function ProgressProvider({children}){
   const addPlantWeek = (id, week, srcWeek, textWeek)=>{
     const plantIndex = statePlants.findIndex(item => item.id === id)
 
-    const reader = new FileReader()
-    reader.onload = () => {
-    const base64Image = reader.result
+    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const imageUrl = srcWeek
 
-      let plantWeek = [...statePlants]
-      plantWeek[plantIndex].week.push(week)
-      plantWeek[plantIndex].srcWeek.push(base64Image)
-      plantWeek[plantIndex].textWeek.push(textWeek)
-      savedPlants(plantWeek)
-    }
-    reader.readAsDataURL(srcWeek)
+    const formData = new FormData()
+    formData.append('image', imageUrl)
+
+    fetch(apiUrl, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.data.image.url)
+        let plantWeek = [...statePlants]
+        plantWeek[plantIndex].week.push(week)
+        plantWeek[plantIndex].srcWeek.push(data.data.image.url)
+        plantWeek[plantIndex].textWeek.push(textWeek)
+
+        savedPlants(plantWeek)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+    })
   }
 
   // Funcion para editar el progreso
   const editProgress = (id, oldWeekTitle, newWeekTitle, newImage, newProgressText) => {
     const plantIndex = statePlants.findIndex(item => item.id === id)
+
+    const apiUrl = 'https://api.imgbb.com/1/upload?key=d1e5abf1bd6b35a0741945fc493b156e';
+    const imageUrl = newImage
+
+    const formData = new FormData()
+    formData.append('image', imageUrl)
 
     if (plantIndex !== -1) {
         let newPlants = [...statePlants];
@@ -109,21 +148,28 @@ function ProgressProvider({children}){
           if (!Array.isArray(newPlants[plantIndex].week)) {
               newPlants[plantIndex].week = []
           }
-      
-          const reader = new FileReader()
-          reader.onload = () => {
-          const base64Image = reader.result
-            newPlants[plantIndex].week[progressIndex] = newWeekTitle;
-            newPlants[plantIndex].srcWeek[progressIndex] = base64Image;
-            newPlants[plantIndex].textWeek[progressIndex] = newProgressText;
-            savedPlants(newPlants)
-          }
-          reader.readAsDataURL(newImage)
+
+          fetch(apiUrl, {
+            method: 'POST',
+            body: formData,
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data.data.image.url)
+              newPlants[plantIndex].week[progressIndex] = newWeekTitle
+              newPlants[plantIndex].srcWeek[progressIndex] = data.data.image.url
+              newPlants[plantIndex].textWeek[progressIndex] = newProgressText
+              savedPlants(newPlants)
+            })
+            .catch(error => {
+              console.error('Error:', error)
+          })
+  
       } else {
-          console.error("Semana no encontrada para la planta con ID:", id, "y título de semana:", oldWeekTitle);
+          console.error("Semana no encontrada para la planta con ID:", id, "y título de semana:", oldWeekTitle)
       }
     } else {
-        console.error("Planta no encontrada con ID:", id);
+        console.error("Planta no encontrada con ID:", id)
     }
   }
 
@@ -137,8 +183,8 @@ function ProgressProvider({children}){
 
     // Si se encuentra el progreso, lo elimina del array
     if (progressIndex !== -1) {
-        newPlants[plantIndex].week.splice(progressIndex, 1);
-        newPlants[plantIndex].srcWeek.splice(progressIndex, 1);
+        newPlants[plantIndex].week.splice(progressIndex, 1)
+        newPlants[plantIndex].srcWeek.splice(progressIndex, 1)
         newPlants[plantIndex].textWeek.splice(progressIndex, 1)
         savedPlants(newPlants);
     } else {
