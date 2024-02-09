@@ -25,3 +25,6 @@ yarn-error.log*
 #APIkey
 /src
 config.js
+
+#Server
+server.js
