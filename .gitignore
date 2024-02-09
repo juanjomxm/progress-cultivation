@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+#APIkey
+config.js
+server.js
+
 # testing
 /coverage
 
@@ -22,9 +26,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#APIkey
-/src
-config.js
 
-#Server
-server.js
