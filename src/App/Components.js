@@ -12,6 +12,8 @@ import { ProgressNew } from "../ProgressNewWeek/ProgressNew";
 import { ProgressNewWeek } from "../ProgressNewForms/ProgressWeekForm";
 import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressNewWeek/ProgressNew";
+
+import { ChatBot } from "../ChatBot/ChatBot";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
 function Components(){
@@ -36,15 +38,18 @@ function Components(){
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
                             <ContainerImagesPlants/>
+                            <ChatBot/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                         </React.Fragment>
                         }
                     />
 
+                    {/* navegacion al progreso de la planta */}
                     <Route path="/:name/:id" element={
                         <React.Fragment>
                             <ButtonModalProgress/>
                             <ProgressNew/>
+                            <ChatBot/>
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                             {error && <p>Hubo un error</p>}
                         </React.Fragment>
@@ -52,7 +57,7 @@ function Components(){
                     // Para hacer este cambio debo escribir el hsh primero = /#/
                     />
 
-                    {/* Ruta para agregar la planta del principio */}
+                    {/* Ruta del formlario para agregar las plantas del inicio*/}
                     <Route path="/form1" element={ 
                         <React.Fragment>
                             <PlantNew/>
@@ -69,7 +74,7 @@ function Components(){
                     }
                     />
 
-                    {/* Ruta para agregar la planta del progreso*/}
+                    {/* Ruta del formlario para agregar el progreso de las plantas*/}
                     <Route path="/form2/:id" element={ 
                         <React.Fragment>
                             <ProgressNewWeek/>

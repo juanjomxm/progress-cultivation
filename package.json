@@ -11,6 +11,7 @@
     "firebase": "^10.7.2",
     "jsonc": "^2.0.0",
     "multer": "^1.4.5-lts.1",
+    "openai": "^4.27.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
