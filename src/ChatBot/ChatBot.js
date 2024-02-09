@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { config } from "../config";
 
-// API key openia = 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
-const apiKey = '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'
+const apiKey = config.apiKeyOpenIA
 const textChat = axios.create({
     baseURL: 'https://api.openai.com/v1/chat/completions',
     headers:{
@@ -11,6 +11,7 @@ const textChat = axios.create({
     }
 })
 
+// Estoy implementando la api de openia para generar un chat que me ayude a llevar un buen cultivo. Como apenas esta en etapa de desarrollo no estoy pagando la suscripcion a openia por ende los llamados que se pueden hacer son como maximo dos o tres, mas adelante cuando la app este en una etapa de desarrolo avanzado, valdra la pena la suscripcion a openia
 function ChatBot(){
     const [inputChat, setInputChat] = React.useState('')
     const [generatedText, setGeneratedText] = React.useState('')
@@ -29,7 +30,7 @@ function ChatBot(){
 
             if(status === 200 || status === 201){
                 console.log(data)
-                // setGeneratedText()
+                setGeneratedText(data.choices[0].text.trim())
             }
         }catch(error){
             console.warn(error)
@@ -37,19 +38,25 @@ function ChatBot(){
     }
 
     return(
-        <div>
+        <div className="container-chat-bot">
             <h1>Chat con ia</h1>
 
-            <input
-            value={inputChat}
-            onChange={(event)=>{
-                setInputChat(event.target.value)
-            }}
-            />
-            <button
-            onClick={viewChatBot}
-            >Enviar</button>
-            {/* <p>{generatedText}</p> */}
+            <div>
+                <input
+                placeholder="Chat con IA"
+                value={inputChat}
+                onChange={(event)=>{
+                    setInputChat(event.target.value)
+                }}
+                />
+                <button
+                onClick={viewChatBot}
+                >Enviar</button>
+            </div>
+
+            {/* <textarea
+            onChange={generatedText}
+            ></textarea> */}
         </div>
     )
 }

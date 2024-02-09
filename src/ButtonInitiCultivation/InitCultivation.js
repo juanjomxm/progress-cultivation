@@ -1,13 +1,11 @@
 import React from "react"
-import { ProgressContext } from "../ContextGlobal/ContextGlobal"
 import { useNavigate } from "react-router-dom"
 
 function InitCultivation(){
     const navigate = useNavigate()
-    const{
-    } = React.useContext(ProgressContext)
+
     return(
-        <div>
+        <div className="container-title-and-button-init">
 
             <div className="button-add-plant">
             <button

@@ -36,9 +36,9 @@ label{
   color: white;
 }
 
-/* input{
-  color: white;
-} */
+input{
+  text-align: center;
+}
 
 button{
   color: white;
@@ -49,46 +49,10 @@ button{
   margin-top: 5px
 }
 
-.container-data-images{
-  display: contents;
-}
-.images{
-  background-size: cover;
+.section-title-and-chat{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-  border-radius: 10px;
-  position: relative;
-}
-.images:hover .water-text{
-  visibility: visible;
-} 
-.water-text{
-  visibility: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(32, 35, 41, .8);
-  border-radius: 5px;
-  text-align: center;
-  padding: 10px;
-  font-size: 20px;
-  color: white;
-  transition: visibilyty 1s;
-}
-.image-form{
-  max-width: 200px;
-  height: 200px;
-}
-
-.container-button-edit-delete{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
+  width: 100vw;
+  justify-content: space-around;
 }
 
 .button-add-plant{
@@ -99,14 +63,6 @@ button{
   position: relative;
 }
 
-.section-buttons{
-  margin-top: 10px;
-}
-
-.button-cancel{
-  background-color: black;
-}
-
 .search-plants{
   display: flex;
   justify-content: center;
@@ -114,36 +70,45 @@ button{
   flex-direction: column;
   margin-top: 20px;
 }
+.input-search{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  border-color: green;
+  text-align: center
+}
 
-.loader-container {
+.container-title-and-button-init{
   display: flex;
+  align-items: flex-end;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
-.spinner {
-  border: 16px solid #f3f3f3; 
-  border-top: 16px solid #4CAF50; 
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  animation-direction: alternate;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.container-images-edit{
-  width: 100vw;
-  height: 100vh;
+.container-title-and-data-images{
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
+}
+
+.container-chat-bot{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+textarea{
+  max-width: 50%;
+  max-height: 50%;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.container-data-images{
+  display: contents;
 }
 
 /* contenedor de imagenes inicio */
@@ -181,13 +146,87 @@ button{
   text-align: center;
 }
 
-.input-search{
-  background-color: black;
-  color: white;
+.images{
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
   border-radius: 10px;
-  border-color: green;
-  text-align: center
+  position: relative;
 }
+
+.image-form{
+  max-width: 200px;
+  height: 200px;
+}
+
+/* Marca de agua del boton que me lleva al progreso */
+.images:hover .water-text{
+  visibility: visible;
+} 
+.water-text{
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(32, 35, 41, .8);
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  transition: visibilyty 1s;
+}
+
+.section-buttons{
+  margin-top: 10px;
+}
+
+.container-button-edit-delete{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.button-cancel{
+  background-color: black;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #4CAF50; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.container-images-edit{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .modal-progress-images{
   width: 900px;
@@ -216,40 +255,8 @@ button{
   border-color: transparent;
 }
 
-/* Contenedor de estilos para botones */
 
-.container-title-and-buttons{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center
-}
-
-.container-buttons-progress{
-  display: flex;
-  flex-direction: column;
-}
-.button-back{
-  margin-top: 20px;
-}
-
-
-/* Este es el modal para agregar el progreso por semana */
-
-.div-modal-progress-images{
-  background-color: rgba(32, 35, 41, .8);
-  background-size: cover;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
+/* Contenedor de los datos del progreso */
 .container-images-progress{
   width: 100vw;
   height: 100vh;
@@ -299,6 +306,22 @@ button{
   height: 200px;
   max-height: 200px;
   margin-top: 10px;
+}
+
+/* Contenedor de estilos para botones */
+
+.container-title-and-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center
+}
+
+.container-buttons-progress{
+  display: flex;
+  flex-direction: column;
+}
+.button-back{
+  margin-top: 20px;
 }
 
 

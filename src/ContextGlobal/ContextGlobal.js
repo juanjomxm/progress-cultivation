@@ -2,7 +2,6 @@ import React from "react"
 import { config } from "../config"
 
 import { useLocalStorage } from "./useLocalstorage"
-import { calculateNewValue } from "@testing-library/user-event/dist/utils"
 
 const ProgressContext = React.createContext()
 

@@ -1,10 +1,9 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
-import { TitleCultivation } from "../TitleApp/TitleApp";
+import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { SearchPlants } from "../SearchPlants/SearchPlants";
 import { ContainerImagesPlants}  from "../ImagesPlants/ImagePlants";
-import { InitCultivation } from "../ButtonInitiCultivation/InitCultivation";
 import { PlantNew } from "../PlantForm/PlantNew";
 import { PlantEdit } from "../PlantForm/PlantEdit";
 
@@ -32,13 +31,17 @@ function Components(){
                     <Route path="/" element={
                         <React.Fragment>
                             {error && <p>Hubo un error</p>}
-                            <TitleCultivation />
-                            <InitCultivation />
-                            {(statePlants.length >= 1) && <SearchPlants/>}
+                            <div className="section-title-and-chat">
+                                <div className="container-title-and-data-images">
+                                <InitCultivation />
+                                {(statePlants.length >= 1) && <SearchPlants/>}
+                                <ContainerImagesPlants/>
+                                </div>
+                                <ChatBot/>
+                            </div>
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
-                            <ContainerImagesPlants/>
-                            <ChatBot/>
+                            
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                         </React.Fragment>
                         }
@@ -49,7 +52,7 @@ function Components(){
                         <React.Fragment>
                             <ButtonModalProgress/>
                             <ProgressNew/>
-                            <ChatBot/>
+                            {/* <ChatBot/> En esta ventana de navegacion tambien debo agregar el componente para el chat con IA */}
                             {loading && <div className="loader-container"><div className="spinner"></div></div>}
                             {error && <p>Hubo un error</p>}
                         </React.Fragment>
