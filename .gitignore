@@ -7,7 +7,6 @@
 
 #APIkey
 config.js
-server.js
 
 # testing
 /coverage

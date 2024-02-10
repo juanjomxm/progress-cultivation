@@ -29,7 +29,7 @@ function ChatBot(){
             const {data, status} = await textChat.post('', requestBody)
 
             if(status === 200 || status === 201){
-                console.log(data)
+                console.log(data.choices[0].text.trim())
                 setGeneratedText(data.choices[0].text.trim())
             }
         }catch(error){
