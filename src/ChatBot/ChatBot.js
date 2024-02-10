@@ -54,9 +54,9 @@ function ChatBot(){
                 >Enviar</button>
             </div>
 
-            {/* <textarea
+            <textarea
             onChange={generatedText}
-            ></textarea> */}
+            ></textarea>
         </div>
     )
 }
