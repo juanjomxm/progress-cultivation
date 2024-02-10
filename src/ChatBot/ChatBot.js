@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { config } from "../config";
 
-const apiKey = config.apiKeyOpenIA
+const apiKey = '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'
 const textChat = axios.create({
     baseURL: 'https://api.openai.com/v1/chat/completions',
     headers:{
