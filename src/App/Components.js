@@ -37,7 +37,7 @@ function Components(){
                                 {(statePlants.length >= 1) && <SearchPlants/>}
                                 <ContainerImagesPlants/>
                                 </div>
-                                {/* <ChatBot/> Debo teener la suscripcion a openia para poder hacer varios llamados*/}
+                                {/* <ChatBot/> Debo tener la suscripcion a openia para poder hacer varios llamados*/}
                             </div>
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
