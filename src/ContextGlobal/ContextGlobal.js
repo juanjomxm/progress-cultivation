@@ -1,13 +1,10 @@
 import React from "react"
-import { config } from "../hidingKey"
 
 import { useLocalStorage } from "./useLocalstorage"
 
 const ProgressContext = React.createContext()
 
-const apiKey = config.apiKey
-
-// const apiKey = 'd1e5abf1bd6b35a0741945fc493b156e'
+const apiKey = 'd1e5abf1bd6b35a0741945fc493b156e'
 
 function ProgressProvider({children}){
 
