@@ -6,7 +6,7 @@
 .pnp.js
 
 #APIkey
-hidingKey
+hidingKey.js
 
 # testing
 /coverage
