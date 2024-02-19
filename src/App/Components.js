@@ -12,7 +12,9 @@ import { ProgressNewWeek } from "../ProgressNewForms/ProgressWeekForm";
 import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressNewWeek/ProgressNew";
 
-import { ChatBot } from "../ChatBot/ChatBot";
+import { Modal } from "../ProgressNewWeek/ModalImages";
+import { ImagesModal } from "../ProgressNewWeek/ModalImages";
+// import { ChatBot } from "../ChatBot/ChatBot";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
 function Components(){
@@ -20,7 +22,8 @@ function Components(){
         loading,
         error,
         statePlants,
-        searchPlants
+        searchPlants,
+        openModal
     } = React.useContext(ProgressContext)
 
     return (

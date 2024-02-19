@@ -25,7 +25,6 @@ function ProgressProvider({children}){
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
   const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
 
-
   // ESTADOS DERIVADOS
   const searchPlants = statePlants.filter(item =>{
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())

@@ -23,8 +23,10 @@ function ContainerImagesPlants(){
 
 // Con esta funcion es donde organizo la lista como deseo que se muestre y le envo el componente a la funcion que renderiza las plantas
 function WeekPost({ post }) {
-  const navigateProgress = useNavigate();
-  const { deletedPlant } = React.useContext(ProgressContext);
+  const {
+    deletedPlant 
+  } = React.useContext(ProgressContext)
+  const navigateProgress = useNavigate()
 
   return (
       <li className="images">

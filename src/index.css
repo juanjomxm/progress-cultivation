@@ -265,6 +265,17 @@ textarea{
   flex-direction: column;
   align-items: center;
 }
+.modal-images{
+  background-color: rgba(32,35,41,.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
 
 /* css de formulario para agregar progreso */
 .new-progress{

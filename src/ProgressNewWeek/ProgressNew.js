@@ -1,7 +1,8 @@
 import React from "react";
-import { ProgressContext } from "../ContextGlobal/ContextGlobal";
-import { useNavigate, useParams} from "react-router-dom";
 
+import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+import { Modal } from "./ModalImages";
+import { useNavigate, useParams} from "react-router-dom";
 
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()
@@ -34,104 +35,87 @@ function ButtonModalProgress(){
     )
 }
 
-function ContainerProgressPlants(){
-    const {
-        statePlants
-    } = React.useContext(ProgressContext)
-
-    return(
-        <div>
-            <ul>
-                {statePlants.map(post => {
-                    return <WeekPostWeek
-                    key={post.week}
-                    post={post}
-                    />   
-                })}
-            </ul>
-        </div> 
-    )
-}
-
-function WeekPostWeek({post}){
-    const {
-    } = React.useContext(ProgressContext)
-
-    return(
-        <div>
-            <li className="div-content-progress">
-                <h2>{post.week}</h2>
-                <img
-                src={post.srcWeek}
-                width={300}
-                height={300}
-                />
-                <p>{post.textWeek}</p>
-            </li>
-        </div>
-    )
-}
-
 // // Esta es la funcion que renderiza el progreso del cultivo semana por semana
 function ProgressNew() {
-    const navigateProgressEdit = useNavigate()
-    const {
-      statePlants,
-      setNewProgressText,
-      deletedProgress
-    } = React.useContext(ProgressContext);
-  
-    const { name } = useParams();
-    const post = statePlants.find((item) => item.name === name);
-  
-    const onChangeTextProgress = (event, index) => {
-      const newArray = [...post.textWeek];
-      newArray[index] = event.target.value;
-      setNewProgressText(newArray);
-    };
-  
-    return (
-      <div className="modal-progress-images">
-        {post && Array.isArray(post.week) && post.week.map((item, index) => (
-          <li key={index} className="div-content-progress">
-            <h2>{item}</h2>
+  const {
+    statePlants,
+    setNewProgressText,
+    deletedProgress,
+  } = React.useContext(ProgressContext)
 
-            <img
-              src={post.srcWeek[index]}
-              width={200}
-              height={200}
-              alt={`Week ${index + 1}`}
-            />
+   // Modal para ver las imagenes en tamaño original
+   const [openModal, setOpenModal] = React.useState(false)
+   const [selectedImageIndex, setSelectedImageIndex] = React.useState(null)
 
-            <textarea
-              className="text-progress-plant"
-              value={post.textWeek[index]}
-              onChange={(event) => onChangeTextProgress(event, index)}
-            ></textarea>
+  const navigateProgressEdit = useNavigate()
 
-            <button
-              onClick={(e) => {
-                e.preventDefault()
-                navigateProgressEdit(`/edit/${post.name}/${post.week[index]}/${post.id}`);
-              }}
-            >
-            Editar
-            </button>
+  const { name } = useParams()
+  const post = statePlants.find((item) => item.name === name)
 
-            <button
+  const onChangeTextProgress = (event, index) => {
+    const newArray = [...post.textWeek];
+    newArray[index] = event.target.value;
+    setNewProgressText(newArray);
+  }
+
+  return (
+    <div className="modal-progress-images">
+      {post && Array.isArray(post.week) && post.week.map((item, index) => (
+        <li key={index} className="div-content-progress">
+          <h2>{item}</h2>
+
+          <img
+            src={post.srcWeek[index]}
+            width={200}
+            height={200}
+            alt={`Week ${index + 1}`}
             onClick={()=>{
-              deletedProgress(post.id, item)
+              setSelectedImageIndex(index)
+              setOpenModal(true)
             }}
-            >
-            Eliminar
-            </button>
-          </li>
-        ))}
-      </div>
-    );
-  } // En esta funcion me apoye en chatGPT ayudandome a encontrar una mejor solucion
+          />
+          
+          {openModal && selectedImageIndex === index && (
+            <Modal>
+              <img
+                src={post.srcWeek[index]}
+                width={600}
+                height={600}
+                alt={`Week ${index + 1}`}
+                onClick={()=>{
+                  setOpenModal(false)
+                }}
+              />
+            </Modal>
+          )}
+
+          <textarea
+            className="text-progress-plant"
+            value={post.textWeek[index]}
+            onChange={(event) => onChangeTextProgress(event, index)}
+          ></textarea>
+
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              navigateProgressEdit(`/edit/${post.name}/${post.week[index]}/${post.id}`);
+            }}
+          >
+          Editar
+          </button>
+
+          <button
+          onClick={()=>{
+            deletedProgress(post.id, item)
+          }}
+          >
+          Eliminar
+          </button>
+        </li>
+      ))}
+    </div>
+  )
+} 
 
 export { ButtonModalProgress }
-export { ContainerProgressPlants }
-export { WeekPostWeek }
 export { ProgressNew }
