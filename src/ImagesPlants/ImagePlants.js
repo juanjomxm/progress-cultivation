@@ -26,6 +26,7 @@ function WeekPost({ post }) {
   const {
     deletedPlant 
   } = React.useContext(ProgressContext)
+  
   const navigateProgress = useNavigate()
 
   return (

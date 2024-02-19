@@ -63,16 +63,21 @@ function ProgressNew() {
         <li key={index} className="div-content-progress">
           <h2>{item}</h2>
 
-          <img
-            src={post.srcWeek[index]}
-            width={200}
-            height={200}
-            alt={`Week ${index + 1}`}
+          <div className="images-progress">
+            <img
+              src={post.srcWeek[index]}
+              width={200}
+              height={200}
+              alt={`Week ${index + 1}`}
+            />
+            <button
+            className="water-text-progress"
             onClick={()=>{
               setSelectedImageIndex(index)
               setOpenModal(true)
             }}
-          />
+            >👁️</button>
+          </div>
           
           {openModal && selectedImageIndex === index && (
             <Modal>

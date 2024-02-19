@@ -9,27 +9,11 @@ body {
   background-size: cover;
 }
 
-img{
-  border-radius: 10px;
-  cursor: pointer;
-  border: transparent; 
-}
 
 h1, h2, h3, h4{
   color: white;
   display: flex;
   justify-content: center;
-}
-
-p{
-  color: white;
-  margin-top: 5px;
-  display: flex;
-  justify-content: center
-}
-
-a{
-  color: white;
 }
 
 label{
@@ -38,6 +22,27 @@ label{
 
 input{
   text-align: center;
+}
+
+img{
+  border-radius: 10px;
+  cursor: pointer;
+  border: transparent; 
+}
+
+textarea{
+  max-width: 50%;
+  max-height: 50%;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+p{
+  color: white;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center
 }
 
 button{
@@ -49,11 +54,18 @@ button{
   margin-top: 5px
 }
 
-.section-title-and-chat{
+/* .section-title-and-chat{
   display: flex;
   width: 100vw;
   justify-content: space-around;
-}
+} */
+/* .container-chat-bot{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+} */
 
 .button-add-plant{
   display: flex;
@@ -92,20 +104,6 @@ button{
   margin-top: 30px;
 }
 
-.container-chat-bot{
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-textarea{
-  max-width: 50%;
-  max-height: 50%;
-  border-radius: 5px;
-  text-align: center;
-  margin-top: 10px;
-}
 
 .container-data-images{
   display: contents;
@@ -203,20 +201,6 @@ textarea{
   height: 100vh;
 }
 
-.spinner {
-  border: 16px solid #f3f3f3; 
-  border-top: 16px solid #4CAF50; 
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  animation-direction: alternate;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 .container-images-edit{
   width: 100vw;
@@ -277,6 +261,29 @@ textarea{
   bottom: 0
 }
 
+/* Marca de agua para ver las imagenes del prgreso en tamaño grande */
+.images-progress {
+  position: relative;
+  display: inline-block;
+}
+.images-progress:hover .water-text-progress{
+  visibility: visible;
+} 
+.water-text-progress{
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(32, 35, 41, .8);
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  transition: visibilyty 1s;
+}
+
 /* css de formulario para agregar progreso */
 .new-progress{
   display: flex;
@@ -333,6 +340,22 @@ textarea{
 }
 .button-back{
   margin-top: 20px;
+}
+
+/* Efecto de carga en spinner */
+.spinner {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #4CAF50; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 
