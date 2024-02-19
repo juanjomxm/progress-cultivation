@@ -50,19 +50,6 @@ function Components(){
                         }
                     />
 
-                    {/* navegacion al progreso de la planta */}
-                    <Route path="/:name/:id" element={
-                        <React.Fragment>
-                            <ButtonModalProgress/>
-                            <ProgressNew/>
-                            {/* <ChatBot/> En esta ventana de navegacion tambien debo agregar el componente para el chat con IA */}
-                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
-                            {error && <p>Hubo un error</p>}
-                        </React.Fragment>
-                    } 
-                    // Para hacer este cambio debo escribir el hsh primero = /#/
-                    />
-
                     {/* Ruta del formlario para agregar las plantas del inicio*/}
                     <Route path="/form1" element={ 
                         <React.Fragment>
@@ -78,6 +65,19 @@ function Components(){
                             <PlantEdit/>
                         </React.Fragment>
                     }
+                    />
+
+                    {/* navegacion al progreso de la planta */}
+                     <Route path="/:name/:id" element={
+                        <React.Fragment>
+                            <ButtonModalProgress/>
+                            <ProgressNew/>
+                            {/* <ChatBot/> En esta ventana de navegacion tambien debo agregar el componente para el chat con IA */}
+                            {loading && <div className="loader-container"><div className="spinner"></div></div>}
+                            {error && <p>Hubo un error</p>}
+                        </React.Fragment>
+                    } 
+                    // Para hacer este cambio debo escribir el hsh primero = /#/
                     />
 
                     {/* Ruta del formlario para agregar el progreso de las plantas*/}

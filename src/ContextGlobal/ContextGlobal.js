@@ -1,10 +1,9 @@
 import React from "react"
 
 import { useLocalStorage } from "./useLocalstorage"
+import { apiKey } from "../secretKey"
 
 const ProgressContext = React.createContext()
-
-const apiKey = 'd1e5abf1bd6b35a0741945fc493b156e'
 
 function ProgressProvider({children}){
 
@@ -33,10 +32,11 @@ function ProgressProvider({children}){
   //                               FUNCIONES PARA LA PLANTA DEL INICIO
 
   // Funcion para agregar planta
-  // API KEY IMAGEBB = d1e5abf1bd6b35a0741945fc493b156e
 
  async function addPlant(namePlant, imagePlant) {
     let plantId = newPlantId()
+
+    // Api para guardar las imagenes en el servidor de imgbb
     const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = imagePlant
 
@@ -51,7 +51,6 @@ function ProgressProvider({children}){
 
     try{
       if(res.status === 200, 201){
-        console.log(data.data.image.url)
         const plantWeek = [...statePlants]
         plantWeek.push({
           name: namePlant,
@@ -93,7 +92,6 @@ function ProgressProvider({children}){
 
     try{
       if(res.status === 200, 201){
-        console.log(data.data.image.url)
         const plantWeek = [...statePlants]
         plantWeek[plantIndex].name = newPlant
         plantWeek[plantIndex].src = data.data.image.url
@@ -110,6 +108,7 @@ function ProgressProvider({children}){
   async function addPlantWeek(id, week, srcWeek, textWeek){
     const plantIndex = statePlants.findIndex(item => item.id === id)
 
+    // Api para guardar las imagenes en el servidor de imgbb
     const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = srcWeek
 
@@ -124,7 +123,6 @@ function ProgressProvider({children}){
 
     try{
       if(res.status === 200,201){
-        console.log(data.data.image.url)
         let plantWeek = [...statePlants]
         plantWeek[plantIndex].week.push(week)
         plantWeek[plantIndex].srcWeek.push(data.data.image.url)
@@ -163,7 +161,6 @@ function ProgressProvider({children}){
 
           try{
             if(res.status === 200,201){
-              console.log(data.data.image.url)
               newPlants[plantIndex].week[progressIndex] = newWeekTitle
               newPlants[plantIndex].srcWeek[progressIndex] = data.data.image.url
               newPlants[plantIndex].textWeek[progressIndex] = newProgressText

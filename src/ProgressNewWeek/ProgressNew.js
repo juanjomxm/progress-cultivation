@@ -2,12 +2,11 @@ import React from "react";
 
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 import { Modal } from "./ModalImages";
+
 import { useNavigate, useParams} from "react-router-dom";
 
 function ButtonModalProgress(){
     const navigateProgress = useNavigate()
-    const{
-    }= React.useContext(ProgressContext)
 
     const params = useParams()
     const id = Number(params.id)
@@ -79,8 +78,8 @@ function ProgressNew() {
             <Modal>
               <img
                 src={post.srcWeek[index]}
-                width={600}
-                height={600}
+                width={700}
+                height={500}
                 alt={`Week ${index + 1}`}
                 onClick={()=>{
                   setOpenModal(false)
