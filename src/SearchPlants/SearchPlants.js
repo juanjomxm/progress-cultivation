@@ -1,4 +1,5 @@
 import React from "react"
+
 import { ProgressContext } from "../ContextGlobal/ContextGlobal"
 
 function SearchPlants(){
@@ -20,4 +21,5 @@ function SearchPlants(){
         </div>
     )
 }
+
 export { SearchPlants }

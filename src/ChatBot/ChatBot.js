@@ -1,35 +1,29 @@
 import React from "react";
 import axios from "axios";
 
-const apiKey = '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'
-const textChat = axios.create({
-    baseURL: 'https://api.openai.com/v1/chat/completions',
-    headers:{
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-    }
-})
-
-// Estoy implementando la api de openia para generar un chat que me ayude a llevar un buen cultivo. Como apenas esta en etapa de desarrollo no estoy pagando la suscripcion a openia por ende los llamados que se pueden hacer son como maximo dos o tres, mas adelante cuando la app este en una etapa de desarrolo avanzado, valdra la pena la suscripcion a openia
 function ChatBot(){
+    const [dataChat, setDataChat] = React.useState(null)
     const [inputChat, setInputChat] = React.useState('')
-    const [generatedText, setGeneratedText] = React.useState('')
 
-    const requestBody = {
-        messages: [
-          {"role": "system", "content": "You are a helpful assistant."},
-          {"role": "user", "content": inputChat},
-        ],
-        model: "gpt-3.5-turbo",  // Cambiado de "gpt-3.5-turbo"
-    }
+    const viewChatBot = axios.create({
+        baseURL: 'https://chatgpt-gpt4-ai-chatbot.p.rapidapi.com',
+        headers:{
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': '6c1967e5d3msh3257be7d6cac589p1ff725jsnbccdc806cd80',
+            'X-RapidAPI-Host': 'chatgpt-gpt4-ai-chatbot.p.rapidapi.com'
+        },
+        // data:{
+        //     query: inputChat
+        // }
+    })
 
-    const viewChatBot = async()=>{
+    const chatBot = async()=>{
+        const {data,status} = await viewChatBot.post('/ask', { query: inputChat })
+
         try{
-            const {data, status} = await textChat.post('', requestBody)
-
-            if(status === 200 || status === 201){
-                console.log(data.choices[0].text.trim())
-                setGeneratedText(data.choices[0].text.trim())
+            if(status === 200, 201){
+                setDataChat(data.response)
+                console.log(data.response)
             }
         }catch(error){
             console.warn(error)
@@ -37,25 +31,25 @@ function ChatBot(){
     }
 
     return(
-        <div className="container-chat-bot">
-            <h1>Chat con ia</h1>
-
-            <div>
+        <div className="data-chatbot">
+           <div className="input-and-button-chat">
                 <input
-                placeholder="Chat con IA"
+                placeholder="En que te puedo ayudar?"
                 value={inputChat}
                 onChange={(event)=>{
                     setInputChat(event.target.value)
                 }}
                 />
                 <button
-                onClick={viewChatBot}
+                onClick={chatBot}
                 >Enviar</button>
-            </div>
+           </div>
 
             <textarea
-            onChange={generatedText}
-            ></textarea>
+            className="text-chabot"
+            onChange={dataChat}
+            >
+            </textarea>
         </div>
     )
 }

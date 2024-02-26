@@ -19,6 +19,8 @@ function PlantEdit(){
 
     const params = useParams()
     const id = Number(params.id) // Con estas dos variables pude resolver el bug que tenia al editar la planta
+    const name = (params.name)
+
     
 
     const onSubmitProgress = (event)=>{
@@ -56,11 +58,12 @@ function PlantEdit(){
 
                 <textarea
                 className="text-new-plant"
-                placeholder="Nombre de la planta"
+                placeholder={name}
                 value={newPlant}
                 onChange={onChange}
                 >   
                 </textarea>
+
                 <label>
                     <input 
                     className="load-image"
@@ -68,6 +71,7 @@ function PlantEdit(){
                     onChange={onSubmitImage}
                     ></input>
                 </label>
+
                 <div className="section-buttons">
                     <button 
                     className="button-cancel"
@@ -80,6 +84,7 @@ function PlantEdit(){
                     onClick={onSubmitProgress}
                     >Editar</button>
                 </div>
+                
                 <img
                 className="image-form"
                 src={newImage.src}

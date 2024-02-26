@@ -12,18 +12,16 @@ import { ProgressNewWeek } from "../ProgressNewForms/ProgressWeekForm";
 import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressNewWeek/ProgressNew";
 
-import { Modal } from "../ProgressNewWeek/ModalImages";
-import { ImagesModal } from "../ProgressNewWeek/ModalImages";
-// import { ChatBot } from "../ChatBot/ChatBot";
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+import { ChatBot } from "../ChatBot/ChatBot";
+import { Climate } from "../Climate/Climate";
 
 function Components(){
     const {
         loading,
         error,
         statePlants,
-        searchPlants,
-        openModal
+        searchPlants
     } = React.useContext(ProgressContext)
 
     return (
@@ -34,13 +32,21 @@ function Components(){
                     <Route path="/" element={
                         <React.Fragment>
                             {error && <p>Hubo un error</p>}
+                            <div>
+                                <Climate/>
+                            </div>
+
                             <div className="section-title-and-chat">
+                                
                                 <div className="container-title-and-data-images">
                                 <InitCultivation />
                                 {(statePlants.length >= 1) && <SearchPlants/>}
                                 <ContainerImagesPlants/>
                                 </div>
-                                {/* <ChatBot/> Debo teener la suscripcion a openia para poder hacer varios llamados*/}
+                                
+                                {/* <div className="container-chatbot">
+                                    <ChatBot/>
+                                </div> */}
                             </div>
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}

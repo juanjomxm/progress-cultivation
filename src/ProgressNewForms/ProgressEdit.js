@@ -24,6 +24,7 @@ function ProgressEdit(){
     const params = useParams()
     const id = Number(params.id)
     const week = (params.week)
+    const textWeek = (params.textWeek)
 
     const onSubmit = (event)=>{
         event.preventDefault()
@@ -61,7 +62,7 @@ function ProgressEdit(){
             > 
                 <textarea
                 className="text-new-plant-progress"
-                placeholder="#Semana"
+                placeholder={week}
                 value={newProgressEdit}
                 onChange={onChange}
                 >   

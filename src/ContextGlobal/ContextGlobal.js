@@ -78,6 +78,7 @@ function ProgressProvider({children}){
   // Funcion para editar la planta de inicio
   async function editPlant(id, editImage){
     const plantIndex = statePlants.findIndex(item => item.id === id)
+    
     const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
     const imageUrl = editImage
 
@@ -95,7 +96,7 @@ function ProgressProvider({children}){
         const plantWeek = [...statePlants]
         plantWeek[plantIndex].name = newPlant
         plantWeek[plantIndex].src = data.data.image.url
-        savedPlants(plantWeek) // Quedo lista esta funcion
+        savedPlants(plantWeek) 
       }
     }catch(error){
       console.warn(error)
