@@ -74,7 +74,7 @@ function Climate(){
     return(
         <div className="container-climate">
             <div className="data-climate">
-            <h1>Clima</h1>
+            <h2>Clima</h2>
                 <div className="select-climate">
                     <select
                         value={inputCountry}
@@ -118,8 +118,8 @@ function Climate(){
                         <h3>{dataClimate.location.name}, {dataClimate.location.region}</h3>
                         
                         <div className="climate">
-                            <p>Temperatura: {dataClimate.current.temp_c}°c</p>
-                            <p>Sensacion Termica: {dataClimate.current.feelslike_c}°c</p>
+                            <p>Temperatura: {Math.floor(dataClimate.current.temp_c)}°c</p>
+                            <p>Sensacion Termica: {Math.floor(dataClimate.current.feelslike_c)}°c</p>
                             <p>Humedad: {dataClimate.current.humidity} %</p>
                             <p>Viento: {dataClimate.current.wind_kph} Km/h</p>
                         </div>

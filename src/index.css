@@ -62,8 +62,7 @@ button{
 }
 .data-climate {
   background: rgba(32,35,41,.8);
-  padding: 10px;
-  border: 1px solid #ccc;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -72,6 +71,16 @@ button{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.select-climate select{
+  width: 50%;
+  border-color: aquamarine;
+  text-align: center;
+}
+.info-climate{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .section-title-and-chat{
