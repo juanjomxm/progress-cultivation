@@ -13,6 +13,7 @@ import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressNewWeek/ProgressNew";
 
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
+import { ButtonChatBot } from "../ChatBot/ChatBot";
 import { ChatBot } from "../ChatBot/ChatBot";
 import { Climate } from "../Climate/Climate";
 
@@ -37,17 +38,17 @@ function Components(){
                             </div>
 
                             <div className="section-title-and-chat">
-                                
                                 <div className="container-title-and-data-images">
                                 <InitCultivation />
                                 {(statePlants.length >= 1) && <SearchPlants/>}
                                 <ContainerImagesPlants/>
                                 </div>
-                                
-                                {/* <div className="container-chatbot">
-                                    <ChatBot/>
-                                </div> */}
+
+                                <div className="container-chatbot">
+                                 <ChatBot />
+                                </div>
                             </div>
+
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}
                             {(!loading && statePlants.length >= 1 && searchPlants.length === 0) &&  <h4>No hay coincidencias</h4>}
                             
