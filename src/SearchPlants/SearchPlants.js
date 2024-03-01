@@ -12,7 +12,7 @@ function SearchPlants(){
         <div className="search-plants">
             <input
             className="input-search"
-            placeholder="Buscar planta" 
+            placeholder='🔍' 
             value={inputSearchPlant}
             onChange={(event)=>{
                 setInputSearchPlant(event.target.value)

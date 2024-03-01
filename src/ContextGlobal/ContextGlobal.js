@@ -20,9 +20,10 @@ function ProgressProvider({children}){
   const [newPlant, setNewPlant] = React.useState('') // Estado para agregar planta del inicio
   const [newImage, setNewImage] = React.useState([]) // Estado que controla subir la imagen de la planta de inincio
   const [newProgress, setNewProgress] = React.useState('') // Titulo numero de semana
-  const [newImageProgress, setNewImageProgress] = React.useState([]) // Estado que controla subir la imagen del progreso semana por semana
   const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
+  const [newImageProgress, setNewImageProgress] = React.useState([]) // Estado que controla subir la imagen del progreso semana por semana
   const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
+  const [progressTextEdit, setProgressTextEdit] = React.useState('') // Estado para editar el texto del progreso
 
   // ESTADOS DERIVADOS
   const searchPlants = statePlants.filter(item =>{
@@ -76,7 +77,7 @@ function ProgressProvider({children}){
   } // Quedo lista esta funcion
 
   // Funcion para editar la planta de inicio
-  async function editPlant(id, editImage){
+  async function editPlant(id, nameEdit, editImage){
     const plantIndex = statePlants.findIndex(item => item.id === id)
     
     const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
@@ -94,7 +95,7 @@ function ProgressProvider({children}){
     try{
       if(res.status === 200, 201){
         const plantWeek = [...statePlants]
-        plantWeek[plantIndex].name = newPlant
+        plantWeek[plantIndex].name = nameEdit
         plantWeek[plantIndex].src = data.data.image.url
         savedPlants(plantWeek) 
       }
@@ -136,7 +137,7 @@ function ProgressProvider({children}){
   }
 
   // Funcion para editar el progreso
-  async function editProgress(id, oldWeekTitle, newWeekTitle, newImage, newProgressText){
+  async function editProgress(id, oldWeekTitle, newWeekTitle, newImage, newProgressTextEdit){
     const plantIndex = statePlants.findIndex(item => item.id === id)
 
     const apiUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
@@ -145,7 +146,7 @@ function ProgressProvider({children}){
     const formData = new FormData()
     formData.append('image', imageUrl)
 
-    if (plantIndex !== -1) {
+    if(plantIndex !== -1){
         let newPlants = [...statePlants];
         const progressIndex = newPlants[plantIndex].week.findIndex(item => item.trim().toLowerCase() === oldWeekTitle.trim().toLowerCase());
 
@@ -164,17 +165,17 @@ function ProgressProvider({children}){
             if(res.status === 200,201){
               newPlants[plantIndex].week[progressIndex] = newWeekTitle
               newPlants[plantIndex].srcWeek[progressIndex] = data.data.image.url
-              newPlants[plantIndex].textWeek[progressIndex] = newProgressText
+              newPlants[plantIndex].textWeek[progressIndex] = newProgressTextEdit
               savedPlants(newPlants)
             }
           }catch(error){
             console.warn(error)
           }
-      } else {
+        } else {
           console.error("Semana no encontrada para la planta con ID:", id, "y título de semana:", oldWeekTitle)
-      }
-    } else {
-        console.error("Planta no encontrada con ID:", id)
+        }
+    }else {
+      console.error("Planta no encontrada con ID:", id)
     }
   }
 
@@ -231,7 +232,9 @@ function ProgressProvider({children}){
             editProgress,
             deletedProgress,
             newProgressEdit, 
-            setNewProgressEdit
+            setNewProgressEdit,
+            progressTextEdit, 
+            setProgressTextEdit
         }}>
             {children}
         </ProgressContext.Provider>

@@ -33,20 +33,23 @@ function Components(){
                     <Route path="/" element={
                         <React.Fragment>
                             {error && <p>Hubo un error</p>}
-                            <div>
+                            <div className="container-init-and-searchplants">
+                                <InitCultivation />
+                                {(statePlants.length >= 1) && <SearchPlants/>}
+                            </div>
+
+                            <div className="climate">
                                 <Climate/>
                             </div>
 
                             <div className="section-title-and-chat">
                                 <div className="container-title-and-data-images">
-                                <InitCultivation />
-                                {(statePlants.length >= 1) && <SearchPlants/>}
                                 <ContainerImagesPlants/>
                                 </div>
+                            </div>
 
-                                <div className="container-chatbot">
-                                 <ChatBot />
-                                </div>
+                            <div className="container-chat">
+                                <ChatBot />
                             </div>
 
                             {(!loading && statePlants.length === 0) && <h4>Inica tu cultivo</h4>}

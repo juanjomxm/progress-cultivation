@@ -19,11 +19,14 @@ function PlantNew(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        if(newImage.file){
+        if(newPlant.length >= 1){
             addPlant(newPlant, newImage.file)
+            navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
+        } else{
+            console.log('falta nombre')
+            cleanForm()
         } // Con esta validacion lo que hago es que si no subo la imagen con el nombre no se renderiza, pero si agrego la imagen se renderiza normal
-        cleanForm()
-        navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
+        cleanForm() 
     }
 
     const onCancel = (event)=>{

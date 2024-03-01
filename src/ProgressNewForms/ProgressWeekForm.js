@@ -26,11 +26,14 @@ function ProgressNewWeek(){
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        if(newImageProgress.file){
+        if(newProgress.length >= 1){
             addPlantWeek(id, newProgress, newImageProgress.file, newProgressText)
-        }
+            navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
+        }else{
+            console.log('falta la semana')
+            cleanFormProgress()
+        } 
         cleanFormProgress()
-        navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
     const onChange = (event)=>{
@@ -57,50 +60,53 @@ function ProgressNewWeek(){
     return(
         <div className="container-images-progress">
             <form 
-        className="new-progress"
-        onSubmit={onSubmit}
-        > 
-            <textarea
-            className="text-new-plant-progress"
-            placeholder="#Semana"
-            value={newProgress}
-            onChange={onChange}
-            >   
-            </textarea>
-            <input 
-            className="load-image" 
-            id="file" 
-            type="file" 
-            name="file"
-            accept="image/*"
-            placeholder="subir imagen"
-            onChange={onSubmitImageProgress}
-            ></input>
-            <img
-            className="image-form-progress"
-            src={newImageProgress.src}
-            ></img>
-            <textarea
-            className="text-new-progress"
-            placeholder="Progreso"
-            value={newProgressText}
-            onChange={onChangeText}
-            >   
-            </textarea>
-            <div className="section-buttons">
-                <button 
-                className="button-cancel"
-                type="button"
-                onClick={onCancel}
-                >Cancelar</button>
-                <button 
-                className="button-add-submit"
-                type="submit"
-                onClick={onSubmit}
-                >Añadir</button>
-            </div>
-        </form>
+            className="new-progress"
+            onSubmit={onSubmit}
+            > 
+                <textarea
+                className="text-new-plant-progress"
+                placeholder="#Semana"
+                value={newProgress}
+                onChange={onChange}
+                >   
+                </textarea>
 
+                <input 
+                className="load-image" 
+                id="file" 
+                type="file" 
+                name="file"
+                accept="image/*"
+                placeholder="subir imagen"
+                onChange={onSubmitImageProgress}
+                ></input>
+
+                <img
+                className="image-form-progress"
+                src={newImageProgress.src}
+                ></img>
+
+                <textarea
+                className="text-new-progress"
+                placeholder="Progreso"
+                value={newProgressText}
+                onChange={onChangeText}
+                >   
+                </textarea>
+
+                <div className="section-buttons">
+                    <button 
+                    className="button-cancel"
+                    type="button"
+                    onClick={onCancel}
+                    >Cancelar</button>
+                    <button 
+                    className="button-add-submit"
+                    type="submit"
+                    onClick={onSubmit}
+                    >Añadir</button>
+                </div>
+            </form>
         </div>
     )
 }

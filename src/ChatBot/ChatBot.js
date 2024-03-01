@@ -31,30 +31,32 @@ function ChatBot(){
     // }
 
     return(
-        <div className="data-chatbot">
-           <div className="input-and-button-chat">
-                <textarea
-                className="text-question"
-                placeholder="En que te puedo ayudar?"
-                value={inputChat}
-                onChange={(event)=>{
-                    setInputChat(event.target.value)
-                }}
-                ></textarea>
-                
-                <button
-                // onClick={chatBot}
-                >Enviar</button>
-           </div>
+        <div className="container-chatbot">
+            <div className="data-chatbot">
+                <div className="input-and-button-chat">
+                        <textarea
+                        className="text-question"
+                        placeholder="En que te puedo ayudar?"
+                        value={inputChat}
+                        onChange={(event)=>{
+                            setInputChat(event.target.value)
+                        }}
+                        ></textarea>
+                        
+                        <button
+                        // onClick={chatBot}
+                        >Enviar</button>
+                </div>
 
-           <p>Obtener consejos de la IA para el cultivo, poder saber a traves de una imagen que carencias o excesos puede tener la planta o el cultivo y lograr los mejores resultados</p>
-           <h3>Este chat se encuentra en actualizacion</h3>
+                <p>Obtener consejos de la IA para el cultivo, resolver las dudas de los que inician, poder saber a traves de una imagen que carencias o excesos puede tener la planta o el cultivo y lograr los mejores resultados</p>
+                <h3>Este chat se encuentra en actualizacion</h3>
 
-           {dataChat && (
-                <p className="text-chatbot">
-                    <strong>Respuesta:</strong> {dataChat}
-                </p>
-            )}
+                {dataChat && (
+                    <p className="text-chatbot">
+                        <strong>Respuesta:</strong> {dataChat}
+                    </p>
+                )}
+            </div>
         </div>
     )
 }

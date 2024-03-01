@@ -21,13 +21,16 @@ function PlantEdit(){
     const id = Number(params.id) // Con estas dos variables pude resolver el bug que tenia al editar la planta
     const name = (params.name)
 
-    
-
     const onSubmitProgress = (event)=>{
         event.preventDefault()
-        editPlant(id, newImage.file)
-        cleanFormEditPlant()
-        navigate('/') // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
+        if(newPlant.length >= 1){
+            editPlant(id, newPlant, newImage.file)
+            navigate('/')
+        }else{
+            console.log('Falta editar el nombre')
+            cleanFormEditPlant()
+        }
+        cleanFormEditPlant() // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas
     }
 
     const onCancel = (event)=>{

@@ -7,8 +7,9 @@ function ProgressEdit(){
     const {
         setNewImageProgress,
         newImageProgress,
-        newProgress, 
         newProgressText, 
+        progressTextEdit, 
+        setProgressTextEdit,
         setNewProgressText,
         editProgress,
         newProgressEdit, 
@@ -24,13 +25,17 @@ function ProgressEdit(){
     const params = useParams()
     const id = Number(params.id)
     const week = (params.week)
-    const textWeek = (params.textWeek)
 
     const onSubmit = (event)=>{
         event.preventDefault()
-        editProgress(id, week, newProgressEdit, newImageProgress.file, newProgressText) 
+        if(newProgressEdit.length >= 1){
+            editProgress(id, week, newProgressEdit, newImageProgress.file, progressTextEdit) 
+            navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
+        }else{
+            console.log('Falta editar la semana')
+            cleanFormProgressEdit()
+        } 
         cleanFormProgressEdit()
-        navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
     }
 
     const onChange = (event)=>{
@@ -38,7 +43,7 @@ function ProgressEdit(){
     }
 
     const onChangeText= (event)=>{
-        setNewProgressText(event.target.value)
+        setProgressTextEdit(event.target.value)
     }
 
     const onCancel = (event)=>{
@@ -85,8 +90,8 @@ function ProgressEdit(){
 
                 <textarea
                 className="text-new-progress"
-                placeholder="Progreso"
-                value={newProgressText}
+                placeholder='Progreso'
+                value={progressTextEdit}
                 onChange={onChangeText}
                 >   
                 </textarea>
