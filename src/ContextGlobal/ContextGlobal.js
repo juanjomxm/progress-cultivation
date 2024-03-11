@@ -7,24 +7,16 @@ const ProgressContext = React.createContext()
 
 function ProgressProvider({children}){
 
-  // ESTADOS
-  const [inputSearchPlant, setInputSearchPlant] = React.useState('')
-
   const {
     item: statePlants, 
     saveItem: savedPlants,
     loading,
     error
-  } = useLocalStorage('cultivation', [])
+  } = useLocalStorage('cultivation', []) // Ejecutando el localStorage
 
-  const [newPlant, setNewPlant] = React.useState('') // Estado para agregar planta del inicio
-  const [newImage, setNewImage] = React.useState([]) // Estado que controla subir la imagen de la planta de inincio
-  const [newProgress, setNewProgress] = React.useState('') // Titulo numero de semana
-  const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
-  const [newImageProgress, setNewImageProgress] = React.useState([]) // Estado que controla subir la imagen del progreso semana por semana
-  const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
-  const [progressTextEdit, setProgressTextEdit] = React.useState('') // Estado para editar el texto del progreso
-
+  // ESTADOS
+  const [inputSearchPlant, setInputSearchPlant] = React.useState('') // Estado para buscar planta de inicio
+  
   // ESTADOS DERIVADOS
   const searchPlants = statePlants.filter(item =>{
     return item.name.toLocaleLowerCase().includes(inputSearchPlant.toLocaleLowerCase())
@@ -34,7 +26,7 @@ function ProgressProvider({children}){
 
   // Funcion para agregar planta
 
- async function addPlant(namePlant, imagePlant) {
+  async function addPlant(namePlant, imagePlant) {
     let plantId = newPlantId()
 
     // Api para guardar las imagenes en el servidor de imgbb
@@ -68,14 +60,6 @@ function ProgressProvider({children}){
     }
   }
 
-  // Funcion para eliminar planta
-  const deletedPlant = (id) =>{
-    const plantIndex = statePlants.findIndex(item => item.id === id)
-    const newPlants = [...statePlants]
-    newPlants.splice(plantIndex, 1)
-    savedPlants(newPlants)
-  } // Quedo lista esta funcion
-
   // Funcion para editar la planta de inicio
   async function editPlant(id, nameEdit, editImage){
     const plantIndex = statePlants.findIndex(item => item.id === id)
@@ -103,6 +87,16 @@ function ProgressProvider({children}){
       console.warn(error)
     }
   }
+
+  // Funcion para eliminar planta
+  const deletedPlant = (id) =>{
+    const plantIndex = statePlants.findIndex(item => item.id === id)
+    const newPlants = [...statePlants]
+    newPlants.splice(plantIndex, 1)
+    savedPlants(newPlants)
+  } // Quedo lista esta funcion
+
+  
 
   //                               FUNCIONES PARA EL PROGRESO DE LA PLANTA
 
@@ -207,36 +201,20 @@ function ProgressProvider({children}){
         <ProgressContext.Provider value={{
             statePlants,
             savedPlants,
-            addPlant,
-            deletedPlant,
             loading,
             error,
-            searchPlants,
             inputSearchPlant, 
             setInputSearchPlant,
-            newImage,
-            setNewImage,
-            newImageProgress, 
-            setNewImageProgress,
-            newProgress, 
-            setNewProgress,
-            newProgressText, 
-            setNewProgressText,
-            newImageProgress, 
-            setNewImageProgress,
-            newPlant, 
-            setNewPlant,
-            addPlantWeek,
+            searchPlants,
+            addPlant,
             editPlant,
-            newPlantId,
+            deletedPlant,
+            addPlantWeek,
             editProgress,
             deletedProgress,
-            newProgressEdit, 
-            setNewProgressEdit,
-            progressTextEdit, 
-            setProgressTextEdit
+            newPlantId,
         }}>
-            {children}
+          {children}
         </ProgressContext.Provider>
     )
 }

@@ -52,9 +52,9 @@ function ProgressNew() {
   const post = statePlants.find((item) => item.name === name)
 
   const onChangeTextProgress = (event, index) => {
-    const newArray = [...post.textWeek];
-    newArray[index] = event.target.value;
-    setNewProgressText(newArray);
+    const newArray = [...post.textWeek]
+    newArray[index] = event.target.value
+    setNewProgressText(newArray)
   }
 
   return (

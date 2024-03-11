@@ -7,19 +7,16 @@ function ProgressEdit(){
     const {
         setNewImageProgress,
         newImageProgress,
-        newProgressText, 
-        progressTextEdit, 
-        setProgressTextEdit,
-        setNewProgressText,
         editProgress,
-        newProgressEdit, 
-        setNewProgressEdit
     } = React.useContext(ProgressContext)
+
+    const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
+    const [progressTextEdit, setProgressTextEdit] = React.useState('') // Estado para editar el texto del progreso
+    const [imageProgressEdit, setImageProgressEdit] = React.useState([])
 
     const cleanFormProgressEdit = () => {
         setNewProgressEdit('')
-        setNewImageProgress({ src: '', file: null })
-        setNewProgressText('')
+        setImageProgressEdit({ src: '', file: null })
     }
 
     const params = useParams()
@@ -29,7 +26,7 @@ function ProgressEdit(){
     const onSubmit = (event)=>{
         event.preventDefault()
         if(newProgressEdit.length >= 1){
-            editProgress(id, week, newProgressEdit, newImageProgress.file, progressTextEdit) 
+            editProgress(id, week, newProgressEdit, imageProgressEdit.file, progressTextEdit) 
             navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
         }else{
             console.log('Falta editar la semana')
@@ -53,7 +50,7 @@ function ProgressEdit(){
 
     const onSubmitImageProgress = (event) => {
         const file = event.target.files[0];
-        setNewImageProgress({
+        setImageProgressEdit({
           src: URL.createObjectURL(file),
           file: file
         }) // Al subir la imagen de esta manera me puedo permitir una mejor organizacion y evitar los problemas que ocasiona al subir la imagen directamente en el actualizador del estado
@@ -85,7 +82,7 @@ function ProgressEdit(){
 
                 <img
                 className="image-form-progress"
-                src={newImageProgress.src}
+                src={imageProgressEdit.src}
                 ></img>
 
                 <textarea

@@ -6,14 +6,12 @@ import { useNavigate, useParams } from "react-router-dom";
 function ProgressNewWeek(){
     const navigateProgress = useNavigate()
     const {
-        setNewImageProgress,
-        newImageProgress,
-        newProgress, 
-        setNewProgress,
-        newProgressText, 
-        setNewProgressText,
         addPlantWeek,
     } = React.useContext(ProgressContext)
+
+    const [newProgress, setNewProgress] = React.useState('') // Titulo numero de semana
+    const [newProgressText, setNewProgressText] = React.useState('') // Text area texto progreso
+    const [newImageProgress, setNewImageProgress] = React.useState([]) // Estado que controla subir la imagen del progreso semana por semana
 
     const cleanFormProgress = () => {
         setNewProgress('')

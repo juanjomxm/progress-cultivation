@@ -5,16 +5,15 @@ import { useNavigate, useParams } from "react-router-dom";
 function PlantEdit(){
     const navigate = useNavigate()
     const {
-        newImage,
-        setNewImage,
-        newPlant,
-        setNewPlant,
         editPlant
     } = React.useContext(ProgressContext)
 
+    const [plantEdit, setPlantEdit] = React.useState('') // Estado para editar la planta
+    const [imageEdit, setImageEdit] = React.useState([])
+
     const cleanFormEditPlant = () => {
-        setNewPlant('')
-        setNewImage({ src: '', file: null })
+        setPlantEdit('')
+        setImageEdit({ src: '', file: null })
     }
 
     const params = useParams()
@@ -23,8 +22,8 @@ function PlantEdit(){
 
     const onSubmitProgress = (event)=>{
         event.preventDefault()
-        if(newPlant.length >= 1){
-            editPlant(id, newPlant, newImage.file)
+        if(plantEdit.length >= 1){
+            editPlant(id, plantEdit, imageEdit.file)
             navigate('/')
         }else{
             console.log('Falta editar el nombre')
@@ -39,12 +38,12 @@ function PlantEdit(){
     }
 
     const onChange = (event)=>{
-        setNewPlant(event.target.value)
+        setPlantEdit(event.target.value)
     }
 
     const onSubmitImage = (event) => {
         const file = event.target.files[0];
-        setNewImage({
+        setImageEdit({
           src: URL.createObjectURL(file),
           file: file
         })
@@ -62,7 +61,7 @@ function PlantEdit(){
                 <textarea
                 className="text-new-plant"
                 placeholder={name}
-                value={newPlant}
+                value={plantEdit}
                 onChange={onChange}
                 >   
                 </textarea>
@@ -90,7 +89,7 @@ function PlantEdit(){
                 
                 <img
                 className="image-form"
-                src={newImage.src}
+                src={imageEdit.src}
                 ></img>
             </form>  
         </div>

@@ -5,12 +5,11 @@ import { useNavigate } from "react-router-dom";
 function PlantNew(){
     const navigate = useNavigate()
     const {
-        newPlant, 
-        setNewPlant,
         addPlant,
-        newImage,
-        setNewImage,
-    } = React.useContext(ProgressContext)
+    } = React.useContext(ProgressContext);
+
+    const [newPlant, setNewPlant] = React.useState('') // Estado para agregar planta del inicio
+    const [newImage, setNewImage] = React.useState([]) // Estado que controla subir la imagen de la planta de inincio
 
     const cleanForm = () => {
         setNewPlant('')
