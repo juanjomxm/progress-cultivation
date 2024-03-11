@@ -26,7 +26,7 @@ function PlantEdit(){
             editPlant(id, plantEdit, imageEdit.file)
             navigate('/')
         }else{
-            console.log('Falta editar el nombre')
+            alert('Falta editar el nombre')
             cleanFormEditPlant()
         }
         cleanFormEditPlant() // De esta forma al agregar la nueva planta no se queda en el formulario sino que me devuelave a donde se estan renderizando las plantas

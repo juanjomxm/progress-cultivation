@@ -1,7 +1,7 @@
 import React from "react"
 
 // CUSTOM HOOK de useLocalStorage
-function useLocalStorage(itemName, initialValue){ // Este primer argumento de la funcion, se traduce en el contexto global como en nombre de la app y el segundo argumento son los parentesis en el contexto global
+function useLocalStorage(itemName, initialValue){ // El primer parametro hace referencia al nombre de la app en el localStorage y el segundo parametro hace referencia al valor inicial de ese localStorage que despues se puede convertir en un objeto ejecutando una funcion para ingresar datos en el localStorage
 
     const [item, setItem] = React.useState(initialValue)
     const [loading, setLoading] = React.useState(true)

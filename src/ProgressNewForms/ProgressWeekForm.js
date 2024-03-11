@@ -28,7 +28,7 @@ function ProgressNewWeek(){
             addPlantWeek(id, newProgress, newImageProgress.file, newProgressText)
             navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
         }else{
-            console.log('falta la semana')
+            alert('falta la semana')
             cleanFormProgress()
         } 
         cleanFormProgress()

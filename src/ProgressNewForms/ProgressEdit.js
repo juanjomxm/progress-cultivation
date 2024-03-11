@@ -5,18 +5,17 @@ import { useNavigate, useParams } from "react-router-dom";
 function ProgressEdit(){
     const navigateProgress = useNavigate()
     const {
-        setNewImageProgress,
-        newImageProgress,
         editProgress,
     } = React.useContext(ProgressContext)
 
     const [newProgressEdit, setNewProgressEdit] = React.useState('') //  Nuevo Titulo # de semana
     const [progressTextEdit, setProgressTextEdit] = React.useState('') // Estado para editar el texto del progreso
-    const [imageProgressEdit, setImageProgressEdit] = React.useState([])
+    const [imageProgressEdit, setImageProgressEdit] = React.useState([]) // EStado para editar imagen
 
     const cleanFormProgressEdit = () => {
         setNewProgressEdit('')
         setImageProgressEdit({ src: '', file: null })
+        setProgressTextEdit('')
     }
 
     const params = useParams()
@@ -29,7 +28,7 @@ function ProgressEdit(){
             editProgress(id, week, newProgressEdit, imageProgressEdit.file, progressTextEdit) 
             navigateProgress(-1) // De esta manera con useNavigate puedo volver a la pagina anterior, en este caso me sirve esta solucion
         }else{
-            console.log('Falta editar la semana')
+            alert('Falta editar la semana')
             cleanFormProgressEdit()
         } 
         cleanFormProgressEdit()

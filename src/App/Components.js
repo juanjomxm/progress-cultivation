@@ -11,6 +11,7 @@ import { ProgressNew } from "../ProgressNewWeek/ProgressNew";
 import { ProgressNewWeek } from "../ProgressNewForms/ProgressWeekForm";
 import { ProgressEdit } from "../ProgressNewForms/ProgressEdit";
 import { ButtonModalProgress } from "../ProgressNewWeek/ProgressNew";
+
 import { ProgressContext } from "../ContextGlobal/ContextGlobal";
 
 import { ChatBot } from "../ChatBot/ChatBot";
